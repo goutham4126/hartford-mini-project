@@ -1,0 +1,286 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@insuresure.com",
+      "password": "901045",
+      "role": "admin",
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "1234567890",
+      "createdAt": "2024-01-15"
+    },
+    {
+      "id": "2",
+      "username": "agent1",
+      "email": "agent1@insuresure.com",
+      "password": "901045",
+      "role": "agent",
+      "firstName": "Alice",
+      "lastName": "Brown",
+      "phone": "9876543210",
+      "createdAt": "2024-01-16"
+    },
+    {
+      "id": "3",
+      "username": "agent2",
+      "email": "agent2@insuresure.com",
+      "password": "hashed_agent_pwd",
+      "role": "agent",
+      "firstName": "Robert",
+      "lastName": "Wilson",
+      "phone": "9001122334",
+      "createdAt": "2024-01-18"
+    },
+    {
+      "id": "4",
+      "username": "customer1",
+      "email": "customer1@insuresure.com",
+      "password": "901045",
+      "role": "customer",
+      "firstName": "Michael",
+      "lastName": "Smith",
+      "phone": "9123456789",
+      "createdAt": "2024-01-17"
+    },
+    {
+      "id": "5",
+      "username": "customer2",
+      "email": "customer2@insuresure.com",
+      "password": "hashed_customer_pwd",
+      "role": "customer",
+      "firstName": "Emma",
+      "lastName": "Watson",
+      "phone": "9988776655",
+      "createdAt": "2024-01-18"
+    },
+    {
+      "id": "6",
+      "username": "customer3",
+      "email": "customer3@insuresure.com",
+      "password": "hashed_customer_pwd",
+      "role": "customer",
+      "firstName": "David",
+      "lastName": "Miller",
+      "phone": "9090909090",
+      "createdAt": "2024-01-20"
+    },
+    {
+      "id": "cbd3",
+      "username": "Goutham",
+      "email": "goutham4126@gmail.com",
+      "password": "4126",
+      "role": "customer",
+      "firstName": "PICHIGUNTLA",
+      "lastName": "GOUTHAM",
+      "phone": "9160804126",
+      "createdAt": "2026-01-25T07:19:08.886Z"
+    }
+  ],
+  "policies": [
+    {
+      "id": "POL-001",
+      "name": "Comprehensive Health Insurance",
+      "type": "health",
+      "premium": 12000,
+      "coverage": 500000,
+      "duration": 365,
+      "description": "Covers hospitalization, OPD and critical illnesses.",
+      "features": [
+        "Hospitalization",
+        "OPD",
+        "Critical Illness"
+      ],
+      "createdAt": "2024-01-15",
+      "status": "active"
+    },
+    {
+      "id": "POL-002",
+      "name": "Vehicle Insurance Plus",
+      "type": "vehicle",
+      "premium": 8000,
+      "coverage": 300000,
+      "duration": 365,
+      "description": "Accident and third-party coverage.",
+      "features": [
+        "Accidental Damage",
+        "Third Party Cover"
+      ],
+      "createdAt": "2024-01-16",
+      "status": "active"
+    },
+    {
+      "id": "POL-003",
+      "name": "Life Secure Plan",
+      "type": "life",
+      "premium": 15000,
+      "coverage": 1000000,
+      "duration": 730,
+      "description": "Long-term life insurance.",
+      "features": [
+        "Death Benefit",
+        "Tax Benefits"
+      ],
+      "createdAt": "2024-01-17",
+      "status": "active"
+    },
+    {
+      "id": "POL-004",
+      "name": "Senior Citizen Health Plan",
+      "type": "health",
+      "premium": 20000,
+      "coverage": 400000,
+      "duration": 365,
+      "description": "Health insurance for senior citizens.",
+      "features": [
+        "Hospitalization",
+        "Pre-existing diseases"
+      ],
+      "createdAt": "2024-01-19",
+      "status": "inactive"
+    },
+    {
+      "id": "POL-005",
+      "name": "Travel Secure Plan",
+      "type": "travel",
+      "premium": 6000,
+      "coverage": 250000,
+      "duration": 180,
+      "description": "Travel insurance for international trips.",
+      "features": [
+        "Medical Emergency",
+        "Trip Cancellation"
+      ],
+      "createdAt": "2024-01-21",
+      "status": "active"
+    }
+  ],
+  "customers": [
+    {
+      "id": "CUST-001",
+      "userId": 4,
+      "policyIds": [
+        "POL-001",
+        "POL-002"
+      ],
+      "nominee": "Jane Smith",
+      "address": "Bangalore",
+      "dateOfBirth": "1990-05-15",
+      "aadhaarNumber": "123456789012",
+      "panNumber": "ABCDE1234F"
+    },
+    {
+      "id": "CUST-002",
+      "userId": 5,
+      "policyIds": [
+        "POL-002",
+        "POL-003"
+      ],
+      "nominee": "Robert Watson",
+      "address": "Chennai",
+      "dateOfBirth": "1992-09-20",
+      "aadhaarNumber": "987654321098",
+      "panNumber": "PQRSX5678L"
+    },
+    {
+      "id": "CUST-003",
+      "userId": 6,
+      "policyIds": [
+        "POL-005"
+      ],
+      "nominee": "Sarah Miller",
+      "address": "Hyderabad",
+      "dateOfBirth": "1988-02-11",
+      "aadhaarNumber": "555566667777",
+      "panNumber": "LMNOP9876Q"
+    }
+  ],
+  "agents": [
+    {
+      "id": "AGT-001",
+      "userId": 2,
+      "licenseNumber": "LIC123456",
+      "commissionRate": 15,
+      "assignedCustomers": [
+        "CUST-001",
+        "CUST-002"
+      ],
+      "totalPoliciesSold": 45
+    },
+    {
+      "id": "AGT-002",
+      "userId": 3,
+      "licenseNumber": "LIC654321",
+      "commissionRate": 12,
+      "assignedCustomers": [
+        "CUST-003"
+      ],
+      "totalPoliciesSold": 28
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLAIM-001",
+      "policyId": "POL-001",
+      "customerId": "CUST-001",
+      "type": "health",
+      "amount": 50000,
+      "date": "2024-01-20",
+      "status": "pending",
+      "description": "Hospitalization due to accident",
+      "documents": [
+        "bill1.jpg",
+        "report.pdf"
+      ]
+    },
+    {
+      "id": "CLAIM-002",
+      "policyId": "POL-002",
+      "customerId": "CUST-002",
+      "type": "vehicle",
+      "amount": 30000,
+      "date": "2024-02-05",
+      "status": "approved",
+      "description": "Vehicle repair after accident",
+      "documents": [
+        "garage_bill.pdf"
+      ]
+    },
+    {
+      "id": "CLAIM-003",
+      "policyId": "POL-003",
+      "customerId": "CUST-002",
+      "type": "life",
+      "amount": 100000,
+      "date": "2024-02-10",
+      "status": "rejected",
+      "description": "Incorrect documentation submitted",
+      "documents": []
+    },
+    {
+      "id": "CLAIM-004",
+      "policyId": "POL-005",
+      "customerId": "CUST-003",
+      "type": "travel",
+      "amount": 20000,
+      "date": "2024-02-15",
+      "status": "approved",
+      "description": "Medical emergency during travel",
+      "documents": [
+        "hospital_bill.pdf"
+      ]
+    },
+    {
+      "id": "CLAIM-005",
+      "policyId": "POL-004",
+      "customerId": "CUST-001",
+      "type": "health",
+      "amount": 40000,
+      "date": "2024-02-18",
+      "status": "rejected",
+      "description": "Policy inactive at time of claim",
+      "documents": []
+    }
+  ]
+}
