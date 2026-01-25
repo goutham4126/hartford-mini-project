@@ -1,0 +1,22 @@
+<div class="flex justify-end items-center gap-10 bg-gray-200 p-6">
+
+
+  @if (currentUser()) {
+    <button (click)="logOut()" class="px-4 py-2 bg-blue-500 text-white font-semibold text-base rounded-lg">Logout</button>
+    <p>{{ currentUser()?.username }}</p>
+  }
+  @else {
+      <div class="flex flex-wrap gap-3">
+        <a routerLink="/" class="btn">Home</a>
+
+        <a routerLink="/auth/admin/login" class="btn">Admin Login</a>
+        <a routerLink="/auth/admin/register" class="btn">Admin Register</a>
+
+        <a routerLink="/auth/agent/login" class="btn">Agent Login</a>
+        <a routerLink="/auth/agent/register" class="btn">Agent Register</a>
+
+        <a routerLink="/auth/customer/login" class="btn">Customer Login</a>
+        <a routerLink="/auth/customer/register" class="btn">Customer Register</a>
+      </div>
+  }
+</div>
