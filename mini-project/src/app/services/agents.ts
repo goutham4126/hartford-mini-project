@@ -20,18 +20,47 @@ export class AgentService {
   }
   // get claims
   getClaims(callback: (claims: any[]) => void) {
-    this.getAgent(agent => {
-      const assignedCustomerIds = agent.assignedCustomers.map(String);
-      this.http.get<any[]>(`${this.api}/claims`)
-        .subscribe(claims => {
-          callback(
-            claims.filter(c =>
-              assignedCustomerIds.includes(String(c.customerId))
-            )
-          );
+  this.getAgent(agent => {
+    const assignedCustomerIds = agent.assignedCustomers.map(String);
+
+    this.http.get<any[]>(`${this.api}/claims`).subscribe(claims => {
+
+      const agentClaims = claims.filter(c =>
+        assignedCustomerIds.includes(String(c.customerId))
+      );
+
+      this.http.get<any[]>(`${this.api}/customers`).subscribe(customers => {
+        this.http.get<any[]>(`${this.api}/users`).subscribe(users => {
+          this.http.get<any[]>(`${this.api}/policies`).subscribe(policies => {
+
+            const customerMap: any = {};
+            customers.forEach(c => customerMap[String(c.id)] = c);
+
+            const userMap: any = {};
+            users.forEach(u => userMap[String(u.id)] = u);
+
+            const policyMap: any = {};
+            policies.forEach(p => policyMap[String(p.id)] = p);
+
+            const enrichedClaims = agentClaims.map(claim => {
+              const customer = customerMap[String(claim.customerId)];
+              const user = userMap[String(customer.userId)];
+              const policy = policyMap[String(claim.policyId)];
+
+              return {
+                ...claim,
+                customerName:`${user.firstName} ${user.lastName}`,
+                policyType:policy.type
+              };
+            });
+
+            callback(enrichedClaims);
+          });
         });
+      });
     });
-  }
+  });
+}
   getDashboardData(callback: (data: any) => void) {
     this.getAgent(agent => {
       const assignedCustomerIds = agent.assignedCustomers.map(String);
@@ -44,7 +73,6 @@ export class AgentService {
             .subscribe(users => {
               const userMap: any = {};
               users.forEach(u => userMap[String(u.id)] = u);
-              // BUILD DATA FOR GRID
               const customerDetails = agentCustomers.map(c => {
                 const user = userMap[String(c.userId)];
                 return {

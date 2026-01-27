@@ -10,7 +10,7 @@ import { AgentService } from '../../../services/agents';
 })
 export class AgentClaims {
   claims = signal<any[]>([]);
-
+  
   constructor(private agentService: AgentService) {
     this.loadClaims();
   }
