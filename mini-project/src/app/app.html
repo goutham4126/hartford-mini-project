@@ -2,24 +2,20 @@
   <app-navbar class="bg-white shadow-md"></app-navbar>
   @if(currentUser())
   {
-    <div class="flex flex-1">
-      <app-sidebar class="w-64 bg-slate-800 text-white shadow-lg"></app-sidebar>
-      <main class="flex-1 p-6 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow p-6 min-h-full">
-          <router-outlet></router-outlet>
-        </div>
-      </main>
-    </div>
+  <div class="flex flex-1">
+    <app-sidebar class="w-72 bg-white text-slate-800 border-r border-slate-100 hidden md:block"></app-sidebar>
+    <main class="flex-1 p-8 overflow-y-auto bg-slate-50/50">
+      <div class="bg-white rounded-xl shadow p-6 min-h-full">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
   }
   @else
   {
-    <div class="flex flex-1">
-      <main class="flex-1 p-6 overflow-y-auto">
-        <div class="bg-white rounded-xl shadow p-6 min-h-full">
-          <router-outlet></router-outlet>
-        </div>
-      </main>
-    </div>
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
   }
   <app-footer class="p-6 bg-white border-t flex items-center justify-center text-sm text-gray-500"></app-footer>
 </div>

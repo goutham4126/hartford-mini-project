@@ -1,1 +1,1023 @@
-<p>home works!</p>
+<div class="font-sans antialiased bg-white text-slate-900 selection:bg-indigo-100 selection:text-indigo-700">
+
+    <!-- 1. Hero Section -->
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-white pt-24 pb-32 space-y-24" (mousemove)="onMouseMove($event)">
+        <!-- Advanced Grid Background with Vignette and Parallax -->
+        <div class="absolute inset-0 transition-transform duration-100 ease-out will-change-transform animate-hero-bg"
+            [style.transform]="'translate(' + mouseX * -0.5 + 'px, ' + mouseY * -0.5 + 'px)'">
+            <div
+                class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+            </div>
+            <div
+                class="absolute inset-0 bg-white [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,transparent_70%,#000_100%)]">
+            </div>
+        </div>
+
+        <!-- Glowing Aurora Effects with Parallax Drift -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-indigo-500/20 blur-[100px] pointer-events-none mix-blend-multiply animate-blob"
+            [style.transform]="'translate(' + mouseX + 'px, ' + mouseY + 'px)'"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-emerald-500/20 blur-[100px] pointer-events-none mix-blend-multiply animate-blob"
+            style="animation-delay: 2s;"
+            [style.transform]="'translate(' + mouseX * 0.8 + 'px, ' + mouseY * 0.8 + 'px)'"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none -z-10 animate-pulse">
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <!-- Badge Slide Down & Glow -->
+                <div
+                    class="inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold text-indigo-600 bg-indigo-50 mb-8 border border-indigo-100 animate-badge relative overflow-hidden">
+                    <span class="absolute inset-0 bg-white/50 animate-pulse" style="animation-duration: 3s;"></span>
+                    <span class="flex h-2 w-2 rounded-full bg-indigo-600 mr-2 relative z-10"></span>
+                    <span class="relative z-10">Reimagining Insurance for the Modern World</span>
+                </div>
+
+                <!-- Typography Fix: Hero Title Line-by-Line -->
+                <h1
+                    class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight text-balance relative">
+                    <!-- Light Sweep Overlay -->
+                    <div class="light-sweep-overlay"></div>
+
+                    <span class="block animate-title-line" style="animation-delay: 0.8s;">Secure your future with</span>
+                    <span class="block animate-title-line mt-2" style="animation-delay: 1.0s;">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-500 animate-shimmer-text">Unmatched
+                            Confidence</span>
+                    </span>
+                </h1>
+
+                <!-- Typography Fix: Body Text Fade Up -->
+                <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed text-balance animate-subtext"
+                    style="animation-delay: 1.2s;">
+                    We provide a financial safety net that protects individuals, families, and businesses. Pool your
+                    risk, transfer your worries, and live with peace of mind.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <!-- Button Hierarchy: Primary Bounce & Glow -->
+                    <a routerLink="/auth/customer/register"
+                        class="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 shadow-2xl shadow-indigo-900/20 w-full sm:w-auto text-center animate-cta-primary">
+                        Get Started Now
+                    </a>
+                    <!-- Button Hierarchy: Secondary Slide Up -->
+                    <a routerLink="/auth/customer/login"
+                        class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 active:scale-95 w-full sm:w-auto text-center animate-cta-secondary">
+                        Live Demo
+                    </a>
+                </div>
+
+                <!-- Staggered Trust Indicators -->
+                <div class="mt-12 flex items-center justify-center gap-8 text-sm text-slate-400 font-medium">
+                    <div class="flex items-center gap-2 animate-trust-item" style="animation-delay: 2.2s;">
+                        <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Instant Approval</span>
+                    </div>
+                    <div class="flex items-center gap-2 animate-trust-item" style="animation-delay: 2.4s;">
+                        <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>24/7 Support</span>
+                    </div>
+                    <div class="flex items-center gap-2 animate-trust-item" style="animation-delay: 2.6s;">
+                        <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>100% Secure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. Stats Section -->
+    <div class="border-y border-slate-100 bg-slate-50/50">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl md:text-4xl font-bold text-slate-900 mb-1">50k+</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Lives Insured</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-4xl font-bold text-slate-900 mb-1">98%</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Claim Settlement</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-4xl font-bold text-slate-900 mb-1">24h</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Support Time</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-4xl font-bold text-slate-900 mb-1">4.9/5</div>
+                    <div class="text-slate-500 text-sm font-medium uppercase tracking-wide">Customer Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NEW: 8. SaaS Dashboard Preview -->
+    <div class="py-24 bg-slate-50 overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Manage Everything in One Place</h2>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-16">A powerful dashboard to manage your policies,
+                track claims, and get support.</p>
+
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Mockup Window -->
+                <div class="bg-slate-900 rounded-t-2xl p-2 md:p-4 shadow-2xl border-t border-l-color-slate-700/50">
+                    <div class="flex items-center gap-2 mb-4 px-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <!-- Mockup Content: Placeholdered as a div, ideally an image -->
+                    <div
+                        class="bg-slate-800 rounded-lg overflow-hidden aspect-video relative flex items-center justify-center border border-slate-700/50 group">
+                        <div
+                            class="absolute inset-0 bg-slate-900/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                            <span class="text-white font-semibold">Interactive Demo Unavailable in Preview</span>
+                        </div>
+                        <!-- Abstract UI Lines -->
+                        <div class="w-full h-full p-8 flex gap-6 opacity-50 select-none">
+                            <div class="w-1/4 h-full bg-slate-700/30 rounded-xl space-y-4 p-4">
+                                <div class="w-8 h-8 rounded-full bg-indigo-500/50 mb-8"></div>
+                                <div class="h-2 bg-slate-600 rounded w-3/4"></div>
+                                <div class="h-2 bg-slate-600 rounded w-1/2"></div>
+                                <div class="h-2 bg-slate-600 rounded w-full"></div>
+                            </div>
+                            <div class="flex-1 h-full space-y-6">
+                                <div class="flex gap-4">
+                                    <div class="h-32 bg-slate-700/30 rounded-xl flex-1"></div>
+                                    <div class="h-32 bg-slate-700/30 rounded-xl flex-1"></div>
+                                    <div class="h-32 bg-slate-700/30 rounded-xl flex-1"></div>
+                                </div>
+                                <div
+                                    class="h-64 bg-slate-700/20 rounded-xl border border-dashed border-slate-600 flex items-center justify-center text-slate-500">
+                                    Dashboard UI Mockup
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Glow -->
+                <div
+                    class="absolute -bottom-10 left-0 w-full h-20 bg-indigo-500 blur-[80px] opacity-20 pointer-events-none">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Existing: Products Section -->
+    <div class="py-24 bg-white relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <!-- Typography Fix: Section Title -->
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Coverage for Every Stage of Life</h2>
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto">Choose the protection that fits your lifestyle.
+                    Flexible plans designed for you.</p>
+            </div>
+
+            <!-- Grid Spacing System: Gap-8 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Health -->
+                <div
+                    class="group relative p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6 text-2xl">
+                            🏥</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Health Insurance</h3>
+                        <p class="text-slate-500 mb-6 leading-relaxed">Complete medical coverage including
+                            hospitalization, critical illness, and preventive care.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-3"></span>Cashless Hospitalization
+                            </li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-3"></span>Critical Illness Cover
+                            </li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-3"></span>Full Family Protection
+                            </li>
+                        </ul>
+                        <a href="#"
+                            class="inline-flex items-center font-bold text-indigo-600 group-hover:text-indigo-700">View
+                            Plans <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Vehicle -->
+                <div
+                    class="group relative p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6 text-2xl">
+                            🚗</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Vehicle Insurance</h3>
+                        <p class="text-slate-500 mb-6 leading-relaxed">Drive with confidence knowing you're protected
+                            against accidents, theft, and third-party liabilities.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"></span>Comprehensive Cover</li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"></span>24/7 Roadside Assist
+                            </li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"></span>Zero Depreciation</li>
+                        </ul>
+                        <a href="#"
+                            class="inline-flex items-center font-bold text-emerald-600 group-hover:text-emerald-700">View
+                            Plans <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Life -->
+                <div
+                    class="group relative p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 text-2xl">
+                            🛡️</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">Life Insurance</h3>
+                        <p class="text-slate-500 mb-6 leading-relaxed">Secure your family's financial future with our
+                            flexible term life and endurance plans.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>High Life Cover</li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>Tax Benefits</li>
+                            <li class="flex items-center text-slate-600"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>Instant Payouts</li>
+                        </ul>
+                        <a href="#"
+                            class="inline-flex items-center font-bold text-blue-600 group-hover:text-blue-700">View
+                            Plans <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NEW: 4. Live Quote Calculator (Interactive) -->
+    <div class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <!-- BG Decorations -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-600/20 blur-[100px] rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/20 blur-[100px] rounded-full"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span
+                        class="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-2 block">Interactive</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Calculate Your Premium</h2>
+                    <p class="text-slate-400 text-lg mb-8">See how affordable comprehensive protection can be. Adjust
+                        parameters to see real-time estimates.</p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> No
+                            hidden fees</li>
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> Cancel
+                            anytime</li>
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> 30-day
+                            money back guarantee</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl p-8 shadow-2xl">
+                    <div class="space-y-8">
+                        <!-- Age Slider -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label class="text-slate-300">Age</label>
+                                <span class="font-bold text-white">{{ calculator.age }} years</span>
+                            </div>
+                            <input type="range" min="18" max="80" [(ngModel)]="calculator.age"
+                                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        </div>
+
+                        <!-- Coverage Slider -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label class="text-slate-300">Coverage Amount</label>
+                                <span class="font-bold text-white">{{ calculator.coverage | number }}</span>
+                            </div>
+                            <input type="range" min="100000" max="1000000" step="50000"
+                                [(ngModel)]="calculator.coverage"
+                                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        </div>
+
+                        <!-- Toggles -->
+                        <div class="flex gap-4">
+                            <button (click)="calculator.isFamily = false"
+                                [class]="!calculator.isFamily ? 'bg-indigo-600 border-indigo-500' : 'bg-transparent border-slate-600'"
+                                class="flex-1 py-3 border rounded-xl font-semibold transition-all">Individual</button>
+                            <button (click)="calculator.isFamily = true"
+                                [class]="calculator.isFamily ? 'bg-indigo-600 border-indigo-500' : 'bg-transparent border-slate-600'"
+                                class="flex-1 py-3 border rounded-xl font-semibold transition-all">Family</button>
+                        </div>
+
+                        <!-- Result -->
+                        <div
+                            class="bg-slate-800 rounded-xl p-6 flex justify-between items-center border border-slate-700">
+                            <div>
+                                <div class="text-slate-400 text-sm mb-1">Estimated Monthly Premium</div>
+                                <div class="text-3xl font-bold flex items-baseline">
+                                    <span class="text-emerald-400 mr-1">₹</span>
+                                    <span class="text-white">{{ calculatedPremium }}</span>
+                                </div>
+                            </div>
+                            <button
+                                class="px-6 py-3 bg-white text-slate-900 rounded-lg font-bold hover:bg-emerald-50 transition-colors">Lock
+                                Price</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 2. Why Choose Us (Value Proposition) -->
+    <div class="py-24 bg-slate-50 relative overflow-hidden">
+        <!-- BG Decorations -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Why Us</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Insurance, Re-engineered</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-4 text-xl">
+                        🤖</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">AI-Driven Claims</h3>
+                    <p class="text-slate-500">Claims settled in minutes, not days, powered by smart algorithms.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600 mb-4 text-xl">
+                        📄</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Zero Paperwork</h3>
+                    <p class="text-slate-500">100% digital experience. No printers or scanners needed ever.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4 text-xl">
+                        🔄</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">1-Click Renewals</h3>
+                    <p class="text-slate-500">Renewal is just a tap away. We preserve your details securely.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 mb-4 text-xl">
+                        ⚡</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Real-Time Tracking</h3>
+                    <p class="text-slate-500">Track your policy status and claim progress in real-time.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4 text-xl">
+                        🧠</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Smart Risk Assessment</h3>
+                    <p class="text-slate-500">Personalized plans based on your actual lifestyle and needs.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div
+                    class="p-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div
+                        class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center text-pink-600 mb-4 text-xl">
+                        💎</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Transparent Pricing</h3>
+                    <p class="text-slate-500">No hidden fees. You know exactly what you are paying for.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 1. How It Works (Process Flow) -->
+    <div class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Get Insured in 4 Simple Steps</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Line -->
+                <div
+                    class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-indigo-100 to-transparent -translate-y-1/2 z-0">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-indigo-200">
+                            1</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Choose Coverage</h4>
+                        <p class="text-sm text-slate-500">Select the plan that fits your needs.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-white border-2 border-indigo-600 text-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4">
+                            2</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Get Quote</h4>
+                        <p class="text-sm text-slate-500">Instant AI-generated pricing.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-white border-2 border-indigo-600 text-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4">
+                            3</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Customize</h4>
+                        <p class="text-sm text-slate-500">Add-ons and tweaks for perfect fit.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-emerald-200">
+                            4</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Pay & Active</h4>
+                        <p class="text-sm text-slate-500">Secure payment, instant policy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 4. Live Quote Calculator (Interactive) -->
+    <div class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <!-- BG Decorations -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-600/20 blur-[100px] rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/20 blur-[100px] rounded-full"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span
+                        class="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-2 block">Interactive</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Calculate Your Premium</h2>
+                    <p class="text-slate-400 text-lg mb-8">See how affordable comprehensive protection can be. Adjust
+                        parameters to see real-time estimates.</p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> No
+                            hidden fees</li>
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> Cancel
+                            anytime</li>
+                        <li class="flex items-center text-slate-300"><span class="text-emerald-400 mr-2">✓</span> 30-day
+                            money back guarantee</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl p-8 shadow-2xl">
+                    <div class="space-y-8">
+                        <!-- Age Slider -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label class="text-slate-300">Age</label>
+                                <span class="font-bold text-white">{{ calculator.age }} years</span>
+                            </div>
+                            <input type="range" min="18" max="80" [(ngModel)]="calculator.age"
+                                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        </div>
+
+                        <!-- Coverage Slider -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <label class="text-slate-300">Coverage Amount</label>
+                                <span class="font-bold text-white">{{ calculator.coverage | number }}</span>
+                            </div>
+                            <input type="range" min="100000" max="1000000" step="50000"
+                                [(ngModel)]="calculator.coverage"
+                                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        </div>
+
+                        <!-- Toggles -->
+                        <div class="flex gap-4">
+                            <button (click)="calculator.isFamily = false"
+                                [class]="!calculator.isFamily ? 'bg-indigo-600 border-indigo-500' : 'bg-transparent border-slate-600'"
+                                class="flex-1 py-3 border rounded-xl font-semibold transition-all">Individual</button>
+                            <button (click)="calculator.isFamily = true"
+                                [class]="calculator.isFamily ? 'bg-indigo-600 border-indigo-500' : 'bg-transparent border-slate-600'"
+                                class="flex-1 py-3 border rounded-xl font-semibold transition-all">Family</button>
+                        </div>
+
+                        <!-- Result -->
+                        <div
+                            class="bg-slate-800 rounded-xl p-6 flex justify-between items-center border border-slate-700">
+                            <div>
+                                <div class="text-slate-400 text-sm mb-1">Estimated Monthly Premium</div>
+                                <div class="text-3xl font-bold flex items-baseline">
+                                    <span class="text-emerald-400 mr-1">₹</span>
+                                    <span class="text-white">{{ calculatedPremium }}</span>
+                                </div>
+                            </div>
+                            <button
+                                class="px-6 py-3 bg-white text-slate-900 rounded-lg font-bold hover:bg-emerald-50 transition-colors">Lock
+                                Price</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- NEW: 7. Claims Demo -->
+    <div class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="md:w-1/2 order-2 md:order-1 relative">
+                    <!-- Creating a vertical timeline UI -->
+                    <div class="space-y-8 pl-8 border-l-2 border-slate-100 relative">
+                        <!-- Item 1 -->
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] bg-indigo-600 w-5 h-5 rounded-full border-4 border-white shadow">
+                            </div>
+                            <h4 class="font-bold text-slate-900">Incident Reported</h4>
+                            <p class="text-sm text-slate-500">10:00 AM - Via Mobile App</p>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] bg-indigo-600 w-5 h-5 rounded-full border-4 border-white shadow">
+                            </div>
+                            <h4 class="font-bold text-slate-900">AI Assessment</h4>
+                            <p class="text-sm text-slate-500">10:05 AM - Instant Analysis</p>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] bg-indigo-600 w-5 h-5 rounded-full border-4 border-white shadow">
+                            </div>
+                            <h4 class="font-bold text-slate-900">Approval</h4>
+                            <p class="text-sm text-slate-500">10:15 AM - Claim Approved</p>
+                        </div>
+                        <!-- Item 4 -->
+                        <div class="relative">
+                            <div
+                                class="absolute -left-[41px] bg-emerald-500 w-5 h-5 rounded-full border-4 border-white shadow">
+                            </div>
+                            <h4 class="font-bold text-emerald-600">Payout Disbursed</h4>
+                            <p class="text-sm text-slate-500">10:30 AM - Sent to Bank</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <span class="text-indigo-600 font-bold uppercase tracking-wider text-sm mb-2 block">Peace of
+                        mind</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Claims settled in minutes, not weeks.
+                    </h2>
+                    <p class="text-lg text-slate-500 mb-8">Gone are the days of endless phone calls and paper forms.
+                        Snap a photo, answer a few questions, and our AI handles the rest.</p>
+                    <div class="flex gap-4">
+                        <div class="text-center p-4 bg-slate-50 rounded-xl">
+                            <div class="text-2xl font-bold text-slate-900">15m</div>
+                            <div class="text-xs text-slate-500 uppercase">Avg Time</div>
+                        </div>
+                        <div class="text-center p-4 bg-slate-50 rounded-xl">
+                            <div class="text-2xl font-bold text-slate-900">99%</div>
+                            <div class="text-xs text-slate-500 uppercase">Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 3. Compare Plans (Pricing Table) -->
+    <div class="py-24 bg-slate-50 border-y border-slate-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+
+                <!-- Toggle -->
+                <div class="inline-flex bg-white p-1 rounded-xl shadow-sm border border-slate-200 mb-8">
+                    <button (click)="pricingPeriod = 'monthly'"
+                        [class]="pricingPeriod === 'monthly' ? 'bg-slate-900 text-white shadow' : 'text-slate-500 hover:text-slate-900'"
+                        class="px-6 py-2 rounded-lg text-sm font-semibold transition-all">Monthly</button>
+                    <button (click)="pricingPeriod = 'yearly'"
+                        [class]="pricingPeriod === 'yearly' ? 'bg-slate-900 text-white shadow' : 'text-slate-500 hover:text-slate-900'"
+                        class="px-6 py-2 rounded-lg text-sm font-semibold transition-all">Yearly <span
+                            class="text-xs text-emerald-400 ml-1">-20%</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <!-- Basic -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Basic</h3>
+                    <p class="text-slate-500 text-sm mb-6">For individuals just starting out.</p>
+                    <div class="text-4xl font-bold text-slate-900 mb-8">₹{{ pricingPeriod === 'monthly' ? '29' : '290'
+                        }}<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span>
+                            Essential Coverage</li>
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span>
+                            Standard Support</li>
+                        <li class="flex items-center text-slate-400"><span class="mr-3 text-slate-300">×</span> No
+                            Add-ons</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 border border-slate-200 rounded-xl font-bold text-slate-700 hover:border-slate-400 transition-colors">Get
+                        Basic</button>
+                </div>
+
+                <!-- Pro (Popular) -->
+                <div
+                    class="bg-white p-8 rounded-3xl border-2 border-indigo-600 shadow-xl relative transform md:-translate-y-4">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
+                        Most Popular</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Pro Shield</h3>
+                    <p class="text-slate-500 text-sm mb-6">Complete protection for families.</p>
+                    <div class="text-4xl font-bold text-slate-900 mb-8">₹{{ pricingPeriod === 'monthly' ? '59' : '590'
+                        }}<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span> Full
+                            Coverage</li>
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span>
+                            Priority Support</li>
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span> Dental
+                            & Vision</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-colors">Get
+                        Pro</button>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Premium</h3>
+                    <p class="text-slate-500 text-sm mb-6">Maximum coverage, zero compromise.</p>
+                    <div class="text-4xl font-bold text-slate-900 mb-8">₹{{ pricingPeriod === 'monthly' ? '99' : '990'
+                        }}<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span> Global
+                            Coverage</li>
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span>
+                            Dedicated Agent</li>
+                        <li class="flex items-center text-slate-600"><span class="mr-3 text-indigo-500">✓</span>
+                            Investment Perks</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 border border-slate-200 rounded-xl font-bold text-slate-700 hover:border-slate-400 transition-colors">Get
+                        Premium</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 6. Testimonials -->
+    <div class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-900">Loved by Thousands</h2>
+            <div class="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory">
+                <!-- Testimonial 1 -->
+                <div
+                    class="min-w-[300px] md:min-w-[400px] bg-slate-50 p-8 rounded-3xl snap-center border border-slate-100 relative">
+                    <div class="text-4xl text-indigo-200 absolute top-4 right-8 font-serif">"</div>
+                    <p class="text-slate-600 mb-6 italic">"The claims process was unbelievably fast. I had the money in
+                        my account before I even left the mechanic."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <div class="font-bold text-slate-900">Sarah Jenkins</div>
+                            <div class="text-xs text-slate-500">Austin, TX</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div
+                    class="min-w-[300px] md:min-w-[400px] bg-slate-50 p-8 rounded-3xl snap-center border border-slate-100 relative">
+                    <div class="text-4xl text-indigo-200 absolute top-4 right-8 font-serif">"</div>
+                    <p class="text-slate-600 mb-6 italic">"Best insurance experience I've ever had. The app is intuitive
+                        and the customer service is genuinely helpful."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <div class="font-bold text-slate-900">Michael Chen</div>
+                            <div class="text-xs text-slate-500">San Francisco, CA</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div
+                    class="min-w-[300px] md:min-w-[400px] bg-slate-50 p-8 rounded-3xl snap-center border border-slate-100 relative">
+                    <div class="text-4xl text-indigo-200 absolute top-4 right-8 font-serif">"</div>
+                    <p class="text-slate-600 mb-6 italic">"Finally, insurance that doesn't feel like a scam. Transparent
+                        pricing and clear terms. Highly recommend."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div>
+                            <div class="font-bold text-slate-900">Emma Watson</div>
+                            <div class="text-xs text-slate-500">London, UK</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 9. Security & Data -->
+    <div class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Bank-Grade Security</h2>
+                <p class="text-slate-400 text-lg mb-8">We treat your data with the same level of security as a financial
+                    institution. Your privacy is our priority.</p>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-indigo-400 text-xl font-bold">256-bit</span>
+                        <span class="text-sm text-slate-500">Encryption</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-indigo-400 text-xl font-bold">SOC2</span>
+                        <span class="text-sm text-slate-500">Compliant</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-indigo-400 text-xl font-bold">Zero</span>
+                        <span class="text-sm text-slate-500">Data Selling</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-indigo-400 text-xl font-bold">24/7</span>
+                        <span class="text-sm text-slate-500">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div
+                    class="w-64 h-64 bg-slate-800 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl relative">
+                    <div class="absolute inset-0 border border-indigo-500/30 rounded-full animate-ping"></div>
+                    <svg class="w-24 h-24 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 10. Partner / Employer Plans -->
+    <div class="py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12 text-slate-900">For Teams & Businesses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div
+                    class="p-8 border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-xl transition-all text-left">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Startup Benefits</h3>
+                    <p class="text-slate-500 mb-6">Tailored plans for high-growth startups. Protect your team and your
+                        runway.</p>
+                    <a href="#" class="text-indigo-600 font-bold hover:underline">Learn more -></a>
+                </div>
+                <div
+                    class="p-8 border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-xl transition-all text-left">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Corporate Insurance</h3>
+                    <p class="text-slate-500 mb-6">Enterprise-grade coverage for large organizations with seamless HR
+                        integration.</p>
+                    <a href="#" class="text-indigo-600 font-bold hover:underline">Contact Sales -></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 12. Blog / Knowledge Center -->
+    <div class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-2">Latest Insights</h2>
+                    <p class="text-slate-500">Expert advice on insurance and financial wellness.</p>
+                </div>
+                <a href="#" class="text-indigo-600 font-bold hover:underline hidden md:block">View all articles</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="h-48 bg-slate-200 w-full relative">
+                        <!-- Placeholder Image -->
+                        <div class="absolute inset-0 bg-slate-300 animate-pulse"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-indigo-600 mb-2 uppercase tracking-wide">Guide</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                            Understanding Term Life Insurance</h3>
+                        <p class="text-sm text-slate-500 mb-4">A complete beginner's guide to securing your family's
+                            future.</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                            <span class="text-xs text-slate-400">By Alex Morgan</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="h-48 bg-slate-200 w-full relative">
+                        <div class="absolute inset-0 bg-slate-300 animate-pulse"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-emerald-600 mb-2 uppercase tracking-wide">Tips</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">5 Ways
+                            to Lower Car Premiums</h3>
+                        <p class="text-sm text-slate-500 mb-4">Simple actionable tips to save money on your next
+                            renewal.</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                            <span class="text-xs text-slate-400">By Sarah Lee</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="h-48 bg-slate-200 w-full relative">
+                        <div class="absolute inset-0 bg-slate-300 animate-pulse"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wide">News</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">The Future
+                            of Digital Health</h3>
+                        <p class="text-sm text-slate-500 mb-4">How AI and telemedicine are changing the landscape.</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                            <span class="text-xs text-slate-400">By David Chen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 11. FAQ -->
+    <div class="py-24 bg-white">
+        <div class="container max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-900">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button (click)="toggleFaq(1)"
+                        class="w-full flex justify-between items-center p-6 bg-white hover:bg-slate-50 text-left">
+                        <span class="font-bold text-slate-900">How long does it take to get a policy?</span>
+                        <span class="text-slate-400" [class.rotate-180]="faqOpen === 1"
+                            class="transition-transform duration-300">▼</span>
+                    </button>
+                    <div *ngIf="faqOpen === 1" class="p-6 bg-slate-50 text-slate-600 text-sm border-t border-slate-100">
+                        Most policies are issued instantly after payment. For some life insurance plans, a medical
+                        tele-checkup might be required, which takes 24-48 hours.
+                    </div>
+                </div>
+                <!-- Accordion Item 2 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button (click)="toggleFaq(2)"
+                        class="w-full flex justify-between items-center p-6 bg-white hover:bg-slate-50 text-left">
+                        <span class="font-bold text-slate-900">Can I cancel my policy anytime?</span>
+                        <span class="text-slate-400" [class.rotate-180]="faqOpen === 2"
+                            class="transition-transform duration-300">▼</span>
+                    </button>
+                    <div *ngIf="faqOpen === 2" class="p-6 bg-slate-50 text-slate-600 text-sm border-t border-slate-100">
+                        Yes, we offer a 30-day free look period where you can cancel for a full refund. After that, you
+                        can cancel pro-rata.
+                    </div>
+                </div>
+                <!-- Accordion Item 3 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button (click)="toggleFaq(3)"
+                        class="w-full flex justify-between items-center p-6 bg-white hover:bg-slate-50 text-left">
+                        <span class="font-bold text-slate-900">How do I file a claim?</span>
+                        <span class="text-slate-400" [class.rotate-180]="faqOpen === 3"
+                            class="transition-transform duration-300">▼</span>
+                    </button>
+                    <div *ngIf="faqOpen === 3" class="p-6 bg-slate-50 text-slate-600 text-sm border-t border-slate-100">
+                        Simply log in to your dashboard or use our mobile app. Upload photos/documents, and our AI
+                        assumes the rest.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 13. Mobile App Promo -->
+    <div class="py-24 bg-indigo-600 overflow-hidden relative">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-white z-10">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Insurance in your pocket</h2>
+                <p class="text-indigo-100 text-lg mb-8 max-w-md">Manage policies, file claims, and get support on the
+                    go. Download the highest-rated insurance app today.</p>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-slate-900 transition-colors">
+                        <div class="text-2xl"></div>
+                        <div class="text-left leading-none">
+                            <div class="text-[10px] uppercase">Download on the</div>
+                            <div class="font-bold text-sm">App Store</div>
+                        </div>
+                    </button>
+                    <button
+                        class="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-slate-900 transition-colors">
+                        <div class="text-2xl">▶</div>
+                        <div class="text-left leading-none">
+                            <div class="text-[10px] uppercase">Get it on</div>
+                            <div class="font-bold text-sm">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative mt-16 md:mt-0">
+                <!-- Mockup -->
+                <div
+                    class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
+                    <div class="h-[32px] w-[3px] bg-gray-800 absolute -left-[17px] top-[72px] rounded-l-lg"></div>
+                    <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                    <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                    <div class="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                    <div class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800 relative">
+                        <!-- Screen content -->
+                        <div class="bg-slate-50 w-full h-full pt-12 px-4 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div class="font-bold text-slate-900 text-lg">Hello, Sanjay</div>
+                                <div class="w-8 h-8 bg-slate-200 rounded-full"></div>
+                            </div>
+                            <div class="bg-indigo-600 rounded-xl p-4 text-white shadow-lg shadow-indigo-200">
+                                <div class="text-xs opacity-80 mb-1">Total Coverage</div>
+                                <div class="font-bold text-2xl">₹1,500,000</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-xl shadow-sm h-24"></div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm h-24"></div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm h-24"></div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm h-24"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: 14. Final Mega CTA -->
+    <div class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-indigo-600 blur-[100px] opacity-20 rounded-full pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600 blur-[100px] opacity-20 rounded-full pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to secure your future?</h2>
+            <p class="text-slate-400 mb-10 max-w-xl mx-auto text-lg">Join thousands of smart individuals who trust us
+                with their financial safety. Get a quote in minutes.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a routerLink="/auth/customer/register"
+                    class="inline-block px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg hover:bg-indigo-50 transition-colors shadow-lg shadow-indigo-900/20">
+                    Get Insured Now
+                </a>
+                <a href="#"
+                    class="inline-block px-8 py-4 border border-slate-600 text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-colors">
+                    Talk to Advisor
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
