@@ -1,63 +1,38 @@
-import { Component, effect } from '@angular/core';
-import { Customers } from '../../../services/customers';
-import { Auth } from '../../../services/auth';
-import { inject } from '@angular/core';
-import { Claim, Customer, Policy, User } from '../../../models/model';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import data from '../../admin/db.json';
+import { Policy, PolicyType } from '../../../models/model';
+
 @Component({
   selector: 'app-customer-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './customer-dashboard.html',
   styleUrl: './customer-dashboard.css',
 })
 export class CustomerDashboard {
-  customersService=inject(Customers);
-  cdr=inject(ChangeDetectorRef);
-  auth=inject(Auth);
-  customer?: Customer;
-  user?: User;
-  policies?: Policy[];
-    activePoliciesCount = 0;
-  claims?: Claim[];
-  policyNameMap: Record<string, string> = {};
+  policies: Policy[] = data.policies as unknown as Policy[];
 
-  constructor() {
-    effect(() => {
-      const authUser = this.auth.user();
-      if (!authUser) return;
+  // Categorized policies for easy display
+  categories: PolicyType[] = ['health', 'vehicle', 'life', 'travel', 'home'];
 
-      // USER
-      this.customersService.getUserName(authUser.id).subscribe(res => {
-        this.user = res[0];
-        this.cdr.detectChanges();
-      });
+  selectedCategory: PolicyType = 'health';
+  selectedPolicy: Policy | null = null;
 
-      // CUSTOMER
-      this.customersService.getCustomerDetails(authUser.id).subscribe(res => {
-        this.customer = res[0];
-        this.cdr.detectChanges();
-      });
+  get filteredPolicies(): Policy[] {
+    return this.policies.filter(p => p.type === this.selectedCategory);
+  }
 
-      // POLICIES
-      this.customersService.getCustomerPolicies(authUser.id).subscribe(res => {
-        this.policies = res;
-        this.activePoliciesCount = res.filter(
-          p => p.status === 'active'
-        ).length;
-        this.cdr.detectChanges();
-      });
+  selectCategory(category: PolicyType) {
+    this.selectedCategory = category;
+    this.selectedPolicy = null; // Clear detail view when switching category
+  }
 
-      // CLAIMS
-      this.customersService.getCustomerClaims(authUser.id).subscribe(res => {
-        this.claims = res;
-        this.cdr.detectChanges();
-      });
+  viewPolicyDetails(policy: Policy) {
+    this.selectedPolicy = policy;
+  }
 
-      // POLICY NAME MAP (for claims)
-      this.customersService.getPolicyName().subscribe(map => {
-        this.policyNameMap = map;
-        this.cdr.detectChanges();
-      });
-    });
+  closeDetails() {
+    this.selectedPolicy = null;
   }
 }

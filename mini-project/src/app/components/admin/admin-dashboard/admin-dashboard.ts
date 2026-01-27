@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule for *ngFor, etc.
 import data from '../db.json';
+import { User, Agent, Customer, Policy, Claim } from '../../../models/model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,12 +11,13 @@ import data from '../db.json';
   styleUrl: './admin-dashboard.css',
 })
 export class AdminDashboard {
-  // Raw Data
-  users = data.users;
-  policies = data.policies;
-  customers = data.customers;
-  agents = data.agents;
-  claims = data.claims;
+  // Raw Data typed with interfaces
+  // Casting to any first because JSON import might be inferred loosely or strictly depending on config
+  users: User[] = (data.users as any[]).map(u => ({ ...u, id: String(u.id) }));
+  policies: Policy[] = data.policies as unknown as Policy[];
+  customers: Customer[] = (data.customers as any[]).map(c => ({ ...c, userId: String(c.userId) })) as unknown as Customer[];
+  agents: Agent[] = data.agents as unknown as Agent[];
+  claims: Claim[] = data.claims as unknown as Claim[];
 
   // Processed Data
   agentDetails: any[] = [];
@@ -27,7 +29,7 @@ export class AdminDashboard {
 
   processData() {
     // 1. Enrich Agents with User info and Customer/Policy counts
-    this.agentDetails = this.agents.map(agent => {
+    this.agentDetails = this.agents.map((agent: Agent) => {
       const user = this.users.find(u => u.id === String(agent.userId));
       const assignedCusts = this.customers.filter(c => agent.assignedCustomers.includes(c.id));
 
@@ -47,7 +49,7 @@ export class AdminDashboard {
     });
 
     // 2. Enrich Customers with User info and Policy details
-    this.customerDetails = this.customers.map(cust => {
+    this.customerDetails = this.customers.map((cust: Customer) => {
       const user = this.users.find(u => u.id === String(cust.userId));
       const custPolicies = this.policies.filter(p => cust.policyIds.includes(p.id));
 
