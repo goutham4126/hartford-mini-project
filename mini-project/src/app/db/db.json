@@ -566,66 +566,12 @@
     }
   ],
   "policyRequests": [
-    {
-      "id": "7a68d466-dda4-4ee4-959e-317b68182608",
-      "userId": "4",
-      "policyId": "POL-H-001",
-      "nominee": {
-        "name": "Ramesh",
-        "relation": "Father",
-        "age": 70
-      },
-      "status": "pending",
-      "requestedAt": "2026-01-27T11:40:05.572Z",
-      "assignedAgentId": "AGT-001"
-    },
-    {
-      "id": "7f803b55-9333-456d-bdfa-11ac66837795",
-      "userId": "4",
-      "policyId": "POL-H-001",
-      "nominee": {
-        "name": "Bhavani",
-        "relation": "Mother",
-        "age": 50
-      },
-      "status": "pending",
-      "requestedAt": "2026-01-27T11:40:51.111Z",
-      "assignedAgentId": "AGT-002"
-    },
-    {
-      "id": "c7d2b17a-7d71-49d0-828d-d482e87a9a1c",
-      "userId": "4",
-      "policyId": "POL-H-001",
-      "nominee": {
-        "name": "Ramya",
-        "relation": "Daughter",
-        "age": 20
-      },
-      "status": "pending",
-      "requestedAt": "2026-01-27T11:41:18.734Z",
-      "assignedAgentId": "AGT-002"
-    },
-    {
-      "id": "9fe4a986-35e3-4442-b467-d7627cec56af",
-      "userId": "4",
-      "policyId": "POL-H-001",
-      "nominee": {
-        "name": "Sukesh",
-        "relation": "son",
-        "age": 12
-      },
-      "status": "pending",
-      "requestedAt": "2026-01-27T11:41:53.141Z",
-      "assignedAgentId": "AGT-001"
-    }
   ],
   "customers": [
     {
       "id": "CUST-001",
       "userId": "4",
-      "policyIds": [
-        "POL-H-001"
-      ],
+      "policyIds": [],
       "kycStatus": "verified",
       "address": "Bangalore",
       "detailedAddress": {
@@ -718,9 +664,7 @@
       "userId": "2",
       "licenseNumber": "LIC123456",
       "commissionRate": 15,
-      "assignedCustomers": [
-        "CUST-001"
-      ],
+      "assignedCustomers": [],
       "totalPoliciesSold": 45,
       "territory": "South India"
     },
@@ -729,9 +673,7 @@
       "userId": "3",
       "licenseNumber": "LIC654321",
       "commissionRate": 12,
-      "assignedCustomers": [
-        "CUST-001"
-      ],
+      "assignedCustomers": [],
       "totalPoliciesSold": 28,
       "territory": "Hyderabad"
     },
