@@ -1,149 +1,110 @@
-<!-- BLOCK ONLY UNTIL CUSTOMER EXISTS -->
-@if (!customer) {
-  <div class="text-center text-gray-500 p-6">
-    Fetching dashboard...
-  </div>
-}
+<div class="dashboard-container">
+    <!-- Sidebar for Categories -->
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li *ngFor="let cat of categories" [class.active]="selectedCategory === cat" (click)="selectCategory(cat)">
+                {{ cat | titlecase }} Insurance
+            </li>
+        </ul>
+    </aside>
 
-@if (customer) {
-  <div class="min-h-screen bg-gray-100 p-6">
-    <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Main Content Area -->
+    <main class="content">
 
-      <!-- HEADER : USER NAME -->
-      <div class="bg-white rounded-2xl shadow p-6">
-        <h2 class="text-2xl font-bold text-gray-800">
-          @if (user) {
-            {{ user.firstName }} {{ user.lastName }}
-          } @else {
-            Customer
-          }
-        </h2>
-        <p class="text-sm text-gray-500">
-          Welcome to your dashboard
-        </p>
-      </div>
-
-      <!-- SUMMARY CARDS -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <div class="bg-white rounded-xl shadow p-6">
-          <p class="text-sm text-gray-500">Total Policies</p>
-          <p class="text-3xl font-bold text-gray-800">
-            {{ policies?.length ?? 0 }}
-          </p>
+        <!-- Policy Grid View -->
+        <div class="policy-grid" *ngIf="!selectedPolicy">
+            <h2>Available {{ selectedCategory | titlecase }} Plans</h2>
+            <div class="cards-container">
+                <div class="policy-card" *ngFor="let policy of filteredPolicies">
+                    <div class="card-header">
+                        <h4>{{ policy.name }}</h4>
+                        <span class="badge">{{ policy.status }}</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="desc">{{ policy.description }}</p>
+                        <div class="key-stats">
+                            <div class="stat">
+                                <span class="label">Premium</span>
+                                <span class="value">₹{{ policy.premium | number }}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Coverage</span>
+                                <span class="value">₹{{ policy.sumInsured | number }}</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Duration</span>
+                                <span class="value">{{ policy.duration }} Days</span>
+                            </div>
+                        </div>
+                        <ul class="features-preview">
+                            <li *ngFor="let feat of policy.features.slice(0, 3)">✅ {{ feat }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-details" (click)="viewPolicyDetails(policy)">View Details</button>
+                        <button class="btn-buy">Buy Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-6">
-          <p class="text-sm text-gray-500">Active Policies</p>
-          <p class="text-3xl font-bold text-gray-800">
-            {{ activePoliciesCount }}
-          </p>
+        <!-- Detailed Policy View -->
+        <div class="policy-details" *ngIf="selectedPolicy">
+            <button class="back-btn" (click)="closeDetails()">← Back to {{ selectedCategory }} Plans</button>
+
+            <div class="detail-header">
+                <h1>{{ selectedPolicy.name }}</h1>
+                <div class="price-tag">₹{{ selectedPolicy.premium | number }} <small>/ year</small></div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="section">
+                    <h3>Highlights</h3>
+                    <p>{{ selectedPolicy.description }}</p>
+                    <ul class="detail-list">
+                        <li><strong>Sum Insured:</strong> ₹{{ selectedPolicy.sumInsured | number }}</li>
+                        <li><strong>Entry Age:</strong> {{ selectedPolicy.minEntryAge }} - {{ selectedPolicy.maxEntryAge
+                            }} Years</li>
+                        <li><strong>Waiting Period:</strong> {{ selectedPolicy.waitingPeriod }} Days</li>
+                        <li><strong>Co-Pay:</strong> {{ selectedPolicy.coPay }}%</li>
+                        <li><strong>Claim Settlement Ratio:</strong> {{ selectedPolicy.claimRatio }}%</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Key Benefits</h3>
+                    <ul class="check-list">
+                        <li *ngFor="let benefit of selectedPolicy.keyBenefits">✨ {{ benefit }}</li>
+                    </ul>
+                </div>
+
+                <div class="section full-width">
+                    <h3>Exclusions</h3>
+                    <ul class="cross-list">
+                        <li *ngFor="let exc of selectedPolicy.exclusions">❌ {{ exc }}</li>
+                    </ul>
+                </div>
+
+                <div class="section full-width" *ngIf="selectedPolicy.networkHospitals?.length">
+                    <h3>Network Hospitals</h3>
+                    <div class="tags">
+                        <span class="tag" *ngFor="let hosp of selectedPolicy.networkHospitals">🏥 {{ hosp }}</span>
+                    </div>
+                </div>
+
+                <div class="section full-width" *ngIf="selectedPolicy.renewalProcess">
+                    <h3>Renewal Process</h3>
+                    <p>{{ selectedPolicy.renewalProcess }}</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a [href]="selectedPolicy.brochureUrl" target="_blank" class="btn-secondary"
+                    *ngIf="selectedPolicy.brochureUrl">Download Brochure</a>
+                <button class="btn-primary">Proceed to Buy</button>
+            </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-6">
-          <p class="text-sm text-gray-500">Total Claims</p>
-          <p class="text-3xl font-bold text-gray-800">
-            {{ claims?.length ?? 0 }}
-          </p>
-        </div>
-
-      </div>
-
-      <!-- POLICY LIST (NAMES ONLY) -->
-      <div class="bg-white rounded-2xl shadow p-6">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">
-          My Policies
-        </h3>
-
-        @if (!policies || policies.length === 0) {
-          <p class="text-gray-500">
-            No policies found.
-          </p>
-        }
-
-        @if (policies && policies.length > 0) {
-          <ul class="space-y-2">
-            @for (policy of policies; track policy.id) {
-              <li class="flex justify-between border-b pb-2 text-sm">
-                <span class="font-medium text-gray-800">
-                  {{ policy.name }}
-                </span>
-                <span
-                  class="capitalize px-2 py-1 rounded text-xs"
-                  [class.bg-green-100]="policy.status === 'active'"
-                  [class.text-green-700]="policy.status === 'active'"
-                  [class.bg-red-100]="policy.status === 'inactive'"
-                  [class.text-red-700]="policy.status === 'inactive'"
-                >
-                  {{ policy.status }}
-                </span>
-              </li>
-            }
-          </ul>
-        }
-      </div>
-      <!-- CLAIMS LIST -->
-<div class="bg-white rounded-2xl shadow p-6">
-  <h3 class="text-lg font-semibold text-gray-800 mb-4">
-    My Claims
-  </h3>
-
-  @if (!claims || claims.length === 0) {
-    <p class="text-gray-500">
-      No claims raised yet.
-    </p>
-  }
-
-  @if (claims && claims.length > 0) {
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse">
-        <thead>
-          <tr class="bg-gray-100 text-left text-sm text-gray-600">
-            <th class="p-3">#</th>
-            <th class="p-3">Policy</th>
-            <th class="p-3">Amount</th>
-            <th class="p-3">Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          @for (claim of claims; let i = $index; track claim.id) {
-            <tr class="border-t hover:bg-gray-50">
-              <td class="p-3">{{ i + 1 }}</td>
-
-              <!-- POLICY NAME -->
-              <td class="p-3 font-medium text-gray-800">
-                {{ policyNameMap[claim.policyId] }}
-              </td>
-
-              <!-- AMOUNT -->
-              <td class="p-3">
-                ₹{{ claim.amount }}
-              </td>
-
-              <!-- STATUS -->
-              <td class="p-3">
-                <span
-                  class="px-3 py-1 rounded-full text-sm font-medium"
-                  [class.bg-yellow-100]="claim.status === 'pending'"
-                  [class.text-yellow-700]="claim.status === 'pending'"
-                  [class.bg-green-100]="claim.status === 'approved'"
-                  [class.text-green-700]="claim.status === 'approved'"
-                  [class.bg-red-100]="claim.status === 'rejected'"
-                  [class.text-red-700]="claim.status === 'rejected'"
-                >
-                  {{ claim.status }}
-                </span>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  }
+    </main>
 </div>
-
-
-    </div>
-  </div>
-}
