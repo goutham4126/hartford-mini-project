@@ -76,6 +76,17 @@
       "lastName": "GOUTHAM",
       "phone": "9160804126",
       "createdAt": "2026-01-25T07:19:08.886Z"
+    },
+    {
+      "id": "d591",
+      "username": "Poojitha",
+      "email": "poojithabejugam2004@gmail.com",
+      "password": "Pooji@2004",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "9347758510",
+      "createdAt": "2026-01-25T16:51:47.910Z"
     }
   ],
   "policies": [
@@ -217,7 +228,16 @@
         "CUST-003"
       ],
       "totalPoliciesSold": 28
-    }
+    },
+    {
+  "id": "AGT-003",
+  "userId": "d591",
+  "licenseNumber": "LIC999999",
+  "commissionRate": 10,
+  "assignedCustomers": ["CUST-001",
+        "CUST-002"],
+  "totalPoliciesSold": 71
+}
   ],
   "claims": [
     {

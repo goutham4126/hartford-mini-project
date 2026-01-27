@@ -1,1 +1,56 @@
-<p>agent-claims works!</p>
+<h2 class="text-2xl font-bold mb-6">Agent Claims</h2>
+
+<div class="overflow-x-auto bg-white shadow rounded-xl">
+  <table class="min-w-full text-sm text-left">
+    <thead class="bg-gray-100 uppercase text-xs">
+      <tr>
+        <th class="px-6 py-3">Claim ID</th>
+        <th class="px-6 py-3">Customer Name</th>
+        <th class="px-6 py-3">Policy Type</th>
+        <th class="px-6 py-3">Claim Amount</th>
+        <th class="px-6 py-3">Status</th>
+        <th class="px-6 py-3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of claims()" class="border-b hover:bg-gray-50">
+        <td class="px-6 py-4 font-medium">{{ c.id }}</td>
+        <td class="px-6 py-4">{{ c.customerName }}</td>
+        <td class="px-6 py-4">{{ c.policyType }}</td>
+        <td class="px-6 py-4">₹{{ c.amount }}</td>
+
+        <td class="px-6 py-4">
+          <span
+            class="px-3 py-1 rounded-full text-xs font-semibold"
+            [ngClass]="{
+              'bg-yellow-100 text-yellow-700': c.status === 'pending',
+              'bg-green-100 text-green-700': c.status === 'approved',
+              'bg-red-100 text-red-700': c.status === 'rejected'
+            }"
+          >
+            {{ c.status }}
+          </span>
+        </td>
+
+        <td class="px-6 py-4 space-x-2">
+          <button
+            (click)="approve(c.id)"
+            class="px-3 py-1 bg-green-600 text-white rounded">
+            Approve
+          </button>
+
+          <button
+            (click)="reject(c.id)"
+            class="px-3 py-1 bg-red-600 text-white rounded">
+            Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p *ngIf="claims().length=== 0" class="text-center text-gray-500 mt-6">
+  No claims assigned.
+</p>
