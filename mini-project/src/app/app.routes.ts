@@ -8,6 +8,7 @@ import { AdminPolicies } from './components/admin/admin-policies/admin-policies'
 import { AdminUsers } from './components/admin/admin-users/admin-users';
 import { AdminClaims } from './components/admin/admin-claims/admin-claims';
 import { AdminProfile } from './components/admin/admin-profile/admin-profile';
+import { AdminCreatePolicy } from './components/admin/admin-create-policy/admin-create-policy';
 
 
 import { AgentLogin } from './components/agent/agent-login/agent-login';
@@ -27,7 +28,7 @@ import { roleGuard } from './guards/role-guard';
 import { Unauthorized } from './components/unauthorized/unauthorized';
 
 export const routes: Routes = [
-  { path: '', component: Home},
+  { path: '', component: Home },
 
   { path: 'unauthorized', component: Unauthorized },
 
@@ -49,6 +50,7 @@ export const routes: Routes = [
 
       { path: 'dashboard', component: AdminDashboard },
       { path: 'policies', component: AdminPolicies },
+      { path: 'create-policy', component: AdminCreatePolicy },
       { path: 'users', component: AdminUsers },
       { path: 'claims', component: AdminClaims },
       { path: 'profile', component: AdminProfile },
@@ -83,7 +85,7 @@ export const routes: Routes = [
       { path: 'policies', component: CustomerPolicies },
       { path: 'claims', component: CustomerClaims },
       { path: 'profile', component: CustomerProfile },
-      
+
       // wildcard: redirect unknown routes to dashboard
       { path: '**', redirectTo: 'dashboard' }
     ]
