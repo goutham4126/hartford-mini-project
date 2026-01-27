@@ -1,10 +1,10 @@
 <div class="min-h-screen flex flex-col bg-gray-100">
-  <app-navbar class="bg-white shadow-md"></app-navbar>
+  <app-navbar></app-navbar>
   @if(currentUser())
   {
   <div class="flex flex-1">
     <app-sidebar class="w-72 bg-white text-slate-800 border-r border-slate-100 hidden md:block"></app-sidebar>
-    <main class="flex-1 p-8 overflow-y-auto bg-slate-50/50">
+    <main class="flex-1 px-8 pb-8 pt-24 overflow-y-auto bg-slate-50/50">
       <div class="bg-white rounded-xl shadow p-6 min-h-full">
         <router-outlet></router-outlet>
       </div>
