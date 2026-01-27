@@ -1,1 +1,149 @@
-<p>customer-dashboard works!</p>
+<!-- BLOCK ONLY UNTIL CUSTOMER EXISTS -->
+@if (!customer) {
+  <div class="text-center text-gray-500 p-6">
+    Fetching dashboard...
+  </div>
+}
+
+@if (customer) {
+  <div class="min-h-screen bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto space-y-6">
+
+      <!-- HEADER : USER NAME -->
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+          @if (user) {
+            {{ user.firstName }} {{ user.lastName }}
+          } @else {
+            Customer
+          }
+        </h2>
+        <p class="text-sm text-gray-500">
+          Welcome to your dashboard
+        </p>
+      </div>
+
+      <!-- SUMMARY CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-xl shadow p-6">
+          <p class="text-sm text-gray-500">Total Policies</p>
+          <p class="text-3xl font-bold text-gray-800">
+            {{ policies?.length ?? 0 }}
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6">
+          <p class="text-sm text-gray-500">Active Policies</p>
+          <p class="text-3xl font-bold text-gray-800">
+            {{ activePoliciesCount }}
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6">
+          <p class="text-sm text-gray-500">Total Claims</p>
+          <p class="text-3xl font-bold text-gray-800">
+            {{ claims?.length ?? 0 }}
+          </p>
+        </div>
+
+      </div>
+
+      <!-- POLICY LIST (NAMES ONLY) -->
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          My Policies
+        </h3>
+
+        @if (!policies || policies.length === 0) {
+          <p class="text-gray-500">
+            No policies found.
+          </p>
+        }
+
+        @if (policies && policies.length > 0) {
+          <ul class="space-y-2">
+            @for (policy of policies; track policy.id) {
+              <li class="flex justify-between border-b pb-2 text-sm">
+                <span class="font-medium text-gray-800">
+                  {{ policy.name }}
+                </span>
+                <span
+                  class="capitalize px-2 py-1 rounded text-xs"
+                  [class.bg-green-100]="policy.status === 'active'"
+                  [class.text-green-700]="policy.status === 'active'"
+                  [class.bg-red-100]="policy.status === 'inactive'"
+                  [class.text-red-700]="policy.status === 'inactive'"
+                >
+                  {{ policy.status }}
+                </span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+      <!-- CLAIMS LIST -->
+<div class="bg-white rounded-2xl shadow p-6">
+  <h3 class="text-lg font-semibold text-gray-800 mb-4">
+    My Claims
+  </h3>
+
+  @if (!claims || claims.length === 0) {
+    <p class="text-gray-500">
+      No claims raised yet.
+    </p>
+  }
+
+  @if (claims && claims.length > 0) {
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-100 text-left text-sm text-gray-600">
+            <th class="p-3">#</th>
+            <th class="p-3">Policy</th>
+            <th class="p-3">Amount</th>
+            <th class="p-3">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (claim of claims; let i = $index; track claim.id) {
+            <tr class="border-t hover:bg-gray-50">
+              <td class="p-3">{{ i + 1 }}</td>
+
+              <!-- POLICY NAME -->
+              <td class="p-3 font-medium text-gray-800">
+                {{ policyNameMap[claim.policyId] }}
+              </td>
+
+              <!-- AMOUNT -->
+              <td class="p-3">
+                ₹{{ claim.amount }}
+              </td>
+
+              <!-- STATUS -->
+              <td class="p-3">
+                <span
+                  class="px-3 py-1 rounded-full text-sm font-medium"
+                  [class.bg-yellow-100]="claim.status === 'pending'"
+                  [class.text-yellow-700]="claim.status === 'pending'"
+                  [class.bg-green-100]="claim.status === 'approved'"
+                  [class.text-green-700]="claim.status === 'approved'"
+                  [class.bg-red-100]="claim.status === 'rejected'"
+                  [class.text-red-700]="claim.status === 'rejected'"
+                >
+                  {{ claim.status }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+
+    </div>
+  </div>
+}
