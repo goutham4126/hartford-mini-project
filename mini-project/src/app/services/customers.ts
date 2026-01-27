@@ -9,7 +9,6 @@ import { Customer, Policy,Claim, User } from '../models/model';
 export class Customers {
   private baseUrl = 'http://localhost:3000';
   constructor(private http:HttpClient){}
-  
   getCustomerDetails(id:number){
     return this.http.get<Customer[]>(`http://localhost:3000/customers/?userId=${id}`)
   }
