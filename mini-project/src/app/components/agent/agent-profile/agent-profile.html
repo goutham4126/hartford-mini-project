@@ -1,1 +1,44 @@
-<p>agent-profile works!</p>
+<h2 class="text-2xl font-bold mb-6">Agent Profile</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <!-- User Details -->
+  <div class="bg-white shadow-md rounded-xl p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-700">
+      User Details
+    </h3>
+
+    <p class="mb-2">
+      <span class="font-medium text-gray-600">Name:</span>
+      {{ user()?.firstName }} {{ user()?.lastName }}
+    </p>
+
+    <p class="mb-2">
+      <span class="font-medium text-gray-600">Email:</span>
+      {{ user()?.email }}
+    </p>
+
+    <p>
+      <span class="font-medium text-gray-600">Phone:</span>
+      {{ user()?.phone }}
+    </p>
+  </div>
+
+  <!-- Agent Details -->
+  <div class="bg-white shadow-md rounded-xl p-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-700">
+      Agent Details
+    </h3>
+
+    <p class="mb-2">
+      <span class="font-medium text-gray-600">Agent ID:</span>
+      {{ agent()?.id }}
+    </p>
+
+    <p>
+      <span class="font-medium text-gray-600">Assigned Customers:</span>
+      {{ agent()?.assignedCustomers?.length }}
+    </p>
+  </div>
+
+</div>
