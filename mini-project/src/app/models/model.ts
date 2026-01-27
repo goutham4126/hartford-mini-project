@@ -13,6 +13,7 @@ export interface User {
 }
 
 
+
 export type PolicyType = 'health' | 'vehicle' | 'life' | 'travel' | 'home';
 export type PolicyStatus = 'active' | 'inactive';
 
@@ -27,6 +28,10 @@ export interface Policy {
   features: string[];
   createdAt: string;
   status: PolicyStatus;
+}
+
+export interface PolicyRequests{
+  
 }
 
 // User can be anyone (admin,agent or customer).
