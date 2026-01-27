@@ -19,10 +19,9 @@ currentCustomer?: Customer;
   currentUser?: User;
   constructor() {
     effect(() => {
-      const user = this.auth.user();   // ✅ reactively read signal
-      if (!user) return;               // first run: null → do nothing
-
-      // OPTIONAL: clear old data so template updates immediately
+      const user = this.auth.user();  
+      if (!user) return;              
+      
       this.customerService.getUserName(user.id).subscribe(res => {
         this.currentUser = res[0];
         this.cdr.detectChanges();
@@ -35,6 +34,6 @@ currentCustomer?: Customer;
           this.cdr.detectChanges();
         });
     });
-    // this.cdr.detectChanges();
+  
   }
 }
