@@ -39,6 +39,7 @@ export interface Policy {
   keyBenefits: string[];
   termsAndConditionsUrl?: string;
   renewalProcess: string;
+  agentId?: string; // ID of the agent managing this policy product
 }
 
 export interface Customer {

@@ -304,7 +304,7 @@
       "exclusions": [
         "Suicide within 12 months"
       ],
-      "claimRatio": 98.0,
+      "claimRatio": 98,
       "networkHospitals": [],
       "brochureUrl": "https://example.com/brochures/wealth-builder.pdf",
       "keyBenefits": [
@@ -374,7 +374,7 @@
         "Drug abuse",
         "Self-injury"
       ],
-      "claimRatio": 97.0,
+      "claimRatio": 97,
       "networkHospitals": [
         "University Network Hospitals"
       ],
@@ -445,7 +445,7 @@
         "Building structure",
         "Old Items over 10 years"
       ],
-      "claimRatio": 93.0,
+      "claimRatio": 93,
       "networkHospitals": [],
       "brochureUrl": "https://example.com/brochures/tenant.pdf",
       "keyBenefits": [
@@ -455,6 +455,26 @@
       ],
       "termsAndConditionsUrl": "https://example.com/terms/tenant",
       "renewalProcess": "Annual renewal."
+    },
+    {
+      "id": "POL-L-9412",
+      "name": "Life Insurance plan",
+      "type": "life",
+      "premium": 12000,
+      "sumInsured": 65000,
+      "duration": 365,
+      "description": "Life Insranc",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentId": "AGT-001",
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
     }
   ],
   "customers": [
