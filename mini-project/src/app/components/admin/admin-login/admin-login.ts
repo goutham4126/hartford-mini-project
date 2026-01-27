@@ -1,13 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../../services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './admin-login.html',
   styleUrl: './admin-login.css',
 })
@@ -18,18 +18,33 @@ export class AdminLogin {
 
   email = signal('');
   password = signal('');
+  selectedRole = signal<'admin' | 'agent'>('admin');
 
   login() {
     this.auth.login(this.email(), this.password()).subscribe({
       next: () => {
-        if (this.auth.user()?.role !== 'admin') {
-          alert('Not an Admin account');
-          this.auth.logout();
-          return;
+        const user = this.auth.user();
+        const role = this.selectedRole();
+
+        if (role === 'admin') {
+          if (user?.role !== 'admin') {
+            alert('Not an Admin account');
+            this.auth.logout();
+            return;
+          }
+          this.router.navigate(['/admin/dashboard']).then(() => {
+            window.location.reload();
+          });
+        } else if (role === 'agent') {
+          if (user?.role !== 'agent') {
+            alert('Not an Agent account');
+            this.auth.logout();
+            return;
+          }
+          this.router.navigate(['/agent/dashboard']).then(() => {
+            window.location.reload();
+          });
         }
-        this.router.navigate(['/admin/dashboard']).then(() => {
-          window.location.reload();
-        });
       },
       error: () => {
         alert('Invalid credentials');

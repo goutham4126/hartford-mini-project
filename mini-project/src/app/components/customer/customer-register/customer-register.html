@@ -1,10 +1,60 @@
-<h2>Customer Register</h2>
+<div
+  class="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <!-- Dynamic Background Decoration -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+    <div class="absolute top-[10%] left-[20%] w-[50%] h-[50%] bg-indigo-500/10 blur-[120px] rounded-full"></div>
+  </div>
 
-  <input [(ngModel)]="username" placeholder="Username" />
-  <input [(ngModel)]="email" placeholder="Email" />
-  <input [(ngModel)]="password" type="password" placeholder="Password" />
-  <input [(ngModel)]="firstName" placeholder="First Name" />
-  <input [(ngModel)]="lastName" placeholder="Last Name" />
-  <input [(ngModel)]="phone" placeholder="Phone" />
+  <div class="max-w-2xl w-full space-y-8 relative z-10">
+    <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100 backdrop-blur-sm">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Create Account</h2>
+        <p class="mt-2 text-sm text-slate-500">Join thousands of protected members today</p>
+      </div>
 
-  <button (click)="register()">Register</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="space-y-4">
+          <input [(ngModel)]="firstName"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="First Name">
+          <input [(ngModel)]="lastName"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="Last Name">
+          <input [(ngModel)]="username"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="Username">
+        </div>
+
+        <div class="space-y-4">
+          <input [(ngModel)]="email" type="email"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="Email Address">
+          <input [(ngModel)]="phone" type="tel"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="Phone Number">
+          <input [(ngModel)]="password" type="password"
+            class="appearance-none rounded-xl block w-full px-3 py-3.5 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-slate-50 focus:bg-white transition-all"
+            placeholder="Password">
+        </div>
+
+      </div>
+
+      <div class="mt-8">
+        <button (click)="register()"
+          class="w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-lg shadow-indigo-500/20 transform hover:-translate-y-0.5">
+          Create My Account
+        </button>
+      </div>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-500">
+          Already have an account?
+          <a routerLink="/auth/customer/login"
+            class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">Sign in</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

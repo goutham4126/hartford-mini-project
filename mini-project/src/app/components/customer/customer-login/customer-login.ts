@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../../services/auth';
 
 @Component({
   selector: 'app-customer-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './customer-login.html',
   styleUrl: './customer-login.css',
 })
@@ -13,7 +13,7 @@ export class CustomerLogin {
   email = '';
   password = '';
 
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(private auth: Auth, private router: Router) { }
 
   login() {
     this.auth.login(this.email, this.password).subscribe({
