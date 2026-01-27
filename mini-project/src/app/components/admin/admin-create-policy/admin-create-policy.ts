@@ -64,7 +64,7 @@ export class AdminCreatePolicy {
             ...formValue,
             status: 'active',
             createdAt: new Date().toISOString().split('T')[0],
-            features: ['Standard Coverage'], // Default feature
+            features: ['Standard Coverage'], // Default featureL
             exclusions: [],
             networkHospitals: [],
             keyBenefits: []
