@@ -2,7 +2,7 @@
     <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
         <div class="bg-indigo-600 px-6 py-4 border-b border-indigo-700">
             <h2 class="text-xl font-bold text-white">Create New Policy</h2>
-            <p class="text-indigo-100 text-sm mt-1">Define a new insurance product and assign a manager.</p>
+            <p class="text-indigo-100 text-sm mt-1">Define a new insurance product and assign managers.</p>
         </div>
 
         <form [formGroup]="policyForm" (ngSubmit)="onSubmit()" class="p-8 space-y-6">
@@ -14,15 +14,18 @@
                     <input type="text" formControlName="name"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                         placeholder="e.g. Gold Health Plan">
-                    <div *ngIf="policyForm.get('name')?.touched && policyForm.get('name')?.invalid"
-                        class="text-red-500 text-xs">Name is required (min 3 chars).</div>
+                    @if (policyForm.get('name')?.touched && policyForm.get('name')?.invalid) {
+                    <div class="text-red-500 text-xs">Name is required (min 3 chars).</div>
+                    }
                 </div>
 
                 <div class="space-y-2">
                     <label class="block text-sm font-medium text-gray-700">Category</label>
                     <select formControlName="type"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white">
-                        <option *ngFor="let type of policyTypes" [value]="type">{{ type | titlecase }}</option>
+                        @for (type of policyTypes; track type) {
+                        <option [value]="type">{{ type | titlecase }}</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -73,24 +76,62 @@
                     placeholder="Brief details about the policy..."></textarea>
             </div>
 
-            <!-- Agent Assignment -->
+            <!-- Agent Assignment with Checkboxes -->
             <div class="space-y-2 border-t pt-6 mt-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Assign Manager</h3>
-                <p class="text-sm text-gray-500 mb-4">Select an agent to be the primary point of contact for this
-                    policy.</p>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Assign Managers</h3>
+                <p class="text-sm text-gray-500 mb-4">Select one or more agents to manage this policy.</p>
 
                 <div class="relative">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Select Agent</label>
-                    <select formControlName="agentId"
-                        class="w-full px-4 py-3 border-2 border-indigo-100 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-indigo-50/30 text-gray-700 font-medium cursor-pointer transition-all hover:border-indigo-300">
-                        <option value="" disabled>-- Choose an Agent --</option>
-                        <option *ngFor="let agent of agents" [value]="agent.id">
-                            {{ agent.id }} - (ID: {{agent.userId}})
-                        </option>
-                    </select>
-                    <div *ngIf="policyForm.get('agentId')?.touched && policyForm.get('agentId')?.invalid"
-                        class="text-red-500 text-xs mt-1">Please assign an agent.</div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Select Agents</label>
+                    
+                    <!-- Checkbox list -->
+                    <div class="space-y-2 border-2 border-indigo-100 rounded-lg p-4 bg-indigo-50/30 max-h-64 overflow-y-auto">
+                        <div *ngFor="let agent of agents" 
+                             class="flex items-center p-3 rounded-lg hover:bg-indigo-100/50 transition-colors cursor-pointer">
+                            <input 
+                                type="checkbox"
+                                [id]="'agent-' + agent.id"
+                                [value]="agent.id"
+                                [checked]="isAgentSelected(agent.id)"
+                                (change)="onAgentCheckboxChange(agent.id, $event)"
+                                class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 focus:ring-2 cursor-pointer">
+                            <label 
+                                [for]="'agent-' + agent.id" 
+                                class="ml-3 text-sm font-medium text-gray-700 cursor-pointer flex-1">
+                                {{ agent.id }} - (User ID: {{ agent.userId }})
+                            </label>
+                        </div>
+                        
+                        <div *ngIf="agents.length === 0" class="text-center text-gray-500 py-4">
+                            No agents available
+                        </div>
+                    </div>
+                    
+                    <!-- Selected agents display -->
+                    <div *ngIf="policyForm.get('agentIds')?.value?.length" class="mt-3">
+                        <p class="text-xs font-medium text-gray-600 mb-2">
+                            Selected ({{ policyForm.get('agentIds')?.value?.length }}):
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span *ngFor="let agentId of policyForm.get('agentIds')?.value" 
+                                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 border border-indigo-200">
+                                <span>{{ agentId }}</span>
+                                <button 
+                                    type="button"
+                                    (click)="removeAgent(agentId)"
+                                    class="ml-2 text-indigo-600 hover:text-indigo-800 focus:outline-none">
+                                    ×
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="policyForm.get('agentIds')?.touched && policyForm.get('agentIds')?.invalid"
+                        class="text-red-500 text-xs mt-2">
+                        Please assign at least one agent.
+                    </div>
                 </div>
+
             </div>
 
             <!-- Actions -->

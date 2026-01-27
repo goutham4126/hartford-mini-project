@@ -1,7 +1,7 @@
 export type UserRole = 'admin' | 'customer' | 'agent';
 
 export interface User {
-  id: string; // Changed to string to match usage in db.json for new users
+  id: string;
   username: string;
   email: string;
   password: string;
@@ -28,31 +28,52 @@ export interface Policy {
   features: string[];
   createdAt: string;
   status: PolicyStatus;
+  agentId: string[]; 
 
-  // New Detailed Fields
-  minEntryAge: number;
-  maxEntryAge: number;
-  coPay: number; // Percentage
-  waitingPeriod: number; // in days
-  exclusions: string[];
-  claimRatio: number; // Percentage
-  networkHospitals: string[]; // List of top network hospitals
-  brochureUrl?: string; // Optional URL
-  keyBenefits: string[];
+  minEntryAge?: number;
+  maxEntryAge?: number;
+  coPay?: number;
+  waitingPeriod?: number;
+  exclusions?: string[];
+  claimRatio?: number;
+  networkHospitals?: string[];
+  brochureUrl?: string;
+  keyBenefits?: string[];
   termsAndConditionsUrl?: string;
-  renewalProcess: string;
-  agentId?: string; // ID of the agent managing this policy product
+  renewalProcess?: string;
 }
+
+export type PolicyRequestStatus = 'pending' | 'approved' | 'rejected' | 'cancelled';
+
+export interface PolicyRequests {
+  id: string;
+  userId: string;
+  policyId: string;
+
+  nominee: {
+    name: string;
+    relation: string;
+    age?: number;
+  };
+
+  status: PolicyRequestStatus;
+  assignedAgentId?: string;
+
+  requestedAt: string;
+  approvedAt?: string;
+  rejectedAt?: string;
+
+  remarks?: string;
+}
+
 
 export interface Customer {
   id: string;
-  userId: string; // Changed to string to allow matching with User.id
+  userId: string;
   policyIds: string[];
   nominee: string;
-
-  // Enhanced Profile
   kycStatus: 'verified' | 'pending' | 'rejected';
-  address: string; // Keep simple address for backward compat
+  address: string;
   detailedAddress?: {
     street: string;
     city: string;
@@ -64,7 +85,6 @@ export interface Customer {
   aadhaarNumber: string;
   panNumber: string;
 
-  // Health/Life specific
   medicalHistory?: string[];
   occupation?: string;
   annualIncome?: number;
@@ -84,7 +104,7 @@ export interface Agent {
   assignedCustomers: string[];
   totalPoliciesSold: number;
   territory?: string;
-  specialization?: PolicyType[];
+  specialization?: string;
 }
 
 export type ClaimType = 'health' | 'vehicle' | 'life' | 'travel' | 'home';

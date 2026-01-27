@@ -129,6 +129,10 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 65,
+      "agentId": [
+        "AGT-001",
+        "AGT-002"
+      ],
       "coPay": 0,
       "waitingPeriod": 30,
       "exclusions": [
@@ -169,6 +173,9 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 70,
+      "agentId": [
+        "AGT-003"
+      ],
       "coPay": 10,
       "waitingPeriod": 30,
       "exclusions": [
@@ -207,6 +214,10 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 70,
+      "agentId": [
+        "AGT-001",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -242,6 +253,10 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 65,
+      "agentId": [
+        "AGT-002",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -276,6 +291,11 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 60,
+      "agentId": [
+        "AGT-001",
+        "AGT-002",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -310,6 +330,11 @@
       "status": "active",
       "minEntryAge": 0,
       "maxEntryAge": 50,
+      "agentId": [
+        "AGT-001",
+        "AGT-002",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -343,6 +368,9 @@
       "status": "active",
       "minEntryAge": 1,
       "maxEntryAge": 80,
+      "agentId": [
+        "AGT-001"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -379,6 +407,9 @@
       "status": "active",
       "minEntryAge": 16,
       "maxEntryAge": 35,
+      "agentId": [
+        "AGT-002"
+      ],
       "coPay": 50,
       "waitingPeriod": 0,
       "exclusions": [
@@ -415,6 +446,10 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 99,
+      "agentId": [
+        "AGT-001",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -450,6 +485,11 @@
       "status": "active",
       "minEntryAge": 18,
       "maxEntryAge": 99,
+      "agentId": [
+        "AGT-001",
+        "AGT-002",
+        "AGT-003"
+      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
@@ -477,7 +517,55 @@
       "description": "Life Insranc",
       "minEntryAge": 18,
       "maxEntryAge": 70,
-      "agentId": "AGT-001",
+      "agentId": [
+        "AGT-003"
+      ],
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
+    },
+    {
+      "id": "POL-H-4073",
+      "name": "sdfj",
+      "type": "health",
+      "premium": 1090,
+      "sumInsured": 12238,
+      "duration": 365,
+      "description": "lzmx",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentId": [
+        "AGT-001",
+        "AGT-003"
+      ],
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
+    },
+    {
+      "id": "POL-H-7858",
+      "name": "Health pro max",
+      "type": "health",
+      "premium": 15000,
+      "sumInsured": 400000,
+      "duration": 365,
+      "description": "This is health pro max plan",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentIds": [
+        "AGT-001",
+        "AGT-002"
+      ],
       "status": "active",
       "createdAt": "2026-01-27",
       "features": [
@@ -488,15 +576,13 @@
       "keyBenefits": []
     }
   ],
+  "policyRequests": [
+  ],
   "customers": [
     {
       "id": "CUST-001",
       "userId": "4",
-      "policyIds": [
-        "POL-H-001",
-        "POL-V-001"
-      ],
-      "nominee": "Jane Smith",
+      "policyIds": [],
       "kycStatus": "verified",
       "address": "Bangalore",
       "detailedAddress": {
@@ -531,11 +617,7 @@
     {
       "id": "CUST-002",
       "userId": "5",
-      "policyIds": [
-        "POL-V-001",
-        "POL-L-001"
-      ],
-      "nominee": "Robert Watson",
+      "policyIds": [],
       "kycStatus": "pending",
       "address": "Chennai",
       "detailedAddress": {
@@ -565,10 +647,7 @@
     {
       "id": "CUST-003",
       "userId": "6",
-      "policyIds": [
-        "POL-T-001"
-      ],
-      "nominee": "Sarah Miller",
+      "policyIds": [],
       "kycStatus": "verified",
       "address": "Hyderabad",
       "detailedAddress": {
@@ -596,31 +675,18 @@
       "userId": "2",
       "licenseNumber": "LIC123456",
       "commissionRate": 15,
-      "assignedCustomers": [
-        "CUST-001",
-        "CUST-002"
-      ],
+      "assignedCustomers": [],
       "totalPoliciesSold": 45,
-      "territory": "South India",
-      "specialization": [
-        "health",
-        "vehicle"
-      ]
+      "territory": "South India"
     },
     {
       "id": "AGT-002",
       "userId": "3",
       "licenseNumber": "LIC654321",
       "commissionRate": 12,
-      "assignedCustomers": [
-        "CUST-003"
-      ],
+      "assignedCustomers": [],
       "totalPoliciesSold": 28,
-      "territory": "Hyderabad",
-      "specialization": [
-        "life",
-        "travel"
-      ]
+      "territory": "Hyderabad"
     },
     {
       "id": "AGT-003",
@@ -629,8 +695,7 @@
       "commissionRate": 10,
       "assignedCustomers": [],
       "totalPoliciesSold": 0,
-      "territory": "Unassigned",
-      "specialization": []
+      "territory": "Unassigned"
     }
   ],
   "claims": [

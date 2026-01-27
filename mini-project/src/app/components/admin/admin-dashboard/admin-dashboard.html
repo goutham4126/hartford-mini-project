@@ -40,7 +40,8 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr *ngFor="let agent of agentDetails" class="hover:bg-gray-50 transition-colors">
+                        @for (agent of agentDetails; track agent.id) {
+                        <tr class="hover:bg-gray-50 transition-colors">
                             <td class="px-6 py-4">
                                 <div class="font-medium text-gray-900">{{ agent.name }}</div>
                                 <div class="text-xs text-gray-500">{{ agent.email }}</div>
@@ -51,11 +52,15 @@
                                     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                     {{ agent.assignedCustomersList.length }}
                                 </span>
-                                <div class="text-xs text-gray-400 mt-1" *ngIf="agent.assignedCustomersList.length > 0">
-                                    <span *ngFor="let c of agent.assignedCustomersList; let last=last">
+                                @if (agent.assignedCustomersList.length > 0) {
+                                <div class="text-xs text-gray-400 mt-1">
+                                    @for (c of agent.assignedCustomersList; track c.id; let last = $last) {
+                                    <span>
                                         {{c.id}}<span *ngIf="!last">, </span>
                                     </span>
+                                    }
                                 </div>
+                                }
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <span
@@ -64,6 +69,7 @@
                                 </span>
                             </td>
                         </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -85,7 +91,8 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr *ngFor="let cust of customerDetails" class="hover:bg-gray-50 transition-colors">
+                        @for (cust of customerDetails; track cust.id) {
+                        <tr class="hover:bg-gray-50 transition-colors">
                             <td class="px-6 py-4">
                                 <div class="font-medium text-gray-900">{{ cust.name }}</div>
                                 <div class="text-xs text-gray-500">{{ cust.address }}</div>
@@ -100,15 +107,19 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex flex-wrap gap-1">
-                                    <span *ngFor="let p of cust.policiesList"
+                                    @for (p of cust.policiesList; track p.id) {
+                                    <span
                                         class="px-2 py-1 rounded text-xs bg-gray-100 text-gray-600 border border-gray-200">
                                         {{ p.name }}
                                     </span>
-                                    <span *ngIf="cust.policiesList.length === 0" class="text-xs text-gray-400 italic">No
-                                        policies</span>
+                                    }
+                                    @if (cust.policiesList.length === 0) {
+                                    <span class="text-xs text-gray-400 italic">No policies</span>
+                                    }
                                 </div>
                             </td>
                         </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -135,7 +146,8 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    <tr *ngFor="let p of policies" class="hover:bg-gray-50 transition-colors">
+                    @for (p of policies; track p.id) {
+                    <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 font-medium text-gray-900">{{ p.name }}</td>
                         <td class="px-6 py-4 text-sm text-gray-600">
                             <span class="capitalize px-2 py-1 rounded text-xs font-medium" [ngClass]="{
@@ -157,6 +169,7 @@
                             </span>
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>

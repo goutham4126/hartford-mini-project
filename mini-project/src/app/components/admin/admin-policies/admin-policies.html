@@ -23,7 +23,8 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    <tr *ngFor="let p of policies()" class="hover:bg-gray-50 transition-colors">
+                    @for (p of policies(); track p.id) {
+                    <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 text-sm font-mono text-gray-500">#{{ p.id }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900">{{ p.name }}</td>
                         <td class="px-6 py-4 text-sm">
@@ -46,6 +47,7 @@
                             </span>
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>

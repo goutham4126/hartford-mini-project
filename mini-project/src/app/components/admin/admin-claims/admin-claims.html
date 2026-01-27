@@ -23,7 +23,8 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    <tr *ngFor="let claim of claims()" class="hover:bg-gray-50 transition-colors">
+                    @for (claim of claims(); track claim.id) {
+                    <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 text-sm font-mono text-gray-500">#{{ claim.id }}</td>
                         <td class="px-6 py-4 text-sm font-mono text-gray-600">{{ claim.policyId }}</td>
                         <td class="px-6 py-4 text-sm">
@@ -51,12 +52,16 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
-                            <span *ngIf="claim.documents?.length > 0; else noDocs">
+                            @if (claim.documents?.length > 0) {
+                            <span>
                                 {{ claim.documents.length }} doc(s)
                             </span>
-                            <ng-template #noDocs><span class="text-gray-400 italic">None</span></ng-template>
+                            } @else {
+                            <span class="text-gray-400 italic">None</span>
+                            }
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>

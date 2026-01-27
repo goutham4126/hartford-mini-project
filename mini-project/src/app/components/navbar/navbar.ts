@@ -16,12 +16,17 @@ export class Navbar implements OnInit {
   private router = inject(Router);
 
   currentUser = this.users.currentUser;
+  showProfileMenu = false;
+
+  toggleProfileMenu() {
+    this.showProfileMenu = !this.showProfileMenu;
+  }
 
   logOut() {
     this.auth.logout();
     this.router.navigate(['/']).then(() => {
       window.location.reload();
-    });;
+    });
   }
 
   ngOnInit(): void {
