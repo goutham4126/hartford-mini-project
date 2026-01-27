@@ -12,6 +12,8 @@ export interface User {
   createdAt: string;
 }
 
+
+
 export type PolicyType = 'health' | 'vehicle' | 'life' | 'travel' | 'home';
 export type PolicyStatus = 'active' | 'inactive';
 
