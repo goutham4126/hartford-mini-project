@@ -10,6 +10,11 @@ export class AgentService {
     private http: HttpClient,
     private auth: Auth
   ) { }
+
+  getAgents() {
+    return this.http.get<any[]>(`${this.api}/agents`);
+  }
+
   // get logged-in agent
   getAgent(callback: (agent: any) => void) {
     const userId = String(this.auth.user()?.id);

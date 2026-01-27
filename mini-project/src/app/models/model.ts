@@ -28,20 +28,20 @@ export interface Policy {
   features: string[];
   createdAt: string;
   status: PolicyStatus;
-
-  // New Detailed Fields
-  minEntryAge: number;
-  maxEntryAge: number;
-  coPay: number; // Percentage
-  waitingPeriod: number; // in days
-  exclusions: string[];
-  claimRatio: number; // Percentage
-  networkHospitals: string[]; // List of top network hospitals
-  brochureUrl?: string; // Optional URL
-  keyBenefits: string[];
-  termsAndConditionsUrl?: string;
-  renewalProcess: string;
   agentId?: string; // ID of the agent managing this policy product
+
+  // Extended properties for UI
+  minEntryAge?: number;
+  maxEntryAge?: number;
+  coPay?: number;
+  waitingPeriod?: number;
+  exclusions?: string[];
+  claimRatio?: number;
+  networkHospitals?: string[];
+  brochureUrl?: string;
+  keyBenefits?: string[];
+  termsAndConditionsUrl?: string;
+  renewalProcess?: string;
 }
 
 export interface Customer {
