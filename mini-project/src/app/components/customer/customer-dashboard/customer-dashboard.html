@@ -86,7 +86,7 @@
                     </ul>
                 </div>
 
-                <div class="section full-width" *ngIf="selectedPolicy.networkHospitals?.length">
+                <div class="section full-width" *ngIf="selectedPolicy.networkHospitals.length">
                     <h3>Network Hospitals</h3>
                     <div class="tags">
                         <span class="tag" *ngFor="let hosp of selectedPolicy.networkHospitals">🏥 {{ hosp }}</span>
