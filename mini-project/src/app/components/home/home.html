@@ -3,7 +3,8 @@
     <!-- 1. Hero Section -->
     <!-- Hero Section -->
     <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-white pt-24 pb-32 space-y-24" (mousemove)="onMouseMove($event)">
+    <!-- Hero Section -->
+    <div id="about" class="relative overflow-hidden bg-white pt-24 pb-32 space-y-24" (mousemove)="onMouseMove($event)">
         <!-- Advanced Grid Background with Vignette and Parallax -->
         <div class="absolute inset-0 transition-transform duration-100 ease-out will-change-transform animate-hero-bg"
             [style.transform]="'translate(' + mouseX * -0.5 + 'px, ' + mouseY * -0.5 + 'px)'">
@@ -36,18 +37,18 @@
                 </div>
 
                 <!-- Typography Fix: Hero Title Line-by-Line -->
-                <h1
-                    class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight text-balance relative">
-                    <!-- Light Sweep Overlay -->
-                    <div class="light-sweep-overlay"></div>
+             <h1
+  class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight text-balance relative">
 
-                    <span class="block animate-title-line" style="animation-delay: 0.8s;">Secure your future with</span>
-                    <span class="block animate-title-line mt-2" style="animation-delay: 1.0s;">
-                        <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-500 animate-shimmer-text">Unmatched
-                            Confidence</span>
-                    </span>
-                </h1>
+  <span class="block" style="animation-delay: 0.8s;">Secure your future with</span>
+  <span class="block mt-2" style="animation-delay: 1.0s;">
+    <span
+      class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-500">
+      Unmatched Confidence
+    </span>
+  </span>
+</h1>
+
 
                 <!-- Typography Fix: Body Text Fade Up -->
                 <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed text-balance animate-subtext"
@@ -353,7 +354,7 @@
     </div>
 
     <!-- NEW: 2. Why Choose Us (Value Proposition) -->
-    <div class="py-24 bg-slate-50 relative overflow-hidden">
+    <div id="features" class="py-24 bg-slate-50 relative overflow-hidden">
         <!-- BG Decorations -->
         <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
         </div>
@@ -622,7 +623,7 @@
     </div>
 
     <!-- NEW: 3. Compare Plans (Pricing Table) -->
-    <div class="py-24 bg-slate-50 border-y border-slate-200">
+    <div id="pricing" class="py-24 bg-slate-50 border-y border-slate-200">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
@@ -705,7 +706,7 @@
     </div>
 
     <!-- NEW: 6. Testimonials -->
-    <div class="py-24 bg-white">
+    <div id="reviews" class="py-24 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-16 text-slate-900">Loved by Thousands</h2>
             <div class="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory">
