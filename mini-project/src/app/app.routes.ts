@@ -26,6 +26,7 @@ import { CustomerProfile } from './components/customer/customer-profile/customer
 import { authGuard } from './guards/auth-guard';
 import { roleGuard } from './guards/role-guard';
 import { Unauthorized } from './components/unauthorized/unauthorized';
+import { PolicyRequestComponent } from './components/customer/policy-request-component/policy-request-component';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -85,6 +86,7 @@ export const routes: Routes = [
       { path: 'policies', component: CustomerPolicies },
       { path: 'claims', component: CustomerClaims },
       { path: 'profile', component: CustomerProfile },
+      {path: 'policy-request',component: PolicyRequestComponent},
 
       // wildcard: redirect unknown routes to dashboard
       { path: '**', redirectTo: 'dashboard' }

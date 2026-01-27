@@ -14,6 +14,11 @@ export class Customers {
     return this.http.get<Customer[]>(`http://localhost:3000/customers/?userId=${id}`)
   }
 
+  updateCustomer(customerId: string, updatedCustomer: any) {
+    return this.http.put(`${this.baseUrl}/customers/${customerId}`, updatedCustomer);
+  }
+
+
   getCustomers() {
     return this.http.get<Customer[]>(`${this.baseUrl}/customers`);
   }

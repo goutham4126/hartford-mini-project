@@ -22,6 +22,7 @@
                         <span class="badge">{{ policy.status }}</span>
                     </div>
                     <div class="card-body">
+                        <p class="mb-2 text-sm font-semibold">{{policy.id}}</p>
                         <p class="desc">{{ policy.description }}</p>
                         <div class="key-stats">
                             <div class="stat">
@@ -43,7 +44,7 @@
                     </div>
                     <div class="card-footer">
                         <button class="btn-details" (click)="viewPolicyDetails(policy)">View Details</button>
-                        <button class="btn-buy">Buy Now</button>
+                        <a href="/customer/policy-request" class="btn-buy">Proceed to Buy</a>
                     </div>
                 </div>
             </div>
@@ -102,7 +103,7 @@
             <div class="actions">
                 <a [href]="selectedPolicy.brochureUrl" target="_blank" class="btn-secondary"
                     *ngIf="selectedPolicy.brochureUrl">Download Brochure</a>
-                <button class="btn-primary">Proceed to Buy</button>
+                <a href="/customer/policy-request" class="btn-primary">Proceed to Buy</a>
             </div>
         </div>
 

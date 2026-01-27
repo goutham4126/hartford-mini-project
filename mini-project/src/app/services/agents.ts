@@ -15,7 +15,11 @@ export class AgentService {
     return this.http.get<any[]>(`${this.api}/agents`);
   }
 
-  // get logged-in agent
+  updateAgent(agentId: string, updatedAgent: any) {
+    return this.http.put(`${this.api}/agents/${agentId}`, updatedAgent);
+  }
+
+
   getAgent(callback: (agent: any) => void) {
     const userId = String(this.auth.user()?.id);
     this.http.get<any[]>(`${this.api}/agents`)
@@ -23,7 +27,7 @@ export class AgentService {
         callback(agents.find(a => String(a.userId) === userId));
       });
   }
-  // get claims
+
   getClaims(callback: (claims: any[]) => void) {
     this.getAgent(agent => {
       const assignedCustomerIds = agent.assignedCustomers.map(String);

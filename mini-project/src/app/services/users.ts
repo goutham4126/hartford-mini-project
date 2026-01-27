@@ -18,6 +18,11 @@ export class Users {
     return this.http.get<User[]>('http://localhost:3000/users');
   }
 
+  getAllAgents()
+  {
+    return this.http.get<User[]>('http://localhost:3000/agents')
+  }
+
   loadCurrentUser() {
     const userId = this.auth.user()?.id;
 
