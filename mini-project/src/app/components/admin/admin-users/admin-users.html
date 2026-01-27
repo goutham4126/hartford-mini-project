@@ -1,4 +1,53 @@
-@for(user of users(); track user.id)
-{
-    <p>{{user.firstName}} {{user.lastName}} - {{user.role}}</p>
-}
+<div class="p-6 bg-gray-50 min-h-screen font-sans">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">User Management</h2>
+                <p class="text-sm text-gray-500 mt-1">View all registered users and roles</p>
+            </div>
+            <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
+                {{ users().length }} Users
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
+                    <tr>
+                        <th class="px-6 py-3">User info</th>
+                        <th class="px-6 py-3">Role</th>
+                        <th class="px-6 py-3">Contact</th>
+                        <th class="px-6 py-3">Joined</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr *ngFor="let user of users()" class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-gray-900">{{ user.firstName }} {{ user.lastName }}</div>
+                            <div class="text-xs text-gray-500">@{{ user.username }}</div>
+                        </td>
+                        <td class="px-6 py-4 text-sm">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wide"
+                                [ngClass]="{
+                  'bg-purple-100 text-purple-800': user.role === 'admin',
+                  'bg-blue-100 text-blue-800': user.role === 'agent',
+                  'bg-green-100 text-green-800': user.role === 'customer'
+                }">
+                                {{ user.role }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600">
+                            <div class="flex flex-col">
+                                <span>{{ user.email }}</span>
+                                <span class="text-gray-400 text-xs">{{ user.phone }}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600">
+                            {{ user.createdAt | date:'mediumDate' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

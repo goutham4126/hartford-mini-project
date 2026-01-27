@@ -1,3 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+:root {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Color Tokens */
+  --brand-primary: #4f46e5;
+  /* indigo-600 */
+  --brand-secondary: #10b981;
+  /* emerald-500 */
+  --bg-soft: #f8fafc;
+  /* slate-50 */
+  --text-muted: #64748b;
+  /* slate-500 */
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

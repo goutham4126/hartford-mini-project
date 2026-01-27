@@ -1,5 +1,53 @@
-
-@for(policy of policies();track policy.id)
-{
-    <p>{{policy.id}}</p>
-}
+<div class="p-6 bg-gray-50 min-h-screen font-sans">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">Policies Management</h2>
+                <p class="text-sm text-gray-500 mt-1">View and manage all insurance policies</p>
+            </div>
+            <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
+                {{ policies().length }} Total
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
+                    <tr>
+                        <th class="px-6 py-3">ID</th>
+                        <th class="px-6 py-3">Name</th>
+                        <th class="px-6 py-3">Type</th>
+                        <th class="px-6 py-3">Premium (₹)</th>
+                        <th class="px-6 py-3">Coverage (₹)</th>
+                        <th class="px-6 py-3">Duration</th>
+                        <th class="px-6 py-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr *ngFor="let p of policies()" class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 text-sm font-mono text-gray-500">#{{ p.id }}</td>
+                        <td class="px-6 py-4 font-medium text-gray-900">{{ p.name }}</td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="capitalize px-2 py-1 rounded text-xs font-medium" [ngClass]="{
+                  'bg-blue-100 text-blue-800': p.type === 'health',
+                  'bg-yellow-100 text-yellow-800': p.type === 'vehicle',
+                  'bg-purple-100 text-purple-800': p.type === 'life',
+                  'bg-orange-100 text-orange-800': p.type === 'travel'
+                }">
+                                {{ p.type }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.premium | currency:'INR' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.coverage | currency:'INR' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{ p.duration }} Days</td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                                [ngClass]="p.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'">
+                                {{ p.status }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

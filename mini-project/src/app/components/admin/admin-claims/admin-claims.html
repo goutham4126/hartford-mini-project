@@ -1,5 +1,64 @@
-
-@for(claim of claims();track claim.id)
-{
-    <p>{{claim.id}}</p>
-}
+<div class="p-6 bg-gray-50 min-h-screen font-sans">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">Claims Processing</h2>
+                <p class="text-sm text-gray-500 mt-1">Review and manage insurance claims</p>
+            </div>
+            <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
+                {{ claims().length }} Claims
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
+                    <tr>
+                        <th class="px-6 py-3">Claim ID</th>
+                        <th class="px-6 py-3">Policy ID</th>
+                        <th class="px-6 py-3">Type</th>
+                        <th class="px-6 py-3">Amount (₹)</th>
+                        <th class="px-6 py-3">Date</th>
+                        <th class="px-6 py-3">Status</th>
+                        <th class="px-6 py-3">Documents</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr *ngFor="let claim of claims()" class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 text-sm font-mono text-gray-500">#{{ claim.id }}</td>
+                        <td class="px-6 py-4 text-sm font-mono text-gray-600">{{ claim.policyId }}</td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="capitalize px-2 py-1 rounded text-xs font-medium" [ngClass]="{
+                  'bg-blue-100 text-blue-800': claim.type === 'health',
+                  'bg-yellow-100 text-yellow-800': claim.type === 'vehicle',
+                  'bg-purple-100 text-purple-800': claim.type === 'life',
+                  'bg-orange-100 text-orange-800': claim.type === 'travel'
+                }">
+                                {{ claim.type }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-bold text-gray-700 font-mono">{{ claim.amount | currency:'INR'
+                            }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{ claim.date | date:'mediumDate' }}</td>
+                        <td class="px-6 py-4 text-sm">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium uppercase"
+                                [ngClass]="{
+                  'bg-green-100 text-green-800': claim.status === 'approved',
+                  'bg-yellow-100 text-yellow-800': claim.status === 'pending',
+                  'bg-red-100 text-red-800': claim.status === 'rejected'
+                }">
+                                {{ claim.status }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            <span *ngIf="claim.documents?.length > 0; else noDocs">
+                                {{ claim.documents.length }} doc(s)
+                            </span>
+                            <ng-template #noDocs><span class="text-gray-400 italic">None</span></ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
