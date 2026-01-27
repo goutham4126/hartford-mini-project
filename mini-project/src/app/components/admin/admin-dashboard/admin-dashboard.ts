@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import CommonModule for *ngFor, etc.
+import { CommonModule } from '@angular/common'; 
 import data from '../db.json';
 import { User, Agent, Customer, Policy, Claim } from '../../../models/model';
 
