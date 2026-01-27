@@ -20,7 +20,8 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    <tr *ngFor="let user of users()" class="hover:bg-gray-50 transition-colors">
+                    @for (user of users(); track user.id) {
+                    <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4">
                             <div class="font-medium text-gray-900">{{ user.firstName }} {{ user.lastName }}</div>
                             <div class="text-xs text-gray-500">@{{ user.username }}</div>
@@ -46,6 +47,7 @@
                             {{ user.createdAt | date:'mediumDate' }}
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>

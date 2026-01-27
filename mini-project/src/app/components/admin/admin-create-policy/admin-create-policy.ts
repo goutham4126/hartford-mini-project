@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Agent, PolicyType } from '../../../models/model';
+import { AgentService } from '../../../services/agents';
+import { Policies } from '../../../services/policies';
 
 @Component({
     selector: 'app-admin-create-policy',
@@ -14,8 +15,9 @@ import { Agent, PolicyType } from '../../../models/model';
 })
 export class AdminCreatePolicy {
     private fb = inject(FormBuilder);
-    private http = inject(HttpClient);
     private router = inject(Router);
+    private agentService = inject(AgentService);
+    private policiesService = inject(Policies);
 
     agents: Agent[] = [];
     policyTypes: PolicyType[] = ['health', 'vehicle', 'life', 'travel', 'home'];
@@ -37,7 +39,7 @@ export class AdminCreatePolicy {
     }
 
     fetchAgents() {
-        this.http.get<Agent[]>('http://localhost:3000/agents').subscribe({
+        this.agentService.getAgents().subscribe({
             next: (data) => {
                 this.agents = data;
             },
@@ -70,7 +72,7 @@ export class AdminCreatePolicy {
             keyBenefits: []
         };
 
-        this.http.post('http://localhost:3000/policies', newPolicy).subscribe({
+        this.policiesService.createPolicy(newPolicy).subscribe({
             next: () => {
                 alert('Policy Created Successfully!');
                 this.router.navigate(['/admin/policies']);

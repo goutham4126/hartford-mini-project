@@ -6,10 +6,13 @@ import { Policy } from '../models/model';
   providedIn: 'root',
 })
 export class Policies {
-  constructor(private http:HttpClient){}
-  
-  getPolicies()
-  {
+  constructor(private http: HttpClient) { }
+
+  getPolicies() {
     return this.http.get<Policy[]>('http://localhost:3000/policies')
+  }
+
+  createPolicy(policy: any) {
+    return this.http.post('http://localhost:3000/policies', policy);
   }
 }

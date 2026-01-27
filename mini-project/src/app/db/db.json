@@ -1,678 +1,664 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "username": "admin",
-      "email": "admin@insuresure.com",
-      "password": "901045",
-      "role": "admin",
-      "firstName": "John",
-      "lastName": "Doe",
-      "phone": "1234567890",
-      "createdAt": "2024-01-15"
-    },
-    {
-      "id": "2",
-      "username": "agent1",
-      "email": "agent1@insuresure.com",
-      "password": "901045",
-      "role": "agent",
-      "firstName": "Alice",
-      "lastName": "Brown",
-      "phone": "9876543210",
-      "createdAt": "2024-01-16"
-    },
-    {
-      "id": "3",
-      "username": "agent2",
-      "email": "agent2@insuresure.com",
-      "password": "hashed_agent_pwd",
-      "role": "agent",
-      "firstName": "Robert",
-      "lastName": "Wilson",
-      "phone": "9001122334",
-      "createdAt": "2024-01-18"
-    },
-    {
-      "id": "4",
-      "username": "customer1",
-      "email": "customer1@insuresure.com",
-      "password": "901045",
-      "role": "customer",
-      "firstName": "Michael",
-      "lastName": "Smith",
-      "phone": "9123456789",
-      "createdAt": "2024-01-17"
-    },
-    {
-      "id": "5",
-      "username": "customer2",
-      "email": "customer2@insuresure.com",
-      "password": "hashed_customer_pwd",
-      "role": "customer",
-      "firstName": "Emma",
-      "lastName": "Watson",
-      "phone": "9988776655",
-      "createdAt": "2024-01-18"
-    },
-    {
-      "id": "6",
-      "username": "customer3",
-      "email": "customer3@insuresure.com",
-      "password": "hashed_customer_pwd",
-      "role": "customer",
-      "firstName": "David",
-      "lastName": "Miller",
-      "phone": "9090909090",
-      "createdAt": "2024-01-20"
-    },
-    {
-      "id": "8e76",
-      "username": "agent-sanjay",
-      "email": "agent-sanjay@insuresure.com",
-      "password": "652487",
-      "role": "agent",
-      "firstName": "Sanjay",
-      "lastName": "Attelli",
-      "phone": "8919200290",
-      "createdAt": "2026-01-27T04:24:05.389Z"
-    },
-    {
-      "id": "7",
-      "username": "sarahj",
-      "email": "sarah.j@example.com",
-      "password": "password123",
-      "role": "customer",
-      "firstName": "Sarah",
-      "lastName": "Johnson",
-      "phone": "5551234567",
-      "createdAt": "2024-02-01"
-    },
-    {
-      "id": "8",
-      "username": "jamesp",
-      "email": "james.p@example.com",
-      "password": "password123",
-      "role": "customer",
-      "firstName": "James",
-      "lastName": "Parker",
-      "phone": "5559876543",
-      "createdAt": "2024-02-02"
-    }
-  ],
-  "policies": [
-    {
-      "id": "POL-H-001",
-      "name": "Elite Health Shield Pro",
-      "type": "health",
-      "premium": 15000,
-      "sumInsured": 1000000,
-      "duration": 365,
-      "description": "Comprehensive health coverage for individuals seeking premium medical protection with extensive hospital network access.",
-      "features": [
-        "Zero Co-pay",
-        "Global Coverage",
-        "Alternative Treatments"
-      ],
-      "createdAt": "2024-01-15",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 65,
-      "coPay": 0,
-      "waitingPeriod": 30,
-      "exclusions": [
-        "Cosmetic Surgery",
-        "Experimental Treatments",
-        "Self-inflicted injuries"
-      ],
-      "claimRatio": 98.5,
-      "networkHospitals": [
-        "Apollo Hospitals",
-        "Fortis Healthcare",
-        "Max Healthcare",
-        "Manipal Hospitals"
-      ],
-      "brochureUrl": "https://example.com/brochures/elite-health-pro.pdf",
-      "keyBenefits": [
-        "Cashless hospitalization in 2 hours",
-        "Annual Health Check-up",
-        "Maternity Benefit up to ₹50,000"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/health-pro",
-      "renewalProcess": "Automatic renewal with 5% discount for claim-free years."
-    },
-    {
-      "id": "POL-H-002",
-      "name": "Family Floater secure",
-      "type": "health",
-      "premium": 25000,
-      "sumInsured": 2000000,
-      "duration": 365,
-      "description": "One plan to protect your entire family. Covers up to 2 adults and 3 children with shared sum insured.",
-      "features": [
-        "Maternity Cover",
-        "Newborn Cover",
-        "Vaccination Cover"
-      ],
-      "createdAt": "2024-01-20",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 70,
-      "coPay": 10,
-      "waitingPeriod": 30,
-      "exclusions": [
-        "Pre-existing diseases for first 2 years",
-        "Specific detailed list A"
-      ],
-      "claimRatio": 97.2,
-      "networkHospitals": [
-        "Care Hospitals",
-        "KIMS",
-        "Yashoda Hospitals"
-      ],
-      "brochureUrl": "https://example.com/brochures/family-floater.pdf",
-      "keyBenefits": [
-        "Restoration of Sum Insured",
-        "No Claim Bonus up to 100%",
-        "Daily Hospital Cash"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/family-floater",
-      "renewalProcess": "Quick online renewal."
-    },
-    {
-      "id": "POL-V-001",
-      "name": "DriveSafe Premium Car Insurance",
-      "type": "vehicle",
-      "premium": 12000,
-      "sumInsured": 800000,
-      "duration": 365,
-      "description": "Complete protection for your car against accidents, theft, fire, and natural calamities with zero depreciation cover.",
-      "features": [
-        "Zero Depreciation",
-        "Roadside Assistance",
-        "Engine Protection"
-      ],
-      "createdAt": "2024-01-22",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 70,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Driving under influence",
-        "Driving without license",
-        "Consequential loss"
-      ],
-      "claimRatio": 99.1,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/drivesafe.pdf",
-      "keyBenefits": [
-        "Cashless repairs at 5000+ garages",
-        "Return to Invoice Cover",
-        "Personal Accident Cover for Passengers"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/drivesafe",
-      "renewalProcess": "Instant policy issuance online."
-    },
-    {
-      "id": "POL-V-002",
-      "name": "RideSure Two-Wheeler Cover",
-      "type": "vehicle",
-      "premium": 2500,
-      "sumInsured": 80000,
-      "duration": 1095,
-      "description": "A long-term 3-year plan for your bike. Forget the hassle of yearly renewals and enjoy uninterrupted coverage.",
-      "features": [
-        "Long Term Plan",
-        "Personal Accident Cover",
-        "Third Party Only Option"
-      ],
-      "createdAt": "2024-01-25",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 65,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "War and nuclear perils",
-        "Mechanical breakdown"
-      ],
-      "claimRatio": 96.8,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/ridesure.pdf",
-      "keyBenefits": [
-        "3 years coverage in one payment",
-        "Locked-in premium rates",
-        "Easy claim settlement"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/ridesure",
-      "renewalProcess": "Renewal reminders sent via SMS/Email."
-    },
-    {
-      "id": "POL-L-001",
-      "name": "Lifetime Legacy Term Plan",
-      "type": "life",
-      "premium": 10000,
-      "sumInsured": 10000000,
-      "duration": 14600,
-      "description": "Secure your family's future with a high cover term plan at affordable premiums. Pure risk cover.",
-      "features": [
-        "Critical Illness Rider",
-        "Waiver of Premium",
-        "Accidental Death Benefit"
-      ],
-      "createdAt": "2024-02-01",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 60,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Suicide within first year",
-        "Participation in hazardous sports"
-      ],
-      "claimRatio": 99.4,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/legacy-term.pdf",
-      "keyBenefits": [
-        "Tax benefits under Sec 80C",
-        "Terminal Illness Benefit",
-        "Monthly Income Payout Option"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/legacy",
-      "renewalProcess": "Annual premium payment."
-    },
-    {
-      "id": "POL-L-002",
-      "name": "Wealth Builder Endowment Plan",
-      "type": "life",
-      "premium": 50000,
-      "sumInsured": 5000000,
-      "duration": 7300,
-      "description": "A savings cum insurance plan that helps you build a corpus for your future goals while providing life cover.",
-      "features": [
-        "Guaranteed Returns",
-        "Bonus Declaration",
-        "Loan Facility"
-      ],
-      "createdAt": "2024-02-05",
-      "status": "active",
-      "minEntryAge": 0,
-      "maxEntryAge": 50,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Suicide within 12 months"
-      ],
-      "claimRatio": 98,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/wealth-builder.pdf",
-      "keyBenefits": [
-        "Maturity Benefit with Bonus",
-        "Life Cover for full term",
-        "Tax-free maturity proceeds"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/wealth",
-      "renewalProcess": "Premium payment flexibility."
-    },
-    {
-      "id": "POL-T-001",
-      "name": "Global Voyager Travel Protect",
-      "type": "travel",
-      "premium": 3000,
-      "sumInsured": 3750000,
-      "duration": 30,
-      "description": "Travel the world worry-free. Covers medical emergencies, flight delays, baggage loss, and passport loss.",
-      "features": [
-        "COVID-19 Hospitalization",
-        "Missed Connection",
-        "Emergency Dental"
-      ],
-      "createdAt": "2024-02-10",
-      "status": "active",
-      "minEntryAge": 1,
-      "maxEntryAge": 80,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Pre-existing medical conditions",
-        "Traveling against medical advice"
-      ],
-      "claimRatio": 95.5,
-      "networkHospitals": [
-        "Worldwide Assistance Network"
-      ],
-      "brochureUrl": "https://example.com/brochures/voyager.pdf",
-      "keyBenefits": [
-        "Cashless Medical Treatment abroad",
-        "Compensation for Flight Delay",
-        "Home Burglary Cover while away"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/voyager",
-      "renewalProcess": "Single trip - Not renewable."
-    },
-    {
-      "id": "POL-T-002",
-      "name": "Student Scholar Abroad Plan",
-      "type": "travel",
-      "premium": 15000,
-      "sumInsured": 7500000,
-      "duration": 730,
-      "description": "Specially designed for students studying abroad. Covers medical, study interruption, and sponsor protection.",
-      "features": [
-        "Study Interruption",
-        "Sponsor Protection",
-        "Laptop Cover"
-      ],
-      "createdAt": "2024-02-12",
-      "status": "active",
-      "minEntryAge": 16,
-      "maxEntryAge": 35,
-      "coPay": 50,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Drug abuse",
-        "Self-injury"
-      ],
-      "claimRatio": 97,
-      "networkHospitals": [
-        "University Network Hospitals"
-      ],
-      "brochureUrl": "https://example.com/brochures/scholar.pdf",
-      "keyBenefits": [
-        "Tuition fee reimbursement on medical ground",
-        "Compassionate Visit for family",
-        "Bail Bond insurance"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/scholar",
-      "renewalProcess": "Extendable up to 2 years."
-    },
-    {
-      "id": "POL-HO-001",
-      "name": "Sweet Home Comprehensive",
-      "type": "home",
-      "premium": 5000,
-      "sumInsured": 5000000,
-      "duration": 365,
-      "description": "Protect your building and contents against fire, theft, earthquake, flood, and other allied perils.",
-      "features": [
-        "Terrorism Cover",
-        "Rent for Alternative Accommodation",
-        "Lost Key Cover"
-      ],
-      "createdAt": "2024-02-15",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 99,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "War",
-        "Willful destruction",
-        "Wear and tear"
-      ],
-      "claimRatio": 94.5,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/sweet-home.pdf",
-      "keyBenefits": [
-        "Reinstatement Value Clause",
-        "Coverage for valuables/jewelry",
-        "Electronic equipment breakdown"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/home",
-      "renewalProcess": "Annual renewal."
-    },
-    {
-      "id": "POL-HO-002",
-      "name": "Tenant's Content Protector",
-      "type": "home",
-      "premium": 2000,
-      "sumInsured": 1000000,
-      "duration": 365,
-      "description": "Ideal for renters. Protects your belongings like electronics, furniture, and appliances from theft and damage.",
-      "features": [
-        "All Risk Cover for Electronics",
-        "Baggage Insurance",
-        "Public Liability"
-      ],
-      "createdAt": "2024-02-18",
-      "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 99,
-      "coPay": 0,
-      "waitingPeriod": 0,
-      "exclusions": [
-        "Building structure",
-        "Old Items over 10 years"
-      ],
-      "claimRatio": 93,
-      "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/tenant.pdf",
-      "keyBenefits": [
-        "Portable electronics cover",
-        "Protection during shifting",
-        "Identity theft cover"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/tenant",
-      "renewalProcess": "Annual renewal."
-    },
-    {
-      "id": "POL-L-9412",
-      "name": "Life Insurance plan",
-      "type": "life",
-      "premium": 12000,
-      "sumInsured": 65000,
-      "duration": 365,
-      "description": "Life Insranc",
-      "minEntryAge": 18,
-      "maxEntryAge": 70,
-      "agentId": "AGT-001",
-      "status": "active",
-      "createdAt": "2026-01-27",
-      "features": [
-        "Standard Coverage"
-      ],
-      "exclusions": [],
-      "networkHospitals": [],
-      "keyBenefits": []
-    }
-  ],
-  "customers": [
-    {
-      "id": "CUST-001",
-      "userId": "4",
-      "policyIds": [
-        "POL-H-001",
-        "POL-V-001"
-      ],
-      "nominee": "Jane Smith",
-      "kycStatus": "verified",
-      "address": "Bangalore",
-      "detailedAddress": {
-        "street": "123, MG Road",
-        "city": "Bangalore",
-        "state": "Karnataka",
-        "pincode": "560001",
-        "country": "India"
-      },
-      "dateOfBirth": "1990-05-15",
-      "aadhaarNumber": "123456789012",
-      "panNumber": "ABCDE1234F",
-      "medicalHistory": [
-        "None"
-      ],
-      "occupation": "Software Engineer",
-      "annualIncome": 1500000,
-      "maritalStatus": "married",
-      "dependents": [
-        {
-          "name": "Jane Smith",
-          "relation": "Spouse",
-          "age": 30
+    "users": [{
+            "id": "1",
+            "username": "admin",
+            "email": "admin@insuresure.com",
+            "password": "901045",
+            "role": "admin",
+            "firstName": "John",
+            "lastName": "Doe",
+            "phone": "1234567890",
+            "createdAt": "2024-01-15"
         },
         {
-          "name": "Junior Smith",
-          "relation": "Child",
-          "age": 5
-        }
-      ]
-    },
-    {
-      "id": "CUST-002",
-      "userId": "5",
-      "policyIds": [
-        "POL-V-001",
-        "POL-L-001"
-      ],
-      "nominee": "Robert Watson",
-      "kycStatus": "pending",
-      "address": "Chennai",
-      "detailedAddress": {
-        "street": "45, Anna Salai",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "pincode": "600002",
-        "country": "India"
-      },
-      "dateOfBirth": "1992-09-20",
-      "aadhaarNumber": "987654321098",
-      "panNumber": "PQRSX5678L",
-      "medicalHistory": [
-        "Hypertension"
-      ],
-      "occupation": "Teacher",
-      "annualIncome": 800000,
-      "maritalStatus": "married",
-      "dependents": [
+            "id": "2",
+            "username": "agent1",
+            "email": "agent1@insuresure.com",
+            "password": "901045",
+            "role": "agent",
+            "firstName": "Alice",
+            "lastName": "Brown",
+            "phone": "9876543210",
+            "createdAt": "2024-01-16"
+        },
         {
-          "name": "Robert Watson",
-          "relation": "Spouse",
-          "age": 32
+            "id": "3",
+            "username": "agent2",
+            "email": "agent2@insuresure.com",
+            "password": "hashed_agent_pwd",
+            "role": "agent",
+            "firstName": "Robert",
+            "lastName": "Wilson",
+            "phone": "9001122334",
+            "createdAt": "2024-01-18"
+        },
+        {
+            "id": "4",
+            "username": "customer1",
+            "email": "customer1@insuresure.com",
+            "password": "901045",
+            "role": "customer",
+            "firstName": "Michael",
+            "lastName": "Smith",
+            "phone": "9123456789",
+            "createdAt": "2024-01-17"
+        },
+        {
+            "id": "5",
+            "username": "customer2",
+            "email": "customer2@insuresure.com",
+            "password": "hashed_customer_pwd",
+            "role": "customer",
+            "firstName": "Emma",
+            "lastName": "Watson",
+            "phone": "9988776655",
+            "createdAt": "2024-01-18"
+        },
+        {
+            "id": "6",
+            "username": "customer3",
+            "email": "customer3@insuresure.com",
+            "password": "hashed_customer_pwd",
+            "role": "customer",
+            "firstName": "David",
+            "lastName": "Miller",
+            "phone": "9090909090",
+            "createdAt": "2024-01-20"
+        },
+        {
+            "id": "8e76",
+            "username": "agent-sanjay",
+            "email": "agent-sanjay@insuresure.com",
+            "password": "652487",
+            "role": "agent",
+            "firstName": "Sanjay",
+            "lastName": "Attelli",
+            "phone": "8919200290",
+            "createdAt": "2026-01-27T04:24:05.389Z"
+        },
+        {
+            "id": "7",
+            "username": "sarahj",
+            "email": "sarah.j@example.com",
+            "password": "password123",
+            "role": "customer",
+            "firstName": "Sarah",
+            "lastName": "Johnson",
+            "phone": "5551234567",
+            "createdAt": "2024-02-01"
+        },
+        {
+            "id": "8",
+            "username": "jamesp",
+            "email": "james.p@example.com",
+            "password": "password123",
+            "role": "customer",
+            "firstName": "James",
+            "lastName": "Parker",
+            "phone": "5559876543",
+            "createdAt": "2024-02-02"
         }
-      ]
-    },
-    {
-      "id": "CUST-003",
-      "userId": "6",
-      "policyIds": [
-        "POL-T-001"
-      ],
-      "nominee": "Sarah Miller",
-      "kycStatus": "verified",
-      "address": "Hyderabad",
-      "detailedAddress": {
-        "street": "Flat 302, Cyber Towers",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "pincode": "500081",
-        "country": "India"
-      },
-      "dateOfBirth": "1988-02-11",
-      "aadhaarNumber": "555566667777",
-      "panNumber": "LMNOP9876Q",
-      "medicalHistory": [
-        "Diabetes"
-      ],
-      "occupation": "Business",
-      "annualIncome": 2500000,
-      "maritalStatus": "single",
-      "dependents": []
-    }
-  ],
-  "agents": [
-    {
-      "id": "AGT-001",
-      "userId": "2",
-      "licenseNumber": "LIC123456",
-      "commissionRate": 15,
-      "assignedCustomers": [
-        "CUST-001",
-        "CUST-002"
-      ],
-      "totalPoliciesSold": 45,
-      "territory": "South India",
-      "specialization": [
-        "health",
-        "vehicle"
-      ]
-    },
-    {
-      "id": "AGT-002",
-      "userId": "3",
-      "licenseNumber": "LIC654321",
-      "commissionRate": 12,
-      "assignedCustomers": [
-        "CUST-003"
-      ],
-      "totalPoliciesSold": 28,
-      "territory": "Hyderabad",
-      "specialization": [
-        "life",
-        "travel"
-      ]
-    },
-    {
-      "id": "AGT-003",
-      "userId": "8e76",
-      "licenseNumber": "LIC999888",
-      "commissionRate": 10,
-      "assignedCustomers": [],
-      "totalPoliciesSold": 0,
-      "territory": "Unassigned",
-      "specialization": []
-    }
-  ],
-  "claims": [
-    {
-      "id": "CLAIM-001",
-      "policyId": "POL-H-001",
-      "customerId": "CUST-001",
-      "type": "health",
-      "amount": 50000,
-      "date": "2024-01-20",
-      "status": "pending",
-      "description": "Hospitalization due to accident",
-      "documents": [
-        "bill1.jpg",
-        "report.pdf"
-      ]
-    },
-    {
-      "id": "CLAIM-002",
-      "policyId": "POL-V-001",
-      "customerId": "CUST-002",
-      "type": "vehicle",
-      "amount": 30000,
-      "date": "2024-02-05",
-      "status": "approved",
-      "description": "Vehicle repair after accident",
-      "documents": [
-        "garage_bill.pdf"
-      ]
-    },
-    {
-      "id": "CLAIM-003",
-      "policyId": "POL-L-001",
-      "customerId": "CUST-002",
-      "type": "life",
-      "amount": 100000,
-      "date": "2024-02-10",
-      "status": "rejected",
-      "description": "Incorrect documentation submitted",
-      "documents": []
-    },
-    {
-      "id": "CLAIM-004",
-      "policyId": "POL-T-001",
-      "customerId": "CUST-003",
-      "type": "travel",
-      "amount": 20000,
-      "date": "2024-02-15",
-      "status": "approved",
-      "description": "Medical emergency during travel",
-      "documents": [
-        "hospital_bill.pdf"
-      ]
-    }
-  ]
+    ],
+    "policies": [{
+            "id": "POL-H-001",
+            "name": "Elite Health Shield Pro",
+            "type": "health",
+            "premium": 15000,
+            "sumInsured": 1000000,
+            "duration": 365,
+            "description": "Comprehensive health coverage for individuals seeking premium medical protection with extensive hospital network access.",
+            "features": [
+                "Zero Co-pay",
+                "Global Coverage",
+                "Alternative Treatments"
+            ],
+            "createdAt": "2024-01-15",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 65,
+            "coPay": 0,
+            "waitingPeriod": 30,
+            "exclusions": [
+                "Cosmetic Surgery",
+                "Experimental Treatments",
+                "Self-inflicted injuries"
+            ],
+            "claimRatio": 98.5,
+            "networkHospitals": [
+                "Apollo Hospitals",
+                "Fortis Healthcare",
+                "Max Healthcare",
+                "Manipal Hospitals"
+            ],
+            "brochureUrl": "https://example.com/brochures/elite-health-pro.pdf",
+            "keyBenefits": [
+                "Cashless hospitalization in 2 hours",
+                "Annual Health Check-up",
+                "Maternity Benefit up to ₹50,000"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/health-pro",
+            "renewalProcess": "Automatic renewal with 5% discount for claim-free years."
+        },
+        {
+            "id": "POL-H-002",
+            "name": "Family Floater secure",
+            "type": "health",
+            "premium": 25000,
+            "sumInsured": 2000000,
+            "duration": 365,
+            "description": "One plan to protect your entire family. Covers up to 2 adults and 3 children with shared sum insured.",
+            "features": [
+                "Maternity Cover",
+                "Newborn Cover",
+                "Vaccination Cover"
+            ],
+            "createdAt": "2024-01-20",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 70,
+            "coPay": 10,
+            "waitingPeriod": 30,
+            "exclusions": [
+                "Pre-existing diseases for first 2 years",
+                "Specific detailed list A"
+            ],
+            "claimRatio": 97.2,
+            "networkHospitals": [
+                "Care Hospitals",
+                "KIMS",
+                "Yashoda Hospitals"
+            ],
+            "brochureUrl": "https://example.com/brochures/family-floater.pdf",
+            "keyBenefits": [
+                "Restoration of Sum Insured",
+                "No Claim Bonus up to 100%",
+                "Daily Hospital Cash"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/family-floater",
+            "renewalProcess": "Quick online renewal."
+        },
+        {
+            "id": "POL-V-001",
+            "name": "DriveSafe Premium Car Insurance",
+            "type": "vehicle",
+            "premium": 12000,
+            "sumInsured": 800000,
+            "duration": 365,
+            "description": "Complete protection for your car against accidents, theft, fire, and natural calamities with zero depreciation cover.",
+            "features": [
+                "Zero Depreciation",
+                "Roadside Assistance",
+                "Engine Protection"
+            ],
+            "createdAt": "2024-01-22",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 70,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Driving under influence",
+                "Driving without license",
+                "Consequential loss"
+            ],
+            "claimRatio": 99.1,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/drivesafe.pdf",
+            "keyBenefits": [
+                "Cashless repairs at 5000+ garages",
+                "Return to Invoice Cover",
+                "Personal Accident Cover for Passengers"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/drivesafe",
+            "renewalProcess": "Instant policy issuance online."
+        },
+        {
+            "id": "POL-V-002",
+            "name": "RideSure Two-Wheeler Cover",
+            "type": "vehicle",
+            "premium": 2500,
+            "sumInsured": 80000,
+            "duration": 1095,
+            "description": "A long-term 3-year plan for your bike. Forget the hassle of yearly renewals and enjoy uninterrupted coverage.",
+            "features": [
+                "Long Term Plan",
+                "Personal Accident Cover",
+                "Third Party Only Option"
+            ],
+            "createdAt": "2024-01-25",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 65,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "War and nuclear perils",
+                "Mechanical breakdown"
+            ],
+            "claimRatio": 96.8,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/ridesure.pdf",
+            "keyBenefits": [
+                "3 years coverage in one payment",
+                "Locked-in premium rates",
+                "Easy claim settlement"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/ridesure",
+            "renewalProcess": "Renewal reminders sent via SMS/Email."
+        },
+        {
+            "id": "POL-L-001",
+            "name": "Lifetime Legacy Term Plan",
+            "type": "life",
+            "premium": 10000,
+            "sumInsured": 10000000,
+            "duration": 14600,
+            "description": "Secure your family's future with a high cover term plan at affordable premiums. Pure risk cover.",
+            "features": [
+                "Critical Illness Rider",
+                "Waiver of Premium",
+                "Accidental Death Benefit"
+            ],
+            "createdAt": "2024-02-01",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 60,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Suicide within first year",
+                "Participation in hazardous sports"
+            ],
+            "claimRatio": 99.4,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/legacy-term.pdf",
+            "keyBenefits": [
+                "Tax benefits under Sec 80C",
+                "Terminal Illness Benefit",
+                "Monthly Income Payout Option"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/legacy",
+            "renewalProcess": "Annual premium payment."
+        },
+        {
+            "id": "POL-L-002",
+            "name": "Wealth Builder Endowment Plan",
+            "type": "life",
+            "premium": 50000,
+            "sumInsured": 5000000,
+            "duration": 7300,
+            "description": "A savings cum insurance plan that helps you build a corpus for your future goals while providing life cover.",
+            "features": [
+                "Guaranteed Returns",
+                "Bonus Declaration",
+                "Loan Facility"
+            ],
+            "createdAt": "2024-02-05",
+            "status": "active",
+            "minEntryAge": 0,
+            "maxEntryAge": 50,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Suicide within 12 months"
+            ],
+            "claimRatio": 98,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/wealth-builder.pdf",
+            "keyBenefits": [
+                "Maturity Benefit with Bonus",
+                "Life Cover for full term",
+                "Tax-free maturity proceeds"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/wealth",
+            "renewalProcess": "Premium payment flexibility."
+        },
+        {
+            "id": "POL-T-001",
+            "name": "Global Voyager Travel Protect",
+            "type": "travel",
+            "premium": 3000,
+            "sumInsured": 3750000,
+            "duration": 30,
+            "description": "Travel the world worry-free. Covers medical emergencies, flight delays, baggage loss, and passport loss.",
+            "features": [
+                "COVID-19 Hospitalization",
+                "Missed Connection",
+                "Emergency Dental"
+            ],
+            "createdAt": "2024-02-10",
+            "status": "active",
+            "minEntryAge": 1,
+            "maxEntryAge": 80,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Pre-existing medical conditions",
+                "Traveling against medical advice"
+            ],
+            "claimRatio": 95.5,
+            "networkHospitals": [
+                "Worldwide Assistance Network"
+            ],
+            "brochureUrl": "https://example.com/brochures/voyager.pdf",
+            "keyBenefits": [
+                "Cashless Medical Treatment abroad",
+                "Compensation for Flight Delay",
+                "Home Burglary Cover while away"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/voyager",
+            "renewalProcess": "Single trip - Not renewable."
+        },
+        {
+            "id": "POL-T-002",
+            "name": "Student Scholar Abroad Plan",
+            "type": "travel",
+            "premium": 15000,
+            "sumInsured": 7500000,
+            "duration": 730,
+            "description": "Specially designed for students studying abroad. Covers medical, study interruption, and sponsor protection.",
+            "features": [
+                "Study Interruption",
+                "Sponsor Protection",
+                "Laptop Cover"
+            ],
+            "createdAt": "2024-02-12",
+            "status": "active",
+            "minEntryAge": 16,
+            "maxEntryAge": 35,
+            "coPay": 50,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Drug abuse",
+                "Self-injury"
+            ],
+            "claimRatio": 97,
+            "networkHospitals": [
+                "University Network Hospitals"
+            ],
+            "brochureUrl": "https://example.com/brochures/scholar.pdf",
+            "keyBenefits": [
+                "Tuition fee reimbursement on medical ground",
+                "Compassionate Visit for family",
+                "Bail Bond insurance"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/scholar",
+            "renewalProcess": "Extendable up to 2 years."
+        },
+        {
+            "id": "POL-HO-001",
+            "name": "Sweet Home Comprehensive",
+            "type": "home",
+            "premium": 5000,
+            "sumInsured": 5000000,
+            "duration": 365,
+            "description": "Protect your building and contents against fire, theft, earthquake, flood, and other allied perils.",
+            "features": [
+                "Terrorism Cover",
+                "Rent for Alternative Accommodation",
+                "Lost Key Cover"
+            ],
+            "createdAt": "2024-02-15",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 99,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "War",
+                "Willful destruction",
+                "Wear and tear"
+            ],
+            "claimRatio": 94.5,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/sweet-home.pdf",
+            "keyBenefits": [
+                "Reinstatement Value Clause",
+                "Coverage for valuables/jewelry",
+                "Electronic equipment breakdown"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/home",
+            "renewalProcess": "Annual renewal."
+        },
+        {
+            "id": "POL-HO-002",
+            "name": "Tenant's Content Protector",
+            "type": "home",
+            "premium": 2000,
+            "sumInsured": 1000000,
+            "duration": 365,
+            "description": "Ideal for renters. Protects your belongings like electronics, furniture, and appliances from theft and damage.",
+            "features": [
+                "All Risk Cover for Electronics",
+                "Baggage Insurance",
+                "Public Liability"
+            ],
+            "createdAt": "2024-02-18",
+            "status": "active",
+            "minEntryAge": 18,
+            "maxEntryAge": 99,
+            "coPay": 0,
+            "waitingPeriod": 0,
+            "exclusions": [
+                "Building structure",
+                "Old Items over 10 years"
+            ],
+            "claimRatio": 93,
+            "networkHospitals": [],
+            "brochureUrl": "https://example.com/brochures/tenant.pdf",
+            "keyBenefits": [
+                "Portable electronics cover",
+                "Protection during shifting",
+                "Identity theft cover"
+            ],
+            "termsAndConditionsUrl": "https://example.com/terms/tenant",
+            "renewalProcess": "Annual renewal."
+        },
+        {
+            "id": "POL-L-9412",
+            "name": "Life Insurance plan",
+            "type": "life",
+            "premium": 12000,
+            "sumInsured": 65000,
+            "duration": 365,
+            "description": "Life Insranc",
+            "minEntryAge": 18,
+            "maxEntryAge": 70,
+            "agentId": "AGT-001",
+            "status": "active",
+            "createdAt": "2026-01-27",
+            "features": [
+                "Standard Coverage"
+            ],
+            "exclusions": [],
+            "networkHospitals": [],
+            "keyBenefits": []
+        }
+    ],
+    "customers": [{
+            "id": "CUST-001",
+            "userId": "4",
+            "policyIds": [
+                "POL-H-001",
+                "POL-V-001"
+            ],
+            "nominee": "Jane Smith",
+            "kycStatus": "verified",
+            "address": "Bangalore",
+            "detailedAddress": {
+                "street": "123, MG Road",
+                "city": "Bangalore",
+                "state": "Karnataka",
+                "pincode": "560001",
+                "country": "India"
+            },
+            "dateOfBirth": "1990-05-15",
+            "aadhaarNumber": "123456789012",
+            "panNumber": "ABCDE1234F",
+            "medicalHistory": [
+                "None"
+            ],
+            "occupation": "Software Engineer",
+            "annualIncome": 1500000,
+            "maritalStatus": "married",
+            "dependents": [{
+                    "name": "Jane Smith",
+                    "relation": "Spouse",
+                    "age": 30
+                },
+                {
+                    "name": "Junior Smith",
+                    "relation": "Child",
+                    "age": 5
+                }
+            ]
+        },
+        {
+            "id": "CUST-002",
+            "userId": "5",
+            "policyIds": [
+                "POL-V-001",
+                "POL-L-001"
+            ],
+            "nominee": "Robert Watson",
+            "kycStatus": "pending",
+            "address": "Chennai",
+            "detailedAddress": {
+                "street": "45, Anna Salai",
+                "city": "Chennai",
+                "state": "Tamil Nadu",
+                "pincode": "600002",
+                "country": "India"
+            },
+            "dateOfBirth": "1992-09-20",
+            "aadhaarNumber": "987654321098",
+            "panNumber": "PQRSX5678L",
+            "medicalHistory": [
+                "Hypertension"
+            ],
+            "occupation": "Teacher",
+            "annualIncome": 800000,
+            "maritalStatus": "married",
+            "dependents": [{
+                "name": "Robert Watson",
+                "relation": "Spouse",
+                "age": 32
+            }]
+        },
+        {
+            "id": "CUST-003",
+            "userId": "6",
+            "policyIds": [
+                "POL-T-001"
+            ],
+            "nominee": "Sarah Miller",
+            "kycStatus": "verified",
+            "address": "Hyderabad",
+            "detailedAddress": {
+                "street": "Flat 302, Cyber Towers",
+                "city": "Hyderabad",
+                "state": "Telangana",
+                "pincode": "500081",
+                "country": "India"
+            },
+            "dateOfBirth": "1988-02-11",
+            "aadhaarNumber": "555566667777",
+            "panNumber": "LMNOP9876Q",
+            "medicalHistory": [
+                "Diabetes"
+            ],
+            "occupation": "Business",
+            "annualIncome": 2500000,
+            "maritalStatus": "single",
+            "dependents": []
+        }
+    ],
+    "agents": [{
+            "id": "AGT-001",
+            "userId": "2",
+            "licenseNumber": "LIC123456",
+            "commissionRate": 15,
+            "assignedCustomers": [
+                "CUST-001",
+                "CUST-002"
+            ],
+            "totalPoliciesSold": 45,
+            "territory": "South India",
+            "specialization": "health"
+        },
+        {
+            "id": "AGT-002",
+            "userId": "3",
+            "licenseNumber": "LIC654321",
+            "commissionRate": 12,
+            "assignedCustomers": [
+                "CUST-003"
+            ],
+            "totalPoliciesSold": 28,
+            "territory": "Hyderabad",
+            "specialization": "life"
+        },
+        {
+            "id": "AGT-003",
+            "userId": "8e76",
+            "licenseNumber": "LIC999888",
+            "commissionRate": 10,
+            "assignedCustomers": [],
+            "totalPoliciesSold": 0,
+            "territory": "Unassigned",
+            "specialization": "vehicle"
+        }
+    ],
+    "claims": [{
+            "id": "CLAIM-001",
+            "policyId": "POL-H-001",
+            "customerId": "CUST-001",
+            "type": "health",
+            "amount": 50000,
+            "date": "2024-01-20",
+            "status": "pending",
+            "description": "Hospitalization due to accident",
+            "documents": [
+                "bill1.jpg",
+                "report.pdf"
+            ]
+        },
+        {
+            "id": "CLAIM-002",
+            "policyId": "POL-V-001",
+            "customerId": "CUST-002",
+            "type": "vehicle",
+            "amount": 30000,
+            "date": "2024-02-05",
+            "status": "approved",
+            "description": "Vehicle repair after accident",
+            "documents": [
+                "garage_bill.pdf"
+            ]
+        },
+        {
+            "id": "CLAIM-003",
+            "policyId": "POL-L-001",
+            "customerId": "CUST-002",
+            "type": "life",
+            "amount": 100000,
+            "date": "2024-02-10",
+            "status": "rejected",
+            "description": "Incorrect documentation submitted",
+            "documents": []
+        },
+        {
+            "id": "CLAIM-004",
+            "policyId": "POL-T-001",
+            "customerId": "CUST-003",
+            "type": "travel",
+            "amount": 20000,
+            "date": "2024-02-15",
+            "status": "approved",
+            "description": "Medical emergency during travel",
+            "documents": [
+                "hospital_bill.pdf"
+            ]
+        }
+    ]
 }

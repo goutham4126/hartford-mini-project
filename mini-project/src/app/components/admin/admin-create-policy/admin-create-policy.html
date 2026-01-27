@@ -14,15 +14,18 @@
                     <input type="text" formControlName="name"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                         placeholder="e.g. Gold Health Plan">
-                    <div *ngIf="policyForm.get('name')?.touched && policyForm.get('name')?.invalid"
-                        class="text-red-500 text-xs">Name is required (min 3 chars).</div>
+                    @if (policyForm.get('name')?.touched && policyForm.get('name')?.invalid) {
+                    <div class="text-red-500 text-xs">Name is required (min 3 chars).</div>
+                    }
                 </div>
 
                 <div class="space-y-2">
                     <label class="block text-sm font-medium text-gray-700">Category</label>
                     <select formControlName="type"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white">
-                        <option *ngFor="let type of policyTypes" [value]="type">{{ type | titlecase }}</option>
+                        @for (type of policyTypes; track type) {
+                        <option [value]="type">{{ type | titlecase }}</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -84,12 +87,15 @@
                     <select formControlName="agentId"
                         class="w-full px-4 py-3 border-2 border-indigo-100 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-indigo-50/30 text-gray-700 font-medium cursor-pointer transition-all hover:border-indigo-300">
                         <option value="" disabled>-- Choose an Agent --</option>
-                        <option *ngFor="let agent of agents" [value]="agent.id">
+                        @for (agent of agents; track agent.id) {
+                        <option [value]="agent.id">
                             {{ agent.id }} - (ID: {{agent.userId}})
                         </option>
+                        }
                     </select>
-                    <div *ngIf="policyForm.get('agentId')?.touched && policyForm.get('agentId')?.invalid"
-                        class="text-red-500 text-xs mt-1">Please assign an agent.</div>
+                    @if (policyForm.get('agentId')?.touched && policyForm.get('agentId')?.invalid) {
+                    <div class="text-red-500 text-xs mt-1">Please assign an agent.</div>
+                    }
                 </div>
             </div>
 
