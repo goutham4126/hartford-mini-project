@@ -1,79 +1,83 @@
 <!-- BLOCK ONLY ON POLICIES -->
 @if (!policies) {
-  <div class="text-center text-gray-500 p-6">
-    Fetching policies...
+  <div class="flex items-center justify-center min-h-[50vh] text-slate-500">
+    Fetching policies…
   </div>
 }
 
 @if (policies) {
-  <div class="min-h-screen bg-gray-100 p-6">
-    <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow p-6">
+  <div class="min-h-screen bg-slate-50 p-8">
+    <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl p-8">
 
-      <h2 class="text-xl font-bold text-gray-800 mb-4">
+      <h2 class="text-2xl font-extrabold text-slate-900 mb-6">
         My Policies
       </h2>
 
-      <!-- NO POLICIES -->
       @if (policies.length === 0) {
-        <p class="text-gray-500 text-center">
+        <p class="text-slate-500 text-center">
           No policies found.
         </p>
       }
 
-      <!-- POLICIES TABLE -->
       @if (policies.length > 0) {
         <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
+          <table class="w-full text-sm">
             <thead>
-              <tr class="bg-gray-100 text-left text-sm text-gray-600">
-                <th class="p-3">#</th>
-                <th class="p-3">Policy Name</th>
-                <th class="p-3">Type</th>
-                <th class="p-3">Coverage</th>
-                <th class="p-3">Duration</th>
-                <th class="p-3">Premium</th>
-                <th class="p-3">Status</th>
+              <tr class="border-b text-slate-500">
+                <th class="py-3 text-left">#</th>
+                <th class="py-3 text-left">Policy</th>
+                <th class="py-3 text-left">Type</th>
+                <th class="py-3 text-left">Coverage</th>
+                <th class="py-3 text-left">Duration</th>
+                <th class="py-3 text-left">Premium</th>
+                <th class="py-3 text-left">Status</th>
+                <th></th>
               </tr>
             </thead>
 
             <tbody>
               @for (policy of policies; let i = $index; track policy.id) {
-                <tr class="border-t hover:bg-gray-50">
+                <tr class="border-b last:border-none hover:bg-slate-50 transition">
 
-                  <td class="p-3">{{ i + 1 }}</td>
+                  <td class="py-4">{{ i + 1 }}</td>
 
-                  <td class="p-3 font-medium text-gray-800">
+                  <td class="py-4 font-semibold text-slate-900">
                     {{ policy.name }}
                   </td>
 
-                  <td class="p-3 capitalize">
+                  <td class="py-4 capitalize text-slate-600">
                     {{ policy.type }}
                   </td>
 
-                  <!-- COVERAGE -->
-                  <td class="p-3">
+                  <td class="py-4">
                     ₹{{ policy.sumInsured | number }}
                   </td>
 
-                  <!-- DURATION IN YEARS -->
-                  <td class="p-3">
-                    {{ getYears(policy.duration) }} years
+                  <td class="py-4">
+                    {{ getYears(policy.duration) }} yrs
                   </td>
 
-                  <td class="p-3">
+                  <td class="py-4 font-medium">
                     ₹{{ policy.premium }}
                   </td>
 
-                  <td class="p-3">
+                  <td class="py-4">
                     <span
-                      class="px-3 py-1 rounded-full text-sm font-medium"
-                      [class.bg-green-100]="policy.status === 'active'"
-                      [class.text-green-700]="policy.status === 'active'"
+                      class="px-3 py-1 rounded-full text-xs font-semibold"
+                      [class.bg-emerald-100]="policy.status === 'active'"
+                      [class.text-emerald-700]="policy.status === 'active'"
                       [class.bg-red-100]="policy.status === 'inactive'"
-                      [class.text-red-700]="policy.status === 'inactive'"
-                    >
+                      [class.text-red-700]="policy.status === 'inactive'">
                       {{ policy.status }}
                     </span>
+                  </td>
+
+                  <td class="py-4 text-right">
+                    <button
+                      class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition"
+                      (click)="claimPolicy(policy)">
+                      Claim
+                    </button>
                   </td>
 
                 </tr>
@@ -86,3 +90,75 @@
     </div>
   </div>
 }
+
+
+@if (showClaimForm) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
+
+    <div class="w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8 relative">
+
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">
+        Apply for Claim
+      </h2>
+
+      <!-- DESCRIPTION -->
+      <div class="mb-5">
+        <label class="block text-sm font-semibold text-slate-700 mb-1">
+          Claim Description
+        </label>
+        <textarea
+          #desc
+          rows="4"
+          class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          placeholder="Briefly describe what happened"
+          (input)="onDescriptionChange(desc.value)">
+        </textarea>
+      </div>
+
+      <!-- DOCUMENT UPLOAD -->
+      <div class="mb-5">
+        <label class="block text-sm font-semibold text-slate-700 mb-1">
+          Upload Documents
+        </label>
+
+        <input
+          type="file"
+          multiple
+          class="block w-full text-sm file:mr-4 file:py-2 file:px-4
+                 file:rounded-lg file:border-0
+                 file:bg-indigo-50 file:text-indigo-600
+                 hover:file:bg-indigo-100 cursor-pointer"
+          (change)="onFilesSelected($event)" />
+
+        @if (currentClaim.documents.length > 0) {
+          <ul class="mt-3 space-y-1 text-sm text-slate-600">
+            @for (doc of currentClaim.documents; track doc) {
+              <li class="flex items-center gap-2">
+                📄 <span>{{ doc }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="flex justify-end gap-3 pt-4">
+        <button
+          class="px-5 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition"
+          (click)="closeClaimForm()">
+          Cancel
+        </button>
+
+        <button
+          class="px-5 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition"
+          (click)="submitClaim()">
+          Submit Claim
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+}
+
+
