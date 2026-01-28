@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgentService } from '../../../services/agents';
-import { Customer } from '../../../models/model';
 @Component({
   standalone: true,
   selector: 'app-agent-dashboard',

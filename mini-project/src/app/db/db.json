@@ -142,6 +142,28 @@
       "lastName": "Bejgum",
       "phone": "09347758510",
       "createdAt": "2026-01-27T16:20:58.350Z"
+    },
+    {
+      "id": "4233",
+      "username": "poojitha",
+      "email": "pooji@gmail.com",
+      "password": "Pooji@11",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "9347758510",
+      "createdAt": "2026-01-28T04:17:18.953Z"
+    },
+    {
+      "id": "e528",
+      "username": "radhakrishna",
+      "email": "rahda@gmail.com",
+      "password": "radha@12",
+      "role": "customer",
+      "firstName": "radha",
+      "lastName": "krishna",
+      "phone": "9088302820",
+      "createdAt": "2026-01-28T04:22:10.634Z"
     }
   ],
   "policies": [
@@ -689,6 +711,21 @@
       "status": "pending",
       "requestedAt": "2026-01-28T04:01:34.062Z",
       "assignedAgentId": "AGT-001"
+    },
+    {
+      "id": "cba6690a-c0de-49af-b88e-9ba64d40e578",
+      "userId": "4",
+      "policyId": "POL-H-001",
+      "nominee": {
+        "name": "michael",
+        "relation": "self",
+        "age": 24
+      },
+      "status": "approved",
+      "requestedAt": "2026-01-28T04:48:29.785Z",
+      "assignedAgentId": "AGT-001",
+      "approvedAt": "2026-01-28T04:59:54.015Z",
+      "remarks": "Approved after document verification"
     }
   ],
   "customers": [
@@ -700,7 +737,8 @@
         "POL-V-002",
         "POL-V-001",
         "POL-H-4073",
-        "POL-L-002"
+        "POL-L-002",
+        "POL-H-001"
       ],
       "kycStatus": "verified",
       "address": "Bangalore",
@@ -835,7 +873,17 @@
       "userId": "5a62",
       "licenseNumber": "LIC-1769530858361",
       "commissionRate": 5,
-      "assignedCustomers":["CUST-001"],
+      "assignedCustomers": [
+        "CUST-001"
+      ],
+      "totalPoliciesSold": 0
+    },
+    {
+      "id": "b748",
+      "userId": "4233",
+      "licenseNumber": "LIC-1769573838969",
+      "commissionRate": 5,
+      "assignedCustomers": [],
       "totalPoliciesSold": 0
     }
   ],
@@ -911,12 +959,34 @@
       "type": "health",
       "amount": 12238,
       "date": "2026-01-28T03:59:55.787Z",
-      "status": "pending",
+      "status": "rejected",
       "description": "        jfkhgslfjsflghskd",
       "documents": [
         "WhatsApp Image 2026-01-14 at 3.38.31 PM.jpeg",
         "All combined (1).pdf"
       ]
+    },
+    {
+      "id": "CLAIM-007",
+      "policyId": "POL-L-001",
+      "customerId": "CUST-001",
+      "type": "life",
+      "amount": 10000000,
+      "date": "2026-01-28T04:39:25.733Z",
+      "status": "pending",
+      "description": "        claimfromcust1",
+      "documents": []
+    },
+    {
+      "id": "CLAIM-008",
+      "policyId": "POL-H-001",
+      "customerId": "CUST-001",
+      "type": "health",
+      "amount": 1000000,
+      "date": "2026-01-28T04:49:03.128Z",
+      "status": "approved",
+      "description": "        claim from michael",
+      "documents": []
     }
   ]
 }
