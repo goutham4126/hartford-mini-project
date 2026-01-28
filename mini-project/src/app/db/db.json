@@ -221,6 +221,28 @@
       "territory": "Metro Region",
       "specialization": "Life Insurance",
       "createdAt": "2026-01-27T16:22:00Z"
+    },
+    {
+      "id": "4233",
+      "username": "poojitha",
+      "email": "pooji@gmail.com",
+      "password": "Pooji@11",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "9347758510",
+      "createdAt": "2026-01-28T04:17:18.953Z"
+    },
+    {
+      "id": "e528",
+      "username": "radhakrishna",
+      "email": "rahda@gmail.com",
+      "password": "radha@12",
+      "role": "customer",
+      "firstName": "radha",
+      "lastName": "krishna",
+      "phone": "9088302820",
+      "createdAt": "2026-01-28T04:22:10.634Z"
     }
   ],
   "policies": [
@@ -461,80 +483,337 @@
         "Suicide within 12 months"
       ],
       "networkHospitals": [],
-      "createdAt": "2024-02-20T16:00:00Z"
-    }
-  ],
-  "customers": [
-    {
-      "id": "CUST-001",
-      "userId": "4",
-      "policyIds": [
-        "POL-H-001",
-        "POL-V-001"
+      "createdAt": "2024-02-20T16:00:00Z",
+      "brochureUrl": "https://example.com/brochures/wealth-builder.pdf",
+      "keyBenefits": [
+        "Maturity Benefit with Bonus",
+        "Life Cover for full term",
+        "Tax-free maturity proceeds"
       ],
-      "kycStatus": "verified",
-      "address": "Bangalore",
-      "detailedAddress": {
-        "street": "123 MG Road",
-        "city": "Bangalore",
-        "state": "Karnataka",
-        "pincode": "560001",
-        "country": "India"
-      },
-      "dateOfBirth": "1990-05-15T00:00:00Z",
-      "aadhaarNumber": "123456789012",
-      "panNumber": "ABCDE1234F",
-      "annualIncome": 1500000,
-      "occupation": "Software Engineer",
-      "createdAt": "2024-01-17T09:30:00Z"
+      "termsAndConditionsUrl": "https://example.com/terms/wealth",
+      "renewalProcess": "Premium payment flexibility."
     },
     {
-      "id": "CUST-002",
-      "userId": "5",
-      "policyIds": [
-        "POL-L-001"
+      "id": "POL-T-001",
+      "name": "Global Voyager Travel Protect",
+      "type": "travel",
+      "premium": 3000,
+      "sumInsured": 3750000,
+      "duration": 30,
+      "description": "Travel the world worry-free. Covers medical emergencies, flight delays, baggage loss, and passport loss.",
+      "features": [
+        "COVID-19 Hospitalization",
+        "Missed Connection",
+        "Emergency Dental"
       ],
-      "kycStatus": "pending",
-      "address": "Chennai",
-      "detailedAddress": {
-        "street": "45 Anna Salai",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "pincode": "600002",
-        "country": "India"
-      },
-      "dateOfBirth": "1992-09-20T00:00:00Z",
-      "aadhaarNumber": "987654321098",
-      "panNumber": "PQRSX5678L",
-      "annualIncome": 800000,
-      "occupation": "Teacher",
-      "createdAt": "2024-01-18T14:35:00Z"
+      "createdAt": "2024-02-10",
+      "status": "active",
+      "minEntryAge": 1,
+      "maxEntryAge": 80,
+      "agentId": [
+        "AGT-001"
+      ],
+      "coPay": 0,
+      "waitingPeriod": 0,
+      "exclusions": [
+        "Pre-existing medical conditions",
+        "Traveling against medical advice"
+      ],
+      "claimRatio": 95.5,
+      "networkHospitals": [
+        "Worldwide Assistance Network"
+      ],
+      "brochureUrl": "https://example.com/brochures/voyager.pdf",
+      "keyBenefits": [
+        "Cashless Medical Treatment abroad",
+        "Compensation for Flight Delay",
+        "Home Burglary Cover while away"
+      ],
+      "termsAndConditionsUrl": "https://example.com/terms/voyager",
+      "renewalProcess": "Single trip - Not renewable."
     },
     {
-      "id": "CUST-003",
-      "userId": "1fca",
-      "policyIds": [
-        "POL-V-002"
+      "id": "POL-T-002",
+      "name": "Student Scholar Abroad Plan",
+      "type": "travel",
+      "premium": 15000,
+      "sumInsured": 7500000,
+      "duration": 730,
+      "description": "Specially designed for students studying abroad. Covers medical, study interruption, and sponsor protection.",
+      "features": [
+        "Study Interruption",
+        "Sponsor Protection",
+        "Laptop Cover"
       ],
-      "kycStatus": "verified",
-      "address": "Hyderabad",
-      "detailedAddress": {
-        "street": "Cyber Towers",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "pincode": "500081",
-        "country": "India"
-      },
-      "dateOfBirth": "1988-02-11T00:00:00Z",
-      "aadhaarNumber": "555566667777",
-      "panNumber": "LMNOP9876Q",
-      "annualIncome": 2500000,
-      "occupation": "Business",
-      "createdAt": "2026-01-27T16:18:20.065Z"
+      "createdAt": "2024-02-12",
+      "status": "active",
+      "minEntryAge": 16,
+      "maxEntryAge": 35,
+      "agentId": [
+        "AGT-002"
+      ],
+      "coPay": 50,
+      "waitingPeriod": 0,
+      "exclusions": [
+        "Drug abuse",
+        "Self-injury"
+      ],
+      "claimRatio": 97,
+      "networkHospitals": [
+        "University Network Hospitals"
+      ],
+      "brochureUrl": "https://example.com/brochures/scholar.pdf",
+      "keyBenefits": [
+        "Tuition fee reimbursement on medical ground",
+        "Compassionate Visit for family",
+        "Bail Bond insurance"
+      ],
+      "termsAndConditionsUrl": "https://example.com/terms/scholar",
+      "renewalProcess": "Extendable up to 2 years."
+    },
+    {
+      "id": "POL-HO-001",
+      "name": "Sweet Home Comprehensive",
+      "type": "home",
+      "premium": 5000,
+      "sumInsured": 5000000,
+      "duration": 365,
+      "description": "Protect your building and contents against fire, theft, earthquake, flood, and other allied perils.",
+      "features": [
+        "Terrorism Cover",
+        "Rent for Alternative Accommodation",
+        "Lost Key Cover"
+      ],
+      "createdAt": "2024-02-15",
+      "status": "active",
+      "minEntryAge": 18,
+      "maxEntryAge": 99,
+      "agentId": [
+        "AGT-001",
+        "AGT-003"
+      ],
+      "coPay": 0,
+      "waitingPeriod": 0,
+      "exclusions": [
+        "War",
+        "Willful destruction",
+        "Wear and tear"
+      ],
+      "claimRatio": 94.5,
+      "networkHospitals": [],
+      "brochureUrl": "https://example.com/brochures/sweet-home.pdf",
+      "keyBenefits": [
+        "Reinstatement Value Clause",
+        "Coverage for valuables/jewelry",
+        "Electronic equipment breakdown"
+      ],
+      "termsAndConditionsUrl": "https://example.com/terms/home",
+      "renewalProcess": "Annual renewal."
+    },
+    {
+      "id": "POL-HO-002",
+      "name": "Tenant's Content Protector",
+      "type": "home",
+      "premium": 2000,
+      "sumInsured": 1000000,
+      "duration": 365,
+      "description": "Ideal for renters. Protects your belongings like electronics, furniture, and appliances from theft and damage.",
+      "features": [
+        "All Risk Cover for Electronics",
+        "Baggage Insurance",
+        "Public Liability"
+      ],
+      "createdAt": "2024-02-18",
+      "status": "active",
+      "minEntryAge": 18,
+      "maxEntryAge": 99,
+      "agentId": [
+        "AGT-001",
+        "AGT-002",
+        "AGT-003"
+      ],
+      "coPay": 0,
+      "waitingPeriod": 0,
+      "exclusions": [
+        "Building structure",
+        "Old Items over 10 years"
+      ],
+      "claimRatio": 93,
+      "networkHospitals": [],
+      "brochureUrl": "https://example.com/brochures/tenant.pdf",
+      "keyBenefits": [
+        "Portable electronics cover",
+        "Protection during shifting",
+        "Identity theft cover"
+      ],
+      "termsAndConditionsUrl": "https://example.com/terms/tenant",
+      "renewalProcess": "Annual renewal."
+    },
+    {
+      "id": "POL-L-9412",
+      "name": "Life Insurance plan",
+      "type": "life",
+      "premium": 12000,
+      "sumInsured": 65000,
+      "duration": 365,
+      "description": "Life Insranc",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentId": [
+        "AGT-003"
+      ],
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
+    },
+    {
+      "id": "POL-H-4073",
+      "name": "sdfj",
+      "type": "health",
+      "premium": 1090,
+      "sumInsured": 12238,
+      "duration": 365,
+      "description": "lzmx",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentId": [
+        "AGT-001",
+        "AGT-003"
+      ],
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
+    },
+    {
+      "id": "POL-H-7858",
+      "name": "Health pro max",
+      "type": "health",
+      "premium": 15000,
+      "sumInsured": 400000,
+      "duration": 365,
+      "description": "This is health pro max plan",
+      "minEntryAge": 18,
+      "maxEntryAge": 70,
+      "agentIds": [
+        "AGT-001",
+        "AGT-002"
+      ],
+      "status": "active",
+      "createdAt": "2026-01-27",
+      "features": [
+        "Standard Coverage"
+      ],
+      "exclusions": [],
+      "networkHospitals": [],
+      "keyBenefits": []
     }
   ],
   "policyRequests": [
     {
+      "id": "PR-001",
+      "userId": "1fca",
+      "policyId": "POL-H-001",
+      "nominee": {
+        "name": "John Doe",
+        "relation": "Father",
+        "age": 55
+      },
+      "status": "rejected",
+      "assignedAgentId": "04b6",
+      "requestedAt": "2026-01-27T18:30:00Z",
+      "remarks": "Documents incomplete",
+      "rejectedAt": "2026-01-27T18:40:03.834Z"
+    },
+    {
+      "id": "a949cea8-e08a-465c-8b53-e2442b9a5f25",
+      "userId": "4",
+      "policyId": "POL-V-002",
+      "nominee": {
+        "name": "Michael",
+        "relation": "Self",
+        "age": 35
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-27T16:38:23.219Z",
+      "assignedAgentId": "AGT-002"
+    },
+    {
+      "id": "b5e22414-4ccd-4973-8c5a-f8186adc9571",
+      "userId": "4",
+      "policyId": "POL-V-001",
+      "nominee": {
+        "name": "asdfasdf",
+        "relation": "Son",
+        "age": 25
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-27T17:24:39.545Z",
+      "assignedAgentId": "AGT-003"
+    },
+    {
+      "id": "27fab90a-95a5-45ad-88a0-60a4dde12db1",
+      "userId": "4",
+      "policyId": "POL-V-002",
+      "nominee": {
+        "name": "asdfasdf",
+        "relation": "asdfasdf",
+        "age": 45
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T03:57:54.460Z",
+      "assignedAgentId": "AGT-002"
+    },
+    {
+      "id": "1d78ef74-e51a-45e3-81e4-1b5c16f3453d",
+      "userId": "4",
+      "policyId": "POL-H-4073",
+      "nominee": {
+        "name": "asdfasd",
+        "relation": "dad",
+        "age": 69
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T03:59:37.221Z",
+      "assignedAgentId": "AGT-001"
+    },
+    {
+      "id": "df5c3980-d960-4b42-8f35-cb8a810e906b",
+      "userId": "4",
+      "policyId": "POL-L-002",
+      "nominee": {
+        "name": "ajfglsjfk",
+        "relation": "aksfdasdklf",
+        "age": 79
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T04:01:34.062Z",
+      "assignedAgentId": "AGT-001"
+    },
+    {
+      "id": "cba6690a-c0de-49af-b88e-9ba64d40e578",
+      "userId": "4",
+      "policyId": "POL-H-001",
+      "nominee": {
+        "name": "michael",
+        "relation": "self",
+        "age": 24
+      },
+      "status": "approved",
+      "requestedAt": "2026-01-28T04:48:29.785Z",
+      "assignedAgentId": "AGT-001",
+      "approvedAt": "2026-01-28T04:59:54.015Z",
+      "remarks": "Approved after document verification"
+    },{
       "id": "REQ-001",
       "userId": "4",
       "policyId": "POL-H-001",
@@ -644,6 +923,81 @@
       "remarks": "Vehicle age > 15 years not supported for this plan."
     }
   ],
+  "customers": [
+    {
+      "id": "CUST-001",
+      "userId": "4",
+      "policyIds": [
+        "POL-H-001",
+        "POL-V-001",
+        "POL-L-001",
+        "POL-V-002",
+        "POL-V-001",
+        "POL-H-4073",
+        "POL-L-002",
+        "POL-H-001"
+      ],
+      "kycStatus": "verified",
+      "address": "Bangalore",
+      "detailedAddress": {
+        "street": "123 MG Road",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560001",
+        "country": "India"
+      },
+      "dateOfBirth": "1990-05-15T00:00:00Z",
+      "aadhaarNumber": "123456789012",
+      "panNumber": "ABCDE1234F",
+      "annualIncome": 1500000,
+      "occupation": "Software Engineer",
+      "createdAt": "2024-01-17T09:30:00Z"
+    },
+    {
+      "id": "CUST-002",
+      "userId": "5",
+      "policyIds": [
+        "POL-L-001"
+      ],
+      "kycStatus": "pending",
+      "address": "Chennai",
+      "detailedAddress": {
+        "street": "45 Anna Salai",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "pincode": "600002",
+        "country": "India"
+      },
+      "dateOfBirth": "1992-09-20T00:00:00Z",
+      "aadhaarNumber": "987654321098",
+      "panNumber": "PQRSX5678L",
+      "annualIncome": 800000,
+      "occupation": "Teacher",
+      "createdAt": "2024-01-18T14:35:00Z"
+    },
+    {
+      "id": "CUST-003",
+      "userId": "1fca",
+      "policyIds": [
+        "POL-V-002"
+      ],
+      "kycStatus": "verified",
+      "address": "Hyderabad",
+      "detailedAddress": {
+        "street": "Cyber Towers",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "pincode": "500081",
+        "country": "India"
+      },
+      "dateOfBirth": "1988-02-11T00:00:00Z",
+      "aadhaarNumber": "555566667777",
+      "panNumber": "LMNOP9876Q",
+      "annualIncome": 2500000,
+      "occupation": "Business",
+      "createdAt": "2026-01-27T16:18:20.065Z"
+    }
+  ],
   "payments": [
     {
       "id": "PAY-001",
@@ -700,6 +1054,23 @@
       "method": "Credit Card",
       "billingCycleStartDate": "2026-01-27T00:00:00Z",
       "nextDueDate": "2029-01-27T00:00:00Z"
+    },{
+      "id": "04b6",
+      "userId": "5a62",
+      "licenseNumber": "LIC-1769530858361",
+      "commissionRate": 5,
+      "assignedCustomers": [
+        "CUST-001"
+      ],
+      "totalPoliciesSold": 0
+    },
+    {
+      "id": "b748",
+      "userId": "4233",
+      "licenseNumber": "LIC-1769573838969",
+      "commissionRate": 5,
+      "assignedCustomers": [],
+      "totalPoliciesSold": 0
     }
   ],
   "claims": [

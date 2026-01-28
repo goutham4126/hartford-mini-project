@@ -18,6 +18,13 @@
           || 0 }}%</span>
       </div>
     </div>
+<h2 class="text-2xl font-bold mb-6">Agent Dashboard</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+  <div class="bg-white shadow rounded-xl p-6 border-l-4 border-blue-500">
+    <p class="text-gray-500">Customers Assigned</p>
+    <p class="text-3xl font-bold text-blue-600">
+      {{ customersCount() }}
+    </p>
   </div>
 
   <!-- 8 Key Metrics Grid -->
@@ -113,6 +120,12 @@
       <p class="text-xs font-medium text-purple-100 uppercase opacity-80">Total Earnings</p>
       <h3 class="text-2xl font-bold mt-1">₹ {{ commissionEarned | number: '1.0-0' }}</h3>
     </div>
+  <div class="bg-white shadow rounded-xl p-6 border-l-4 border-green-500">
+    <p class="text-gray-500">Total Policies</p>
+    <p class="text-3xl font-bold text-green-600">
+      {{ policiesCount() }}
+    </p>
+  </div>
 
     <!-- 8. Approval Rate -->
     <div class="bg-white p-5 rounded-xl shadow-sm border border-teal-100 flex justify-between items-center">
