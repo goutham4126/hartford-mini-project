@@ -1,48 +1,173 @@
-<h2 class="text-2xl font-bold mb-6">Agent Dashboard</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="p-8 bg-gray-50/50 min-h-screen font-sans">
 
-  <div class="bg-white shadow rounded-xl p-6 border-l-4 border-blue-500">
-    <p class="text-gray-500">Customers Assigned</p>
-    <p class="text-3xl font-bold text-blue-600">
-      {{ customersCount() }}
-    </p>
+  <!-- Hero Section -->
+  <div class="mb-10 flex justify-between items-end">
+    <div>
+      <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Agent Dashboard</h2>
+      <p class="text-slate-500 mt-1">Track your performance and manage customer portfolios</p>
+    </div>
+    <div class="flex flex-col gap-2 items-end">
+      <div
+        class="bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-lg border border-indigo-100 text-sm font-semibold flex items-center gap-2">
+        <span class="text-xs uppercase tracking-wider text-indigo-400">Specialization</span>
+        {{ specializationName }}
+      </div>
+      <div class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-lg shadow-indigo-200 text-sm font-medium">
+        <span class="opacity-75">Your Commission Rate:</span> <span class="font-bold ml-1">{{
+          agentProfile?.commissionRate
+          || 0 }}%</span>
+      </div>
+    </div>
   </div>
 
-  <div class="bg-white shadow rounded-xl p-6 border-l-4 border-green-500">
-    <p class="text-gray-500">Total Policies</p>
-    <p class="text-3xl font-bold text-green-600">
-      {{ policiesCount() }}
-    </p>
+  <!-- 8 Key Metrics Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+
+    <!-- 1. Customers -->
+    <div
+      class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flexitems-center justify-between group hover:border-indigo-200 transition-all">
+      <div>
+        <p class="text-xs font-semibold text-gray-400 uppercase">Customers</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">{{ customersCount }}</h3>
+      </div>
+      <div
+        class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+          </path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. Policies Sold -->
+    <div
+      class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:border-blue-200 transition-all">
+      <div>
+        <p class="text-xs font-semibold text-gray-400 uppercase">Policies Sold</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">{{ policiesSoldCount }}</h3>
+      </div>
+      <div
+        class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 3. Active Policies -->
+    <div
+      class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:border-emerald-200 transition-all">
+      <div>
+        <p class="text-xs font-semibold text-gray-400 uppercase">Active</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">{{ activePoliciesCount }}</h3>
+      </div>
+      <div
+        class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 4. Claims -->
+    <div
+      class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:border-orange-200 transition-all">
+      <div>
+        <p class="text-xs font-semibold text-gray-400 uppercase">Total Claims</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">{{ claimsCount }}</h3>
+      </div>
+      <div
+        class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 5. Total Premium -->
+    <div class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-5 rounded-xl text-white shadow-lg shadow-indigo-200">
+      <p class="text-xs font-medium text-indigo-100 uppercase opacity-80">Total Premium Collected</p>
+      <h3 class="text-2xl font-bold mt-1">₹ {{ totalPremium | number }}</h3>
+    </div>
+
+    <!-- 6. Pending Premium -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-red-100 flex justify-between items-center">
+      <div>
+        <p class="text-xs font-semibold text-red-400 uppercase">Pending Collections</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">₹ {{ pendingPremium | number }}</h3>
+      </div>
+      <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-500">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 7. Commission -->
+    <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-5 rounded-xl text-white shadow-lg shadow-purple-200">
+      <p class="text-xs font-medium text-purple-100 uppercase opacity-80">Total Earnings</p>
+      <h3 class="text-2xl font-bold mt-1">₹ {{ commissionEarned | number: '1.0-0' }}</h3>
+    </div>
+
+    <!-- 8. Approval Rate -->
+    <div class="bg-white p-5 rounded-xl shadow-sm border border-teal-100 flex justify-between items-center">
+      <div>
+        <p class="text-xs font-semibold text-teal-500 uppercase">Claim Approval Rate</p>
+        <h3 class="text-2xl font-bold text-slate-800 mt-1">{{ approvalRate | number:'1.0-1' }}%</h3>
+      </div>
+      <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+    </div>
+
   </div>
 
-  <div class="bg-white shadow rounded-xl p-6 border-l-4 border-red-500">
-    <p class="text-gray-500">Total Claims</p>
-    <p class="text-3xl font-bold text-red-600">
-      {{ claimsCount() }}
-    </p>
+  <!-- Charts Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">Commission Trend</h3>
+      <div class="h-64">
+        <canvas baseChart [data]="salesChartData" [options]="salesChartOptions" type="line"></canvas>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">Portfolio Status</h3>
+      <div class="h-64 flex justify-center">
+        <canvas baseChart [data]="statusChartData" [options]="statusChartOptions" type="doughnut"></canvas>
+      </div>
+    </div>
   </div>
 
-</div>
+  <!-- Assigned Customers List -->
+  <h3 class="text-xl font-bold text-slate-800 mb-4">Recent Customer Interactions</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let c of customerList()"
+      class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all group">
+      <div class="flex items-center gap-4 mb-4">
+        <div
+          class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl font-bold text-slate-500">
+          {{ c.displayName.charAt(0) }}
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-800">{{ c.displayName }}</h4> <!-- Shows Name -->
+          <p class="text-xs text-gray-500">{{ c.displayEmail }}</p>
+        </div>
+      </div>
 
-<!-- CUSTOMER GRID -->
-<h3 class="text-xl font-semibold mb-4">Assigned Customers</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-  <div *ngFor="let c of customers()" class="bg-white p-4 rounded-xl shadow">
-
-  <p class="text-lg font-semibold">{{ c.name }}</p>
-
-  <p class="text-sm text-gray-600">{{ c.email }}</p>
-  <p class="text-sm text-gray-600">{{ c.phone }}</p>
-
-  <p class="text-sm text-gray-500 mt-1">
-    {{ c.city }} · KYC: {{ c.kycStatus }}
-  </p>
-
-  <div class="mt-4 flex justify-between items-center">
-    <span class="text-sm text-gray-500">Policies</span>
-    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-      {{ c.policiesCount }}
-    </span>
+      <div class="flex justify-between items-center text-sm pt-4 border-t border-gray-50">
+        <span class="text-gray-500">{{ c.city }}</span>
+        <span class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 font-medium text-xs">{{ c.policiesCount }}
+          Policies</span>
+      </div>
+    </div>
   </div>
+
 </div>

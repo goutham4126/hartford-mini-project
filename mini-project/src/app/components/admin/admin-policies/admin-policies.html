@@ -1,50 +1,142 @@
-<div class="p-6 bg-gray-50 min-h-screen font-sans">
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="p-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
-            <div>
-                <h2 class="text-xl font-bold text-gray-800">Policies Management</h2>
-                <p class="text-sm text-gray-500 mt-1">View and manage all insurance policies</p>
-            </div>
-            <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
-                {{ policies().length }} Total
-            </div>
+<div class="p-8 bg-gray-50/50 min-h-screen font-sans relative">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Policies Management</h2>
+            <p class="text-sm text-slate-500 mt-1">View, edit, and manage insurance products</p>
         </div>
+        <div class="flex items-center gap-4">
+            <div
+                class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-semibold border border-indigo-100">
+                {{ policies().length }} Active Policies
+            </div>
+            <button routerLink="/admin/create-policy"
+                class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow-md hover:bg-indigo-700 transition-all flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Create Policy
+            </button>
+        </div>
+    </div>
+
+    <!-- Filter/Search Bar (Optional but good for UI) -->
+    <div class="mb-6 flex gap-4">
+        <div class="relative flex-1 max-w-md">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </span>
+            <input type="text" placeholder="Search policies..."
+                class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 outline-none transition-all">
+        </div>
+        <button
+            class="px-4 py-2 bg-white border border-gray-200 rounded-xl text-gray-500 hover:text-indigo-600 hover:border-indigo-200 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Table Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left">
-                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
+                <thead class="bg-gray-50/50 text-gray-500 text-xs uppercase font-semibold text-left tracking-wider">
                     <tr>
-                        <th class="px-6 py-3">ID</th>
-                        <th class="px-6 py-3">Name</th>
-                        <th class="px-6 py-3">Type</th>
-                        <th class="px-6 py-3">Premium (₹)</th>
-                        <th class="px-6 py-3">Coverage (₹)</th>
-                        <th class="px-6 py-3">Duration</th>
-                        <th class="px-6 py-3">Status</th>
+                        <th class="px-6 py-4">Policy Name</th>
+                        <th class="px-6 py-4">Type</th>
+                        <th class="px-6 py-4">Premium</th>
+                        <th class="px-6 py-4">Sum Insured</th>
+                        <th class="px-6 py-4">Duration</th>
+                        <th class="px-6 py-4">Status</th>
+                        <th class="px-6 py-4">Assigned Agents</th>
+                        <th class="px-6 py-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @for (p of policies(); track p.id) {
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 text-sm font-mono text-gray-500">#{{ p.id }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900">{{ p.name }}</td>
-                        <td class="px-6 py-4 text-sm">
-                            <span class="capitalize px-2 py-1 rounded text-xs font-medium" [ngClass]="{
-                  'bg-blue-100 text-blue-800': p.type === 'health',
-                  'bg-yellow-100 text-yellow-800': p.type === 'vehicle',
-                  'bg-purple-100 text-purple-800': p.type === 'life',
-                  'bg-orange-100 text-orange-800': p.type === 'travel'
-                }">
+                    <tr class="hover:bg-indigo-50/30 transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-slate-800 group-hover:text-indigo-700 transition-colors">{{
+                                p.name }}</div>
+                            <div class="text-xs text-gray-400 font-mono mt-0.5">ID: {{ p.id }}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium capitalize"
+                                [ngClass]="{
+                                'bg-emerald-50 text-emerald-700 border border-emerald-100': p.type === 'health',
+                                'bg-blue-50 text-blue-700 border border-blue-100': p.type === 'vehicle',
+                                'bg-indigo-50 text-indigo-700 border border-indigo-100': p.type === 'life',
+                                'bg-amber-50 text-amber-700 border border-amber-100': p.type === 'travel'
+                            }">
                                 {{ p.type }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.premium | currency:'INR' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.coverage | currency:'INR' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{ p.duration }} Days</td>
-                        <td class="px-6 py-4 text-sm">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                                [ngClass]="p.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'">
+                        <td class="px-6 py-4 text-sm text-slate-600 font-mono font-medium">{{ p.premium | currency:'INR'
+                            }}</td>
+                        <td class="px-6 py-4 text-sm text-slate-600 font-mono">{{ p.sumInsured | currency:'INR' }}</td>
+                        <td class="px-6 py-4 text-sm text-slate-500">{{ p.duration }} Days</td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+                                [ngClass]="p.status === 'active' ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-gray-100 text-gray-600 border border-gray-200'">
+                                <span class="w-1.5 h-1.5 rounded-full"
+                                    [ngClass]="p.status === 'active' ? 'bg-green-500' : 'bg-gray-400'"></span>
                                 {{ p.status }}
                             </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex flex-wrap gap-1 max-w-[200px]">
+                                <span *ngIf="getPolicyAgents(p) !== 'None' && getPolicyAgents(p) !== 'N/A'"
+                                    class="text-xs text-indigo-600 bg-indigo-50 px-2 py-1 rounded border border-indigo-100 font-medium truncate"
+                                    title="{{ getPolicyAgents(p) }}">
+                                    {{ getPolicyAgents(p) }}
+                                </span>
+                                <span *ngIf="getPolicyAgents(p) === 'None'" class="text-xs text-gray-400">No
+                                    Agents</span>
+                                <span *ngIf="getPolicyAgents(p) === 'N/A'" class="text-xs text-gray-300">N/A</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-2">
+                                <!-- View -->
+                                <button (click)="viewPolicy(p)"
+                                    class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                                    title="View Details">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <!-- Edit -->
+                                <button (click)="editPolicy(p.id)"
+                                    class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                    title="Edit">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <!-- Delete -->
+                                <button (click)="deletePolicy(p.id)"
+                                    class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                    title="Delete">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     }
@@ -52,4 +144,159 @@
             </table>
         </div>
     </div>
+
+    <!-- Detailed View Modal -->
+    <div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" (click)="closeModal()"></div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto transform transition-all">
+
+            <!-- Sticky Header -->
+            <div
+                class="sticky top-0 bg-white/95 backdrop-blur z-10 px-8 py-5 border-b border-gray-100 flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800">{{ selectedPolicy?.name }}</h3>
+                    <p class="text-sm text-slate-500 font-mono">ID: {{ selectedPolicy?.id }}</p>
+                </div>
+                <button (click)="closeModal()"
+                    class="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="p-8">
+                <!-- Top Stats Row -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100">
+                        <p class="text-xs font-semibold text-indigo-500 uppercase">Premium</p>
+                        <p class="text-xl font-bold text-indigo-900 mt-1">{{ selectedPolicy?.premium | currency:'INR' }}
+                        </p>
+                    </div>
+                    <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100">
+                        <p class="text-xs font-semibold text-emerald-500 uppercase">Cover Amount</p>
+                        <p class="text-xl font-bold text-emerald-900 mt-1">{{ selectedPolicy?.sumInsured |
+                            currency:'INR' }}</p>
+                    </div>
+                    <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100">
+                        <p class="text-xs font-semibold text-blue-500 uppercase">Duration</p>
+                        <p class="text-xl font-bold text-blue-900 mt-1">{{ selectedPolicy?.duration }} Days</p>
+                    </div>
+                    <div class="p-4 bg-orange-50/50 rounded-xl border border-orange-100">
+                        <p class="text-xs font-semibold text-orange-500 uppercase">Status</p>
+                        <p class="text-xl font-bold text-orange-900 mt-1 capitalize">{{ selectedPolicy?.status }}</p>
+                    </div>
+                </div>
+
+                <!-- 2-Col Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <!-- Left: Description & Features -->
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Description</h4>
+                            <p class="text-gray-600 leading-relaxed">{{ selectedPolicy?.description }}</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Key Features</h4>
+                            <ul class="space-y-2">
+                                <li *ngFor="let f of selectedPolicy?.features"
+                                    class="flex items-start gap-2 text-gray-600">
+                                    <svg class="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    {{ f }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div *ngIf="selectedPolicy?.exclusions?.length">
+                            <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3 text-red-600">
+                                Exclusions</h4>
+                            <ul class="space-y-2">
+                                <li *ngFor="let ex of selectedPolicy?.exclusions"
+                                    class="flex items-start gap-2 text-gray-500">
+                                    <svg class="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                    {{ ex }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Specs & Network -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4">Specifications</h4>
+                            <div class="space-y-4">
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-500">Min Entry Age</span>
+                                    <span class="font-medium text-gray-900">{{ selectedPolicy?.minEntryAge || 'N/A' }}
+                                        Years</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-500">Max Entry Age</span>
+                                    <span class="font-medium text-gray-900">{{ selectedPolicy?.maxEntryAge || 'N/A' }}
+                                        Years</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-500">Co-Pay</span>
+                                    <span class="font-medium text-gray-900">{{ selectedPolicy?.coPay || 0 }}%</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-500">Waiting Period</span>
+                                    <span class="font-medium text-gray-900">{{ selectedPolicy?.waitingPeriod || 0 }}
+                                        Days</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="selectedPolicy?.networkHospitals?.length">
+                            <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Network Hospitals
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span *ngFor="let h of selectedPolicy?.networkHospitals"
+                                    class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">
+                                    {{ h }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex gap-3">
+                            <a *ngIf="selectedPolicy?.brochureUrl" [href]="selectedPolicy?.brochureUrl" target="_blank"
+                                class="flex-1 py-2 text-center text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg text-sm font-medium transition-colors">
+                                Download Brochure
+                            </a>
+                            <a *ngIf="selectedPolicy?.termsAndConditionsUrl"
+                                [href]="selectedPolicy?.termsAndConditionsUrl" target="_blank"
+                                class="flex-1 py-2 text-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium transition-colors">
+                                Terms & Conditions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end gap-3 rounded-b-2xl">
+                <button (click)="closeModal()"
+                    class="px-6 py-2 bg-white border border-gray-200 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transition-colors">Close</button>
+            </div>
+
+        </div>
+    </div>
+
 </div>
