@@ -53,8 +53,8 @@ export class PolicyRequestComponent implements OnInit {
   }
 
   const selectedPolicyId = this.requestForm.value.policyId!;
-  const userId = Number(this.users.currentUser()!.id);
-
+  // const userId = Number(this.users.currentUser()!.id);
+  const userId = this.users.currentUser()!.id;
   const selectedPolicy = this.policiesList()
     .find(policy => policy.id === selectedPolicyId);
 

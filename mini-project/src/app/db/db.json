@@ -624,13 +624,95 @@
       "requestedAt": "2026-01-27T18:30:00Z",
       "remarks": "Documents incomplete",
       "rejectedAt": "2026-01-27T18:40:03.834Z"
+      "id": "41382503-805e-4d3d-ad12-79eefd2fab92",
+      "userId": "4",
+      "policyId": "POL-L-001",
+      "nominee": {
+        "name": "adsfasdfafdasd",
+        "relation": "father",
+        "age": 69
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-27T16:35:56.219Z",
+      "assignedAgentId": "AGT-001"
+    },
+    {
+      "id": "a949cea8-e08a-465c-8b53-e2442b9a5f25",
+      "userId": "4",
+      "policyId": "POL-V-002",
+      "nominee": {
+        "name": "Michael",
+        "relation": "Self",
+        "age": 35
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-27T16:38:23.219Z",
+      "assignedAgentId": "AGT-002"
+    },
+    {
+      "id": "b5e22414-4ccd-4973-8c5a-f8186adc9571",
+      "userId": "4",
+      "policyId": "POL-V-001",
+      "nominee": {
+        "name": "asdfasdf",
+        "relation": "Son",
+        "age": 25
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-27T17:24:39.545Z",
+      "assignedAgentId": "AGT-003"
+    },
+    {
+      "id": "27fab90a-95a5-45ad-88a0-60a4dde12db1",
+      "userId": "4",
+      "policyId": "POL-V-002",
+      "nominee": {
+        "name": "asdfasdf",
+        "relation": "asdfasdf",
+        "age": 45
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T03:57:54.460Z",
+      "assignedAgentId": "AGT-002"
+    },
+    {
+      "id": "1d78ef74-e51a-45e3-81e4-1b5c16f3453d",
+      "userId": "4",
+      "policyId": "POL-H-4073",
+      "nominee": {
+        "name": "asdfasd",
+        "relation": "dad",
+        "age": 69
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T03:59:37.221Z",
+      "assignedAgentId": "AGT-001"
+    },
+    {
+      "id": "df5c3980-d960-4b42-8f35-cb8a810e906b",
+      "userId": "4",
+      "policyId": "POL-L-002",
+      "nominee": {
+        "name": "ajfglsjfk",
+        "relation": "aksfdasdklf",
+        "age": 79
+      },
+      "status": "pending",
+      "requestedAt": "2026-01-28T04:01:34.062Z",
+      "assignedAgentId": "AGT-001"
     }
   ],
   "customers": [
     {
       "id": "CUST-001",
       "userId": "4",
-      "policyIds": [],
+      "policyIds": [
+        "POL-L-001",
+        "POL-V-002",
+        "POL-V-001",
+        "POL-H-4073",
+        "POL-L-002"
+      ],
       "kycStatus": "verified",
       "address": "Bangalore",
       "detailedAddress": {
@@ -723,7 +805,9 @@
       "userId": "2",
       "licenseNumber": "LIC123456",
       "commissionRate": 15,
-      "assignedCustomers": [],
+      "assignedCustomers": [
+        "CUST-001"
+      ],
       "totalPoliciesSold": 45,
       "territory": "South India"
     },
@@ -732,7 +816,9 @@
       "userId": "3",
       "licenseNumber": "LIC654321",
       "commissionRate": 12,
-      "assignedCustomers": [],
+      "assignedCustomers": [
+        "CUST-001"
+      ],
       "totalPoliciesSold": 28,
       "territory": "Hyderabad"
     },
@@ -741,7 +827,9 @@
       "userId": "8e76",
       "licenseNumber": "LIC999888",
       "commissionRate": 10,
-      "assignedCustomers": [],
+      "assignedCustomers": [
+        "CUST-001"
+      ],
       "totalPoliciesSold": 0,
       "territory": "Unassigned"
     },
@@ -812,6 +900,33 @@
       "description": "Medical emergency during travel",
       "documents": [
         "hospital_bill.pdf"
+      ]
+    },
+    {
+      "id": "CLAIM-005",
+      "policyId": "POL-L-001",
+      "customerId": "CUST-001",
+      "type": "life",
+      "amount": 10000000,
+      "date": "2026-01-27T18:08:27.354Z",
+      "status": "pending",
+      "description": "RIP",
+      "documents": [
+        "WhatsApp Image 2026-01-14 at 3.38.31 PM.jpeg"
+      ]
+    },
+    {
+      "id": "CLAIM-006",
+      "policyId": "POL-H-4073",
+      "customerId": "CUST-001",
+      "type": "health",
+      "amount": 12238,
+      "date": "2026-01-28T03:59:55.787Z",
+      "status": "pending",
+      "description": "        jfkhgslfjsflghskd",
+      "documents": [
+        "WhatsApp Image 2026-01-14 at 3.38.31 PM.jpeg",
+        "All combined (1).pdf"
       ]
     }
   ]

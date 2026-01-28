@@ -24,6 +24,7 @@ import { CustomerDashboard } from './components/customer/customer-dashboard/cust
 import { CustomerPolicies } from './components/customer/customer-policies/customer-policies';
 import { CustomerClaims } from './components/customer/customer-claims/customer-claims';
 import { CustomerProfile } from './components/customer/customer-profile/customer-profile';
+import { CustomerDashboardOriginal } from './components/customer/customer-dashboard-original/customer-dashboard-original';
 import { authGuard } from './guards/auth-guard';
 import { roleGuard } from './guards/role-guard';
 import { Unauthorized } from './components/unauthorized/unauthorized';
@@ -83,8 +84,9 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard('customer')],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-
-      { path: 'dashboard', component: CustomerDashboard },
+      
+      { path: 'dashboard', component: CustomerDashboardOriginal },
+      { path: 'view-policies', component: CustomerDashboard },
       { path: 'policies', component: CustomerPolicies },
       { path: 'claims', component: CustomerClaims },
       { path: 'profile', component: CustomerProfile },

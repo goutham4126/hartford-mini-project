@@ -98,6 +98,11 @@
         class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 font-medium hover:bg-slate-50 transition-all border border-transparent">
         Dashboard
       </a>
+      <a routerLink="/customer/view-policies" routerLinkActive="bg-indigo-50 text-indigo-700 border-indigo-200"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 font-medium hover:bg-slate-50 transition-all border border-transparent">
+        View All Policies
+      </a>
       <a routerLink="/customer/policies" routerLinkActive="bg-indigo-50 text-indigo-700 border-indigo-200"
         class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 font-medium hover:bg-slate-50 transition-all border border-transparent">
         My Policies
@@ -113,7 +118,6 @@
       }
     </nav>
   </div>
-
   <div class="px-4">
     <div class="p-4 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white shadow-lg shadow-indigo-200">
       <p class="text-xs font-medium text-indigo-100 mb-1">Need Help?</p>
