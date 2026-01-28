@@ -15,6 +15,7 @@ import { AgentLogin } from './components/agent/agent-login/agent-login';
 import { AgentRegister } from './components/agent/agent-register/agent-register';
 import { AgentDashboard } from './components/agent/agent-dashboard/agent-dashboard';
 import { AgentClaims } from './components/agent/agent-claims/agent-claims';
+import { AgentPolicyrequests } from './components/agent/agent-policyrequests/agent-policyrequests';
 import { AgentProfile } from './components/agent/agent-profile/agent-profile';
 
 import { CustomerLogin } from './components/customer/customer-login/customer-login';
@@ -71,6 +72,7 @@ export const routes: Routes = [
 
       { path: 'dashboard', component: AgentDashboard },
       { path: 'claims', component: AgentClaims },
+      { path: 'policy-requests', component: AgentPolicyrequests },
       { path: 'profile', component: AgentProfile },
 
       { path: '**', redirectTo: 'dashboard' }
