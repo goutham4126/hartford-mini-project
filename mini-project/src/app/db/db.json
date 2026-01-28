@@ -109,6 +109,39 @@
       "lastName": "Bejgum",
       "phone": "9347758510",
       "createdAt": "2026-01-27T10:35:58.160Z"
+    },
+    {
+      "id": "1fca",
+      "username": "pooji",
+      "email": "poojithabejugam13@gmail.com",
+      "password": "Pooji@12",
+      "role": "customer",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "poojithabejugam13@gmail.com",
+      "createdAt": "2026-01-27T16:18:20.065Z"
+    },
+    {
+      "id": "c56e",
+      "username": "pooji",
+      "email": "poojithabejugam13@gmail.com",
+      "password": "Pooji@12",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "9347758510",
+      "createdAt": "2026-01-27T16:19:53.063Z"
+    },
+    {
+      "id": "5a62",
+      "username": "pooji",
+      "email": "poojithabejugam13@gmail.com",
+      "password": "Pooji@14",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Bejgum",
+      "phone": "09347758510",
+      "createdAt": "2026-01-27T16:20:58.350Z"
     }
   ],
   "policies": [
@@ -577,6 +610,21 @@
     }
   ],
   "policyRequests": [
+    {
+      "id": "PR-001",
+      "userId": "1fca",
+      "policyId": "POL-H-001",
+      "nominee": {
+        "name": "John Doe",
+        "relation": "Father",
+        "age": 55
+      },
+      "status": "rejected",
+      "assignedAgentId": "04b6",
+      "requestedAt": "2026-01-27T18:30:00Z",
+      "remarks": "Documents incomplete",
+      "rejectedAt": "2026-01-27T18:40:03.834Z"
+    }
   ],
   "customers": [
     {
@@ -696,6 +744,22 @@
       "assignedCustomers": [],
       "totalPoliciesSold": 0,
       "territory": "Unassigned"
+    },
+    {
+      "id": "a1b7",
+      "userId": "c56e",
+      "licenseNumber": "LIC-1769530793075",
+      "commissionRate": 5,
+      "assignedCustomers": [],
+      "totalPoliciesSold": 0
+    },
+    {
+      "id": "04b6",
+      "userId": "5a62",
+      "licenseNumber": "LIC-1769530858361",
+      "commissionRate": 5,
+      "assignedCustomers":["CUST-001"],
+      "totalPoliciesSold": 0
     }
   ],
   "claims": [
@@ -706,7 +770,7 @@
       "type": "health",
       "amount": 50000,
       "date": "2024-01-20",
-      "status": "pending",
+      "status": "approved",
       "description": "Hospitalization due to accident",
       "documents": [
         "bill1.jpg",

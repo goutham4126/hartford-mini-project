@@ -1,112 +1,177 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from './auth';
-@Injectable({
-  providedIn: 'root'
-})
+import { forkJoin } from 'rxjs';
+import { PolicyRequests } from '../models/model';
+
+@Injectable({ providedIn: 'root' })
 export class AgentService {
-  api = 'http://localhost:3000';
+
+  private api = 'http://localhost:3000';
+
   constructor(
     private http: HttpClient,
     private auth: Auth
   ) { }
 
+  //agent +userinfo 
+  getAgent(cb: (data: any | null) => void) {
+
+    const currentUser = this.auth.user();
+    if (!currentUser) {
+      cb(null);
+      return;
+    }
+
+    const userId = String(currentUser.id);
+
+    forkJoin({
+      users: this.http.get<any[]>(`${this.api}/users`),
+      agents: this.http.get<any[]>(`${this.api}/agents`)
+    }).subscribe(({ users, agents }) => {
+
+      console.log('AUTH USER ID:', userId);
+      console.log('AGENTS:', agents);
+
+      const user = users.find(u => String(u.id) === userId);
+      const agent = agents.find(a => String(a.userId) === userId);
+
+      // console.log('MATCHED USER:', user);
+      // console.log('MATCHED AGENT:', agent);
+
+      if (!user || !agent) {
+        cb(null);
+        return;
+      }
+
+      cb({
+        ...agent,
+        user   
+      });
+    });
+  }
   getAgents() {
     return this.http.get<any[]>(`${this.api}/agents`);
   }
-
   updateAgent(agentId: string, updatedAgent: any) {
-    return this.http.put(`${this.api}/agents/${agentId}`, updatedAgent);
+    return this.http.patch(
+      `${this.api}/agents/${String(agentId)}`,
+      updatedAgent
+    );
   }
-
-
-  getAgent(callback: (agent: any) => void) {
-    const userId = String(this.auth.user()?.id);
-    this.http.get<any[]>(`${this.api}/agents`)
-      .subscribe(agents => {
-        callback(agents.find(a => String(a.userId) === userId));
-      });
-  }
-
-  getClaims(callback: (claims: any[]) => void) {
-  this.getAgent(agent => {
-    const assignedCustomerIds = agent.assignedCustomers.map(String);
-
-    this.http.get<any[]>(`${this.api}/claims`).subscribe(claims => {
-
-      const agentClaims = claims.filter(c =>
-        assignedCustomerIds.includes(String(c.customerId))
-      );
-
-      this.http.get<any[]>(`${this.api}/customers`).subscribe(customers => {
-        this.http.get<any[]>(`${this.api}/users`).subscribe(users => {
-          this.http.get<any[]>(`${this.api}/policies`).subscribe(policies => {
-
-            const customerMap: any = {};
-            customers.forEach(c => customerMap[String(c.id)] = c);
-
-            const userMap: any = {};
-            users.forEach(u => userMap[String(u.id)] = u);
-
-            const policyMap: any = {};
-            policies.forEach(p => policyMap[String(p.id)] = p);
-
-            const enrichedClaims = agentClaims.map(claim => {
-              const customer = customerMap[String(claim.customerId)];
-              const user = userMap[String(customer.userId)];
-              const policy = policyMap[String(claim.policyId)];
-
-              return {
-                ...claim,
-                customerName:`${user.firstName} ${user.lastName}`,
-                policyType:policy.type
-              };
-            });
-
-            callback(enrichedClaims);
-          });
-        });
-      });
-    });
-  });
-}
-  getDashboardData(callback: (data: any) => void) {
+  getDashboardData(cb: (data: {
+    customers: any[];
+    customersCount: number;
+    totalPolicies: number;
+    totalClaims: number;
+  }) => void) {
     this.getAgent(agent => {
-      const assignedCustomerIds = agent.assignedCustomers.map(String);
-      this.http.get<any[]>(`${this.api}/customers`)
-        .subscribe(customers => {
-          const agentCustomers = customers.filter(c =>
-            assignedCustomerIds.includes(String(c.id))
-          );
-          this.http.get<any[]>(`${this.api}/users`)
-            .subscribe(users => {
-              const userMap: any = {};
-              users.forEach(u => userMap[String(u.id)] = u);
-              const customerDetails = agentCustomers.map(c => {
-                const user = userMap[String(c.userId)];
-                return {
-                  name: `${user.firstName} ${user.lastName}`,
-                  email: user.email,
-                  phone: user.phone,
-                  policiesCount: c.policyIds.length
-                };
-              });
-              let totalPolicies = 0;
-              agentCustomers.forEach(c => totalPolicies += c.policyIds.length);
-              this.http.get<any[]>(`${this.api}/claims`)
-                .subscribe(claims => {
-                  const totalClaims = claims.filter(claim =>
-                    assignedCustomerIds.includes(String(claim.customerId))
-                  ).length;
-                  callback({
-                    customersCount: agentCustomers.length,
-                    totalPolicies,
-                    totalClaims,
-                    customers: customerDetails
-                  });
-                });
+      if (!agent) {
+        cb({
+          customers: [],
+          customersCount: 0,
+          totalPolicies: 0,
+          totalClaims: 0
+        });
+        return;
+      }
+      forkJoin({
+        users: this.http.get<any[]>(`${this.api}/users`),
+        customers: this.http.get<any[]>(`${this.api}/customers`),
+        policyRequests: this.http.get<any[]>(
+          `${this.api}/policyRequests?assignedAgentId=${agent.id}`
+        ),
+        claims: this.http.get<any[]>(`${this.api}/claims`)
+      }).subscribe(({ users, customers, policyRequests, claims }) => {
+        //Customers assigned to agent
+        const assignedCustomers = customers
+          .filter(c => agent.assignedCustomers?.includes(c.id))
+          .map(c => {
+            const user = users.find(u => u.id === c.userId);
+            return {
+              id: c.id,
+              name: user ? `${user.firstName} ${user.lastName}` : '—',
+              email: user?.email ?? '—',
+              phone: user?.phone ?? '—',
+              city: c.detailedAddress?.city ?? '—',
+              kycStatus: c.kycStatus,
+              policiesCount: c.policyIds?.length || 0
+            };
+          });
+        //Total policies handled by agent
+        const totalPolicies = policyRequests.length;
+        //Claims related to agent policies
+        const policyIds = policyRequests.map(p => p.policyId);
+        const totalClaims = claims.filter(c =>
+          policyIds.includes(c.policyId)
+        ).length;
+
+        cb({
+          customers: assignedCustomers,
+          customersCount: assignedCustomers.length,
+          totalPolicies,
+          totalClaims
+        });
+      });
+    });
+  }
+  //claims of loggedin agent
+  getClaims(cb: (claims: any[]) => void) {
+    this.getAgent(agent => {
+      if (!agent) {
+        cb([]);
+        return;
+      }
+      //Policy requests assigned to this agent
+      this.http
+        .get<any[]>(
+          `${this.api}/policyRequests?assignedAgentId=${agent.id}`
+        )
+        .subscribe(policyReqs => {
+
+          if (policyReqs.length === 0) {
+            cb([]);
+            return;
+          }
+          const policyIds = policyReqs.map(r => r.policyId);
+          //Get all claims
+          this.http.get<any[]>(`${this.api}/claims`)
+            .subscribe(allClaims => {
+              //Filter only agent-related claims
+              const agentClaims = allClaims
+                .filter(c => policyIds.includes(c.policyId))
+                .map(c => ({
+                  ...c,
+                  customerName: c.customerId,
+                  policyType: c.type
+                }));
+              cb(agentClaims);
             });
         });
     });
   }
+  updateClaim(id: string, data: any) {
+    return this.http.patch(
+      `${this.api}/claims/${id}`,
+      data
+    );
+  }
+  getPolicyRequests(cb: (reqs: any[]) => void) {
+    this.getAgent(agent => {
+      if (!agent) {
+        cb([]);
+        return;
+      }
+      this.http
+        .get<any[]>(`${this.api}/policyRequests?assignedAgentId=${String(agent.id)}`)
+        .subscribe(cb);
+    });
+  }
+  updatePolicyRequest(id: string, data: Partial<PolicyRequests>) {
+    return this.http.patch(
+      `${this.api}/policyRequests/${id}`,
+      data
+    );
+  }
+
 }

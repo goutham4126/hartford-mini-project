@@ -1,5 +1,4 @@
 <h2 class="text-2xl font-bold mb-6">Agent Claims</h2>
-
 <div class="overflow-x-auto bg-white shadow rounded-xl">
   <table class="min-w-full text-sm text-left">
     <thead class="bg-gray-100 uppercase text-xs">
@@ -9,35 +8,43 @@
         <th class="px-6 py-3">Policy Type</th>
         <th class="px-6 py-3">Claim Amount</th>
         <th class="px-6 py-3">Status</th>
+        <th class="px-6 py-3">Actions</th>
       </tr>
     </thead>
-
     <tbody>
-      <tr *ngFor="let c of claims()" class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4 font-medium">{{ c.id }}</td>
-        <td class="px-6 py-4">{{ c.customerName }}</td>
-        <td class="px-6 py-4">{{ c.policyType }}</td>
-        <td class="px-6 py-4">₹{{ c.amount }}</td>
-
-        <td class="px-6 py-4">
-          <span
-            class="px-3 py-1 rounded-full text-xs font-semibold"
-            [ngClass]="{
-              'bg-yellow-100 text-yellow-700': c.status === 'pending',
-              'bg-green-100 text-green-700': c.status === 'approved',
-              'bg-red-100 text-red-700': c.status === 'rejected'
-            }"
-          >
-            {{ c.status }}
-          </span>
-        </td>
-
-       
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<p *ngIf="claims().length=== 0" class="text-center text-gray-500 mt-6">
-  No claims assigned.
-</p>
+<tr *ngFor="let c of claims()" class="border-t">
+  <td class="p-3">{{ c.id }}</td>
+  <td class="p-3">{{ c.customerName }}</td>
+  <td class="p-3 capitalize">{{ c.policyType }}</td>
+  <td class="p-3">₹{{ c.amount }}</td>
+  <td class="p-3">
+    <span
+      class="px-3 py-1 rounded-full text-sm capitalize"
+      [ngClass]="{
+        'bg-yellow-100 text-yellow-700': c.status === 'pending',
+        'bg-green-100 text-green-700': c.status === 'approved',
+        'bg-red-100 text-red-700': c.status === 'rejected'
+      }"
+    >
+      {{ c.status }}
+    </span>
+  </td>
+  <td class="p-3">
+    <div *ngIf="c.status === 'pending'" class="flex gap-2">
+      <button
+        class="px-3 py-1 bg-green-600 text-white rounded"
+        (click)="approve(c)"
+      >
+        Approve
+      </button>
+      <button
+        class="px-3 py-1 bg-red-600 text-white rounded"
+        (click)="reject(c)"
+      >
+        Reject
+      </button>
+    </div>
+    <span *ngIf="c.status !== 'pending'" class="text-gray-400">—</span>
+  </td>
+</tr>
+</tbody>

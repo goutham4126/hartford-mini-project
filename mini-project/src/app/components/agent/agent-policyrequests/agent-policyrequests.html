@@ -1,0 +1,49 @@
+<h2 class="text-2xl font-bold mb-6">Policy Requests</h2>
+<div
+  *ngFor="let r of policyRequests()"> 
+  <div class="bg-white rounded-xl shadow p-6 mb-6 flex justify-between">
+  <div class="space-y-2">
+    <p class="text-lg font-semibold">
+      Request ID: {{ r.id }}
+    </p>
+    <p>
+      <b>Policy ID:</b> {{ r.policyId }}
+    </p>
+    <p>
+      <b>Nominee Name:</b> {{ r.nominee?.name || '—' }}
+    </p>
+    <p>
+      <b>Relation:</b> {{ r.nominee?.relation || '—' }}
+    </p>
+    <p class="text-sm text-gray-500">
+      Requested At:
+      {{ r.requestedAt ? (r.requestedAt | date:'medium') : '—' }}
+    </p>
+  </div>
+  <div class="flex flex-col items-end gap-3">
+    <span
+      class="px-3 py-1 rounded-full text-sm font-medium"
+      [ngClass]="{
+        'bg-yellow-100 text-yellow-800': r.status === 'pending',
+        'bg-green-100 text-green-800': r.status === 'approved',
+        'bg-red-100 text-red-800': r.status === 'rejected'
+      }"
+    >
+      {{ r.status | titlecase }}
+    </span>
+    <div *ngIf="r.status === 'pending'" class="flex gap-2">
+      <button
+        class="px-4 py-1 bg-green-600 text-white rounded"
+        (click)="approve(r)"
+      >
+        Approve
+      </button>
+      <button
+        class="px-4 py-1 bg-red-600 text-white rounded"
+        (click)="reject(r)"
+      >
+        Reject
+      </button>
+    </div>
+  </div>
+</div>

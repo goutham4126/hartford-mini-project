@@ -1,8 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { AgentService } from '../../../services/agents';
-import { Auth } from '../../../services/auth';
+import { Agent, User } from '../../../models/model';
 
 @Component({
   standalone: true,
@@ -11,31 +10,12 @@ import { Auth } from '../../../services/auth';
   templateUrl: './agent-profile.html'
 })
 export class AgentProfile {
+  agent = signal<(Agent & { user: User }) | null>(null);
 
-  user= signal<any>([]);
-  agent=signal<any>([]);
-
-  constructor(
-    private auth: Auth,
-    private agentService: AgentService,
-    private http: HttpClient
-  ) {
-    this.loadUser();
-    this.loadAgent();
-  }
-
-  loadUser() {
-    const userId = String(this.auth.user()?.id);
-
-    this.http.get<any[]>('http://localhost:3000/users')
-      .subscribe(users => {
-        this.user.set(users.find(u => String(u.id) === userId));
-      });
-  }
-
-  loadAgent() {
-    this.agentService.getAgent((agent: any) => {
-      this.agent.set(agent);
+  constructor(private agentService: AgentService) {
+    this.agentService.getAgent(data => {
+      this.agent.set(data);
+      // console.log('FINAL AGENT DATA:', data);
     });
   }
 }
