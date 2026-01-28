@@ -4,10 +4,11 @@ import { Auth } from '../../../services/auth';
 import { Customers } from '../../../services/customers';
 import { Claim } from '../../../models/model';
 import { ChangeDetectorRef } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-customer-claims',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './customer-claims.html',
   styleUrl: './customer-claims.css',
 })

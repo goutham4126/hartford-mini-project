@@ -1,62 +1,94 @@
 @if (!currentCustomer) {
-  <div class="text-center text-gray-500">
-    Fetching profile...
+  <div class="flex items-center justify-center min-h-[50vh] text-slate-500">
+    Fetching profile…
   </div>
 }
 
 @if (currentCustomer) {
-  
-  <div class="min-h-screen bg-gray-100 p-6">
-    
-    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow p-8">
-      <h2 class="text-xl font-bold text-gray-800 mb-4">
-        My Profile
-      </h2>
-      <!-- TOP: USER NAME (SAFE) -->
-      <div class="border-b pb-4 mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">
+
+  <div class="min-h-screen bg-slate-50 p-8">
+    <div class="max-w-5xl mx-auto space-y-6">
+
+      <!-- PROFILE HEADER CARD -->
+      <div class="bg-white rounded-3xl shadow-xl p-8 flex items-center gap-6">
+
+        <!-- AVATAR -->
+        <div
+          class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">
           @if (currentUser) {
-            {{ currentUser.firstName }} {{ currentUser.lastName }}
+            {{ currentUser.firstName.charAt(0) }}{{ currentUser.lastName.charAt(0) }}
           } @else {
-            Customer
+            C
           }
-        </h2>
-        <!-- <p class="text-sm text-gray-500">
-          Customer ID: {{ currentCustomer.id }}
-        </p> -->
+        </div>
+
+        <!-- NAME -->
+        <div>
+          <h2 class="text-2xl font-extrabold text-slate-900">
+            @if (currentUser) {
+              {{ currentUser.firstName }} {{ currentUser.lastName }}
+            } @else {
+              Customer
+            }
+          </h2>
+          <p class="text-sm text-slate-500">
+            Customer Profile
+          </p>
+        </div>
+
       </div>
 
-      <!-- CUSTOMER DETAILS -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- <div>
-          <p class="text-sm text-gray-500">User ID</p>
-          <p class="font-semibold">{{ currentCustomer.userId }}</p>
-        </div> -->
+      <!-- DETAILS CARD -->
+      <div class="bg-white rounded-3xl shadow-xl p-8">
 
-        <div>
-          <p class="text-sm text-gray-500">Nominee</p>
-          <p class="font-semibold">{{ currentCustomer.nominee }}</p>
+        <h3 class="text-lg font-bold text-slate-900 mb-6">
+          Personal Information
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- DOB -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">
+              Date of Birth
+            </p>
+            <p class="font-semibold text-slate-900">
+              {{ currentCustomer.dateOfBirth }}
+            </p>
+          </div>
+
+          <!-- ADDRESS -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">
+              Address
+            </p>
+            <p class="font-semibold text-slate-900">
+              {{ currentCustomer.address }}
+            </p>
+          </div>
+
+          <!-- AADHAAR -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">
+              Aadhaar Number
+            </p>
+            <p class="font-semibold text-slate-900 tracking-wider">
+              {{ currentCustomer.aadhaarNumber }}
+            </p>
+          </div>
+
+          <!-- PAN -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">
+              PAN Number
+            </p>
+            <p class="font-semibold text-slate-900 tracking-wider">
+              {{ currentCustomer.panNumber }}
+            </p>
+          </div>
+
         </div>
 
-        <div>
-          <p class="text-sm text-gray-500">Date of Birth</p>
-          <p class="font-semibold">{{ currentCustomer.dateOfBirth }}</p>
-        </div>
-
-        <div>
-          <p class="text-sm text-gray-500">Address</p>
-          <p class="font-semibold">{{ currentCustomer.address }}</p>
-        </div>
-
-        <div>
-          <p class="text-sm text-gray-500">Aadhaar Number</p>
-          <p class="font-semibold">{{ currentCustomer.aadhaarNumber }}</p>
-        </div>
-
-        <div>
-          <p class="text-sm text-gray-500">PAN Number</p>
-          <p class="font-semibold">{{ currentCustomer.panNumber }}</p>
-        </div>
       </div>
 
     </div>

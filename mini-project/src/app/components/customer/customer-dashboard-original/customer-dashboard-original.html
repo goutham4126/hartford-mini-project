@@ -1,0 +1,133 @@
+<!-- BLOCK ONLY UNTIL CUSTOMER EXISTS -->
+@if (!customer) {
+  <div class="text-center text-gray-500 p-6">
+    Fetching dashboard...
+  </div>
+}
+
+@if (customer) {
+  <div class="min-h-screen bg-slate-50 text-slate-900">
+
+    <div class="max-w-7xl mx-auto px-6 pt-10 space-y-8">
+
+  <div class="relative bg-white rounded-3xl shadow-xl p-8 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-emerald-50"></div>
+
+    <div class="relative">
+      <h2 class="text-3xl font-extrabold tracking-tight">
+        {{ user?.firstName }} {{ user?.lastName }}
+      </h2>
+      <p class="text-slate-500 mt-1">
+        Welcome back to your insurance dashboard
+      </p>
+    </div>
+  </div>
+
+
+      <!-- SUMMARY CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+    <p class="text-sm text-slate-500">Total Policies</p>
+    <p class="text-4xl font-bold mt-2 text-slate-900">
+      {{ policies?.length ?? 0 }}
+    </p>
+  </div>
+
+  <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+    <p class="text-sm text-slate-500">Active Policies</p>
+    <p class="text-4xl font-bold mt-2 text-emerald-600">
+      {{ activePoliciesCount }}
+    </p>
+  </div>
+
+  <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+    <p class="text-sm text-slate-500">Claims Raised</p>
+    <p class="text-4xl font-bold mt-2 text-indigo-600">
+      {{ claims?.length ?? 0 }}
+    </p>
+  </div>
+
+</div>
+
+
+      <!-- POLICY LIST (NAMES ONLY) -->
+      <div class="bg-white rounded-3xl shadow-xl p-8">
+  <h3 class="text-xl font-bold mb-6">My Policies</h3>
+
+  <ul class="space-y-4">
+    @for (policy of policies; track policy.id) {
+      <li
+        class="flex justify-between items-center p-4 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+
+        <div>
+          <p class="font-semibold text-slate-900">{{ policy.name }}</p>
+          <p class="text-xs text-slate-500 capitalize">{{ policy.type }}</p>
+        </div>
+
+        <span
+          class="px-4 py-1 rounded-full text-xs font-semibold"
+          [class.bg-emerald-100]="policy.status === 'active'"
+          [class.text-emerald-700]="policy.status === 'active'"
+          [class.bg-red-100]="policy.status === 'inactive'"
+          [class.text-red-700]="policy.status === 'inactive'">
+          {{ policy.status }}
+        </span>
+
+      </li>
+    }
+  </ul>
+</div>
+
+      <!-- CLAIMS LIST -->
+<div class="bg-white rounded-3xl shadow-xl p-8">
+  <h3 class="text-xl font-bold mb-6">My Claims</h3>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left text-slate-500 border-b">
+          <th class="pb-3">#</th>
+          <th class="pb-3">Policy</th>
+          <th class="pb-3">Amount</th>
+          <th class="pb-3">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (claim of claims; let i = $index; track claim.id) {
+          <tr class="border-b last:border-none hover:bg-slate-50 transition">
+            <td class="py-4">{{ i + 1 }}</td>
+
+            <td class="py-4 font-medium">
+              {{ policyNameMap[claim.policyId] }}
+            </td>
+
+            <td class="py-4 font-semibold">
+              ₹{{ claim.amount }}
+            </td>
+
+            <td class="py-4">
+              <span
+                class="px-3 py-1 rounded-full text-xs font-semibold"
+                [class.bg-yellow-100]="claim.status === 'pending'"
+                [class.text-yellow-700]="claim.status === 'pending'"
+                [class.bg-emerald-100]="claim.status === 'approved'"
+                [class.text-emerald-700]="claim.status === 'approved'"
+                [class.bg-red-100]="claim.status === 'rejected'"
+                [class.text-red-700]="claim.status === 'rejected'">
+                {{ claim.status }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+}

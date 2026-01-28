@@ -1,64 +1,89 @@
 <!-- BLOCK ONLY ON CLAIMS -->
 @if (!claims) {
-  <div class="text-center text-gray-500 p-6">
-    Fetching claims...
+  <div class="flex items-center justify-center min-h-[50vh] text-slate-500">
+    Fetching claims…
   </div>
 }
 
 @if (claims) {
-  <div class="min-h-screen bg-gray-100 p-6">
-    <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow p-6">
+  <div class="min-h-screen bg-slate-50 p-8">
+    <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl p-8">
 
-      <h2 class="text-xl font-bold text-gray-800 mb-4">
-        My Claims
-      </h2>
+      <!-- HEADER -->
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-extrabold text-slate-900">
+          My Claims
+        </h2>
+        <span class="text-sm text-slate-500">
+          {{ claims.length }} total
+        </span>
+      </div>
 
       <!-- NO CLAIMS -->
       @if (claims.length === 0) {
-        <p class="text-gray-500 text-center">
-          No claims found.
-        </p>
+        <div class="text-center py-12 text-slate-500">
+          No claims raised yet.
+        </div>
       }
 
       <!-- CLAIMS TABLE -->
       @if (claims.length > 0) {
-        <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-sm">
+
             <thead>
-              <tr class="bg-gray-100 text-left text-sm text-gray-600">
-                <th class="p-3">#</th>
-                <th class="p-3">Policy Name</th>
-                <th class="p-3">Amount</th>
-                <th class="p-3">Status</th>
+              <tr class="bg-slate-100 text-slate-600">
+                <th class="py-3 px-4 text-left">#</th>
+                <th class="py-3 px-4 text-left">Policy</th>
+                <th class="py-3 px-4 text-left">Type</th>
+                <th class="py-3 px-4 text-left">Amount</th>
+                <th class="py-3 px-4 text-left">Status</th>
               </tr>
             </thead>
 
             <tbody>
               @for (claim of claims; let i = $index; track claim.id) {
-                <tr class="border-t hover:bg-gray-50">
+                <tr class="border-t hover:bg-slate-50 transition">
 
                   <!-- SERIAL -->
-                  <td class="p-3">{{ i + 1 }}</td>
+                  <td class="py-4 px-4 text-slate-500">
+                    {{ i + 1 }}
+                  </td>
 
-                  <!-- POLICY NAME (NON-BLOCKING) -->
-                  <td class="p-3 font-medium text-gray-800">
-                    {{ policyNameMap[claim.policyId]}}
+                  <!-- POLICY NAME -->
+                  <td class="py-4 px-4 font-semibold text-slate-900">
+                    {{ policyNameMap[claim.policyId] }}
+                  </td>
+
+                  <!-- TYPE -->
+                  <td class="py-4 px-4 capitalize text-slate-600">
+                    {{ claim.type }}
                   </td>
 
                   <!-- AMOUNT -->
-                  <td class="p-3">₹{{ claim.amount }}</td>
+                  <td class="py-4 px-4 font-medium">
+                    ₹{{ claim.amount | number }}
+                  </td>
 
                   <!-- STATUS -->
-                  <td class="p-3">
+                  <td class="py-4 px-4">
                     <span
-                      class="px-3 py-1 rounded-full text-sm font-medium"
+                      class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold"
                       [class.bg-yellow-100]="claim.status === 'pending'"
                       [class.text-yellow-700]="claim.status === 'pending'"
-                      [class.bg-green-100]="claim.status === 'approved'"
-                      [class.text-green-700]="claim.status === 'approved'"
+                      [class.bg-emerald-100]="claim.status === 'approved'"
+                      [class.text-emerald-700]="claim.status === 'approved'"
                       [class.bg-red-100]="claim.status === 'rejected'"
-                      [class.text-red-700]="claim.status === 'rejected'"
-                    >
+                      [class.text-red-700]="claim.status === 'rejected'">
+
+                      <!-- STATUS DOT -->
+                      <span
+                        class="w-2 h-2 rounded-full mr-2"
+                        [class.bg-yellow-500]="claim.status === 'pending'"
+                        [class.bg-emerald-500]="claim.status === 'approved'"
+                        [class.bg-red-500]="claim.status === 'rejected'">
+                      </span>
+
                       {{ claim.status }}
                     </span>
                   </td>
@@ -66,6 +91,7 @@
                 </tr>
               }
             </tbody>
+
           </table>
         </div>
       }
