@@ -1,49 +1,123 @@
-<h2 class="text-2xl font-bold mb-6">Policy Requests</h2>
-<div
-  *ngFor="let r of policyRequests()"> 
-  <div class="bg-white rounded-xl shadow p-6 mb-6 flex justify-between">
-  <div class="space-y-2">
-    <p class="text-lg font-semibold">
-      Request ID: {{ r.id }}
-    </p>
-    <p>
-      <b>Policy ID:</b> {{ r.policyId }}
-    </p>
-    <p>
-      <b>Nominee Name:</b> {{ r.nominee.name || '—' }}
-    </p>
-    <p>
-      <b>Relation:</b> {{ r.nominee.relation || '—' }}
-    </p>
-    <p class="text-sm text-gray-500">
-      Requested At:
-      {{ r.requestedAt ? (r.requestedAt | date:'medium') : '—' }}
-    </p>
-  </div>
-  <div class="flex flex-col items-end gap-3">
-    <span
-      class="px-3 py-1 rounded-full text-sm font-medium"
-      [ngClass]="{
-        'bg-yellow-100 text-yellow-800': r.status === 'pending',
-        'bg-green-100 text-green-800': r.status === 'approved',
-        'bg-red-100 text-red-800': r.status === 'rejected'
-      }"
-    >
-      {{ r.status | titlecase }}
-    </span>
-    <div *ngIf="r.status === 'pending'" class="flex gap-2">
-      <button
-        class="px-4 py-1 bg-green-600 text-white rounded"
-        (click)="approve(r)"
-      >
-        Approve
-      </button>
-      <button
-        class="px-4 py-1 bg-red-600 text-white rounded"
-        (click)="reject(r)"
-      >
-        Reject
-      </button>
+<div class="p-8 bg-gray-50/50 min-h-screen font-sans">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Policy Applications</h2>
+      <p class="text-sm text-slate-500 mt-1">Review and action new policy requests from customers</p>
     </div>
+    <div class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-semibold border border-indigo-100">
+      {{ (policyRequests() || []).length }} Pending Requests
+    </div>
+  </div>
+
+  <!-- Requests Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (r of policyRequests(); track r.id) {
+    <div
+      class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all group relative">
+
+      <!-- Status Stripe -->
+      <div class="absolute top-0 left-0 w-1 h-full" [ngClass]="{
+                    'bg-yellow-400': r.status === 'pending',
+                    'bg-emerald-500': r.status === 'approved',
+                    'bg-red-500': r.status === 'rejected'
+                 }"></div>
+
+      <div class="p-6">
+        <!-- ID and Status -->
+        <div class="flex justify-between items-start mb-4 pl-3">
+          <div>
+            <p class="text-[10px] text-gray-400 font-mono uppercase tracking-wider">Request ID</p>
+            <p class="text-sm font-bold text-slate-700 font-mono">#{{ r.id }}</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide" [ngClass]="{
+                            'bg-yellow-50 text-yellow-700 border border-yellow-100': r.status === 'pending',
+                            'bg-emerald-50 text-emerald-700 border border-emerald-100': r.status === 'approved',
+                            'bg-red-50 text-red-700 border border-red-100': r.status === 'rejected'
+                        }">
+            {{ r.status }}
+          </span>
+        </div>
+
+        <!-- Main Info -->
+        <div class="space-y-4 pl-3">
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-indigo-600 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400">Policy</p>
+                <p class="text-sm font-semibold text-slate-700">{{ r.policyId }}</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-pink-600 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400">Nominee</p>
+                <p class="text-sm font-semibold text-slate-700">{{ r.nominee.name }} <span
+                    class="text-xs font-normal text-gray-400">({{ r.nominee.relation }})</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs text-gray-400">Requested On</p>
+            <p class="text-sm font-medium text-slate-600">{{ r.requestedAt | date:'mediumDate' }}</p>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        @if (r.status === 'pending') {
+        <div class="mt-6 pt-4 border-t border-gray-50 flex gap-3 pl-3">
+          <button (click)="approve(r)"
+            class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shadow-emerald-200 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Approve
+          </button>
+          <button (click)="reject(r)"
+            class="flex-1 bg-white hover:bg-red-50 text-red-600 border border-red-100 hover:border-red-200 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            Reject
+          </button>
+        </div>
+        } @else {
+        <div class="mt-6 pt-4 border-t border-gray-50 pl-3">
+          <p class="text-xs text-center italic text-gray-400">
+            Processed on {{ (r.approvedAt || r.rejectedAt) | date:'mediumDate' }}
+          </p>
+        </div>
+        }
+      </div>
+    </div>
+    }
+    @if (policyRequests().length === 0) {
+    <div
+      class="col-span-full flex flex-col items-center justify-center p-12 text-center text-slate-400 bg-white rounded-2xl border border-dashed border-gray-200">
+      <svg class="w-12 h-12 mb-4 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+        </path>
+      </svg>
+      <p class="text-lg font-medium">No pending requests</p>
+      <p class="text-sm">New policy applications will appear here.</p>
+    </div>
+    }
   </div>
 </div>

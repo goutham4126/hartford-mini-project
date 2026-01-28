@@ -15,4 +15,16 @@ export class Policies {
   createPolicy(policy: any) {
     return this.http.post('http://localhost:3000/policies', policy);
   }
+
+  getPolicy(id: string) {
+    return this.http.get<Policy>(`http://localhost:3000/policies/${id}`);
+  }
+
+  updatePolicy(policy: any) {
+    return this.http.put(`http://localhost:3000/policies/${policy.id}`, policy);
+  }
+
+  deletePolicy(id: string) {
+    return this.http.delete(`http://localhost:3000/policies/${id}`);
+  }
 }

@@ -46,7 +46,7 @@ export class AgentService {
 
       cb({
         ...agent,
-        user   
+        user
       });
     });
   }
@@ -67,25 +67,32 @@ export class AgentService {
   }) => void) {
     this.getAgent(agent => {
       if (!agent) {
-        cb({
-          customers: [],
-          customersCount: 0,
-          totalPolicies: 0,
-          totalClaims: 0
-        });
+        cb({ customers: [], customersCount: 0, totalPolicies: 0, totalClaims: 0 });
         return;
       }
       forkJoin({
         users: this.http.get<any[]>(`${this.api}/users`),
         customers: this.http.get<any[]>(`${this.api}/customers`),
-        policyRequests: this.http.get<any[]>(
-          `${this.api}/policyRequests?assignedAgentId=${agent.id}`
-        ),
+        policies: this.http.get<any[]>(`${this.api}/policies`),
+        policyRequests: this.http.get<any[]>(`${this.api}/policyRequests`),
         claims: this.http.get<any[]>(`${this.api}/claims`)
-      }).subscribe(({ users, customers, policyRequests, claims }) => {
-        //Customers assigned to agent
+      }).subscribe(({ users, customers, policies, policyRequests, claims }) => {
+
+        // 1. Find Policies belonging to Agent's Specialization (Implicit Link)
+        const agentSpecId = agent.specializationId;
+        const myPolicies = policies.filter(p => p.specializationId === agentSpecId);
+        const myPolicyIds = myPolicies.map(p => p.id);
+
+        // 2. Find Requests for these policies
+        // Note: We include 'approved' requests as "Policies Sold" usually
+        const myRequests = policyRequests.filter(req => myPolicyIds.includes(req.policyId));
+
+        // 3. Find unique Customers from these requests
+        // (A customer linked to this agent is one who has bought/requested a policy of this spec)
+        const myCustomerIds = [...new Set(myRequests.map(r => r.customerId))];
+
         const assignedCustomers = customers
-          .filter(c => agent.assignedCustomers?.includes(c.id))
+          .filter(c => myCustomerIds.includes(c.id))
           .map(c => {
             const user = users.find(u => u.id === c.userId);
             return {
@@ -98,23 +105,25 @@ export class AgentService {
               policiesCount: c.policyIds?.length || 0
             };
           });
-        //Total policies handled by agent
-        const totalPolicies = policyRequests.length;
-        //Claims related to agent policies
-        const policyIds = policyRequests.map(p => p.policyId);
-        const totalClaims = claims.filter(c =>
-          policyIds.includes(c.policyId)
-        ).length;
+
+        // 4. Metrics
+        // Total Policies Sold = Approved Requests? Or just Total Requests handled?
+        // Usually dashboard "Policies Sold" implies approved ones.
+        const totalPolicies = myRequests.filter(r => r.status === 'approved').length;
+
+        // Claims related to these policies
+        const totalClaims = claims.filter(c => myPolicyIds.includes(c.policyId)).length;
 
         cb({
           customers: assignedCustomers,
           customersCount: assignedCustomers.length,
-          totalPolicies,
+          totalPolicies: totalPolicies,
           totalClaims
         });
       });
     });
   }
+
   //claims of loggedin agent
   getClaims(cb: (claims: any[]) => void) {
     this.getAgent(agent => {
@@ -122,51 +131,59 @@ export class AgentService {
         cb([]);
         return;
       }
-      //Policy requests assigned to this agent
-      this.http
-        .get<any[]>(
-          `${this.api}/policyRequests?assignedAgentId=${agent.id}`
-        )
-        .subscribe(policyReqs => {
 
-          if (policyReqs.length === 0) {
-            cb([]);
-            return;
-          }
-          const policyIds = policyReqs.map(r => r.policyId);
-          //Get all claims
-          this.http.get<any[]>(`${this.api}/claims`)
-            .subscribe(allClaims => {
-              //Filter only agent-related claims
-              const agentClaims = allClaims
-                .filter(c => policyIds.includes(c.policyId))
-                .map(c => ({
-                  ...c,
-                  customerName: c.customerId,
-                  policyType: c.type
-                }));
-              cb(agentClaims);
-            });
-        });
+      forkJoin({
+        policies: this.http.get<any[]>(`${this.api}/policies`),
+        claims: this.http.get<any[]>(`${this.api}/claims`)
+      }).subscribe(({ policies, claims }) => {
+
+        // 1. My Policies (by Spec)
+        const myPolicies = policies.filter(p => p.specializationId === agent.specializationId);
+        const myPolicyIds = myPolicies.map(p => p.id);
+
+        // 2. Filter Claims matching my policies
+        const agentClaims = claims
+          .filter(c => myPolicyIds.includes(c.policyId))
+          .map(c => ({
+            ...c,
+            customerName: c.customerId, // Should ideally map to User Name, but keeping ID for now or using existing structure
+            policyType: c.type
+          }));
+
+        cb(agentClaims);
+      });
     });
   }
+
   updateClaim(id: string, data: any) {
     return this.http.patch(
       `${this.api}/claims/${id}`,
       data
     );
   }
+
   getPolicyRequests(cb: (reqs: any[]) => void) {
     this.getAgent(agent => {
       if (!agent) {
         cb([]);
         return;
       }
-      this.http
-        .get<any[]>(`${this.api}/policyRequests?assignedAgentId=${String(agent.id)}`)
-        .subscribe(cb);
+
+      forkJoin({
+        policies: this.http.get<any[]>(`${this.api}/policies`),
+        requests: this.http.get<any[]>(`${this.api}/policyRequests`)
+      }).subscribe(({ policies, requests }) => {
+        // My Policies (by Spec)
+        const myPolicies = policies.filter(p => p.specializationId === agent.specializationId);
+        const myPolicyIds = myPolicies.map(p => p.id);
+
+        // Filter Requests
+        const myRequests = requests.filter(r => myPolicyIds.includes(r.policyId));
+        cb(myRequests);
+      });
     });
   }
+
   updatePolicyRequest(id: string, data: Partial<PolicyRequests>) {
     return this.http.patch(
       `${this.api}/policyRequests/${id}`,

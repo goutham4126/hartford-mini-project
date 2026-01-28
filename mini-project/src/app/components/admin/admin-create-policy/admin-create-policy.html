@@ -1,146 +1,195 @@
-<div class="p-6 bg-gray-50 min-h-screen font-sans">
-    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-        <div class="bg-indigo-600 px-6 py-4 border-b border-indigo-700">
-            <h2 class="text-xl font-bold text-white">Create New Policy</h2>
-            <p class="text-indigo-100 text-sm mt-1">Define a new insurance product and assign managers.</p>
+<div class="p-6 bg-gray-50/50 min-h-screen font-sans">
+    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+
+        <!-- Header -->
+        <div class="bg-indigo-600 px-8 py-6 border-b border-indigo-700/50 bg-[url('/assets/pattern.svg')]">
+            <h2 class="text-2xl font-bold text-white tracking-wide">{{ isEditMode ? 'Edit Policy' : 'Create New Policy'
+                }}</h2>
+            <p class="text-indigo-100 text-sm mt-1">Configure complete policy details, coverage, and exclusions.</p>
         </div>
 
-        <form [formGroup]="policyForm" (ngSubmit)="onSubmit()" class="p-8 space-y-6">
+        <form [formGroup]="policyForm" (ngSubmit)="onSubmit()" class="p-8">
 
-            <!-- Basic Details -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Policy Name</label>
-                    <input type="text" formControlName="name"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-                        placeholder="e.g. Gold Health Plan">
-                    @if (policyForm.get('name')?.touched && policyForm.get('name')?.invalid) {
-                    <div class="text-red-500 text-xs">Name is required (min 3 chars).</div>
-                    }
-                </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Category</label>
-                    <select formControlName="type"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white">
-                        @for (type of policyTypes; track type) {
-                        <option [value]="type">{{ type | titlecase }}</option>
-                        }
-                    </select>
-                </div>
-            </div>
+                <!-- COLUMN 1: Basic Information -->
+                <div class="space-y-8">
+                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Basic Information</h3>
 
-            <!-- Financials -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Premium (₹)</label>
-                    <input type="number" formControlName="premium"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-                        placeholder="15000">
-                </div>
+                    <div class="space-y-6">
+                        <!-- Name & Specialization & Category -->
+                        <div class="space-y-4">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-700">Policy Name</label>
+                                <input type="text" formControlName="name"
+                                    class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all outline-none"
+                                    placeholder="e.g. Platinum Health Shield">
+                                <div *ngIf="policyForm.get('name')?.touched && policyForm.get('name')?.invalid"
+                                    class="text-red-500 text-xs">Name required.</div>
+                            </div>
 
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Sum Insured (₹)</label>
-                    <input type="number" formControlName="sumInsured"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-                        placeholder="500000">
-                </div>
-
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Duration (Days)</label>
-                    <input type="number" formControlName="duration"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
-                </div>
-            </div>
-
-            <!-- Eligibility -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg">
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Min Entry Age</label>
-                    <input type="number" formControlName="minEntryAge"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
-                </div>
-
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Max Entry Age</label>
-                    <input type="number" formControlName="maxEntryAge"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
-                </div>
-            </div>
-
-            <!-- Description -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea formControlName="description" rows="3"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-                    placeholder="Brief details about the policy..."></textarea>
-            </div>
-
-            <!-- Agent Assignment with Checkboxes -->
-            <div class="space-y-2 border-t pt-6 mt-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Assign Managers</h3>
-                <p class="text-sm text-gray-500 mb-4">Select one or more agents to manage this policy.</p>
-
-                <div class="relative">
-                    <label class="block text-sm font-medium text-gray-700 mb-3">Select Agents</label>
-                    
-                    <!-- Checkbox list -->
-                    <div class="space-y-2 border-2 border-indigo-100 rounded-lg p-4 bg-indigo-50/30 max-h-64 overflow-y-auto">
-                        <div *ngFor="let agent of agents" 
-                             class="flex items-center p-3 rounded-lg hover:bg-indigo-100/50 transition-colors cursor-pointer">
-                            <input 
-                                type="checkbox"
-                                [id]="'agent-' + agent.id"
-                                [value]="agent.id"
-                                [checked]="isAgentSelected(agent.id)"
-                                (change)="onAgentCheckboxChange(agent.id, $event)"
-                                class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 focus:ring-2 cursor-pointer">
-                            <label 
-                                [for]="'agent-' + agent.id" 
-                                class="ml-3 text-sm font-medium text-gray-700 cursor-pointer flex-1">
-                                {{ agent.id }} - (User ID: {{ agent.userId }})
-                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2 col-span-2">
+                                    <label class="block text-sm font-semibold text-gray-700">Specialization</label>
+                                    <select formControlName="specializationId"
+                                        class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all outline-none">
+                                        <option value="" disabled>Select Specialization</option>
+                                        <option *ngFor="let spec of specializations" [value]="spec.id">{{ spec.name }}
+                                            ({{ spec.code }})</option>
+                                    </select>
+                                    <div *ngIf="policyForm.get('specializationId')?.touched && policyForm.get('specializationId')?.invalid"
+                                        class="text-red-500 text-xs">Specialization required to assign agents.</div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div *ngIf="agents.length === 0" class="text-center text-gray-500 py-4">
-                            No agents available
+
+                        <!-- Financials -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-700">Premium (₹)</label>
+                                <input type="number" formControlName="premium"
+                                    class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    placeholder="0">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-700">Sum Insured (₹)</label>
+                                <input type="number" formControlName="sumInsured"
+                                    class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    placeholder="0">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-700">Duration (Days)</label>
+                                <input type="number" formControlName="duration"
+                                    class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-gray-700">Description</label>
+                            <textarea formControlName="description" rows="4"
+                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+                                placeholder="Detailed description..."></textarea>
                         </div>
                     </div>
-                    
-                    <!-- Selected agents display -->
-                    <div *ngIf="policyForm.get('agentIds')?.value?.length" class="mt-3">
-                        <p class="text-xs font-medium text-gray-600 mb-2">
-                            Selected ({{ policyForm.get('agentIds')?.value?.length }}):
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span *ngFor="let agentId of policyForm.get('agentIds')?.value" 
-                                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 border border-indigo-200">
-                                <span>{{ agentId }}</span>
-                                <button 
-                                    type="button"
-                                    (click)="removeAgent(agentId)"
-                                    class="ml-2 text-indigo-600 hover:text-indigo-800 focus:outline-none">
-                                    ×
-                                </button>
-                            </span>
+
+                    <!-- Dynamic Features -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <label class="block text-sm font-semibold text-gray-700">Key Features</label>
+                            <button type="button" (click)="addFeature()"
+                                class="text-xs text-indigo-600 hover:underline font-medium">+ Add Feature</button>
                         </div>
-                    </div>
-                    
-                    <div *ngIf="policyForm.get('agentIds')?.touched && policyForm.get('agentIds')?.invalid"
-                        class="text-red-500 text-xs mt-2">
-                        Please assign at least one agent.
+                        <div formArrayName="features" class="space-y-2">
+                            <div *ngFor="let f of features.controls; let i=index" class="flex gap-2">
+                                <input [formControlName]="i" type="text"
+                                    class="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-sm"
+                                    placeholder="e.g. Cashless hospitalization">
+                                <button type="button" (click)="removeFeature(i)"
+                                    class="text-gray-400 hover:text-red-500 px-2">×</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <!-- COLUMN 2: Advanced Details -->
+                <div class="space-y-8">
+                    <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Coverage & Assignments</h3>
+
+                    <!-- Eligibility -->
+                    <div class="grid grid-cols-2 gap-6 bg-gray-50 p-5 rounded-xl border border-gray-100">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-gray-500 uppercase">Min Age</label>
+                            <input type="number" formControlName="minEntryAge"
+                                class="w-full px-3 py-2 bg-white border border-gray-200 rounded-md focus:border-indigo-500 outline-none text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-gray-500 uppercase">Max Age</label>
+                            <input type="number" formControlName="maxEntryAge"
+                                class="w-full px-3 py-2 bg-white border border-gray-200 rounded-md focus:border-indigo-500 outline-none text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-gray-500 uppercase">Co-Pay (%)</label>
+                            <input type="number" formControlName="coPay"
+                                class="w-full px-3 py-2 bg-white border border-gray-200 rounded-md focus:border-indigo-500 outline-none text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-gray-500 uppercase">Waiting Period
+                                (Days)</label>
+                            <input type="number" formControlName="waitingPeriod"
+                                class="w-full px-3 py-2 bg-white border border-gray-200 rounded-md focus:border-indigo-500 outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Exclusions -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="block text-sm font-semibold text-gray-700">Exclusions (What's not
+                                covered)</label>
+                            <button type="button" (click)="addExclusion()"
+                                class="text-xs text-red-500 hover:underline font-medium">+ Add Exclusion</button>
+                        </div>
+                        <div formArrayName="exclusions" class="space-y-2">
+                            <div *ngFor="let ex of exclusions.controls; let i=index" class="flex gap-2">
+                                <input [formControlName]="i" type="text"
+                                    class="flex-1 px-4 py-2 bg-red-50/50 border border-red-100 rounded-lg focus:ring-2 focus:ring-red-200 outline-none text-sm"
+                                    placeholder="e.g. Pre-existing diseases">
+                                <button type="button" (click)="removeExclusion(i)"
+                                    class="text-gray-400 hover:text-red-500 px-2">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Hospitals -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="block text-sm font-semibold text-gray-700">Network Hospitals</label>
+                            <button type="button" (click)="addHospital()"
+                                class="text-xs text-indigo-600 hover:underline font-medium">+ Add Hospital</button>
+                        </div>
+                        <div formArrayName="networkHospitals"
+                            class="space-y-2 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                            <div *ngFor="let h of networkHospitals.controls; let i=index" class="flex gap-2">
+                                <input [formControlName]="i" type="text"
+                                    class="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-sm"
+                                    placeholder="Hospital Name">
+                                <button type="button" (click)="removeHospital(i)"
+                                    class="text-gray-400 hover:text-red-500 px-2">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agent Assignment Info (Implicit) -->
+                    <div class="space-y-4 pt-4 border-t border-gray-100">
+                        <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 flex gap-4 items-start">
+                            <div class="bg-indigo-100 rounded-full p-2 text-indigo-600 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-indigo-900 text-sm">Automatic Agent Assignment</h4>
+                                <p class="text-sm text-indigo-700 mt-1">
+                                    All agents specializing in <span class="font-bold underline">{{
+                                        getSpecName(policyForm.get('specializationId')?.value) }}</span>
+                                    will automatically manage this policy. You manage these assignments in the
+                                    Specializations menu.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <!-- Actions -->
-            <div class="flex items-center justify-end gap-4 pt-6 mt-6 border-t border-gray-100">
+            <!-- Actions Footer -->
+            <div class="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
                 <button type="button" routerLink="/admin/policies"
-                    class="px-6 py-2.5 rounded-lg text-gray-600 bg-gray-100 hover:bg-gray-200 font-medium transition-colors">Cancel</button>
+                    class="px-6 py-2.5 rounded-lg text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 font-medium transition-colors shadow-sm">Cancel</button>
                 <button type="submit" [disabled]="policyForm.invalid"
-                    class="px-8 py-2.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    Create Policy
+                    class="px-8 py-2.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-200 hover:shadow-xl disabled:opacity-50 disabled:shadow-none transition-all transform hover:-translate-y-0.5">
+                    {{ isEditMode ? 'Update Policy' : 'Create Policy' }}
                 </button>
             </div>
 

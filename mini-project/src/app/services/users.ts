@@ -18,8 +18,7 @@ export class Users {
     return this.http.get<User[]>('http://localhost:3000/users');
   }
 
-  getAllAgents()
-  {
+  getAllAgents() {
     return this.http.get<User[]>('http://localhost:3000/agents')
   }
 
@@ -36,5 +35,13 @@ export class Users {
       .subscribe(user => {
         this.currentUser.set(user);
       });
+  }
+
+  updateUser(user: User) {
+    return this.http.put<User>(`http://localhost:3000/users/${user.id}`, user);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`http://localhost:3000/users/${id}`);
   }
 }
