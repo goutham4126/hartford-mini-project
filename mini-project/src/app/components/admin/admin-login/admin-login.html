@@ -78,6 +78,16 @@
         </a>
       </div>
 
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-500">
+          Don't have an account?
+          <a [routerLink]="selectedRole() === 'admin' ? '/auth/admin/register' : '/auth/agent/register'"
+            class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors pointer-events-auto cursor-pointer">
+            Register as {{ selectedRole() | titlecase }}
+          </a>
+        </p>
+      </div>
+
     </div>
   </div>
 </div>

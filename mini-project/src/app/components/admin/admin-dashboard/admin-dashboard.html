@@ -1,178 +1,268 @@
-<div class="p-6 bg-gray-50 min-h-screen font-sans">
-    <h1 class="text-3xl font-bold mb-8 text-indigo-900">Admin Dashboard</h1>
+<div class="p-8 bg-gray-50/50 min-h-screen font-sans">
 
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-gray-500 text-sm font-medium uppercase tracking-wide">Total Agents</div>
-            <div class="text-3xl font-bold text-indigo-600 mt-2">{{ agents.length }}</div>
+    <!-- Hero Section -->
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Admin Overview</h1>
+            <p class="text-slate-500 mt-1 text-sm">Welcome back! Here's what's happening today.</p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-gray-500 text-sm font-medium uppercase tracking-wide">Total Customers</div>
-            <div class="text-3xl font-bold text-indigo-600 mt-2">{{ customers.length }}</div>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-gray-500 text-sm font-medium uppercase tracking-wide">Active Policies</div>
-            <div class="text-3xl font-bold text-indigo-600 mt-2">{{ policies.length }}</div>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <div class="text-gray-500 text-sm font-medium uppercase tracking-wide">Total Claims</div>
-            <div class="text-3xl font-bold text-indigo-600 mt-2">{{ claims.length }}</div>
+        <div class="hidden md:flex gap-3">
+            <button
+                class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-600 shadow-sm hover:bg-gray-50 transition-all">
+                Export Report
+            </button>
+            <button
+                class="px-4 py-2 bg-indigo-600 rounded-lg text-sm font-medium text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                + New Policy
+            </button>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-
-        <!-- Agents Table -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="p-6 border-b border-gray-100 bg-gray-50">
-                <h2 class="text-xl font-bold text-gray-800">Agent Performance</h2>
-                <p class="text-sm text-gray-500 mt-1">Agents and their assigned customers</p>
+    <!-- 0. Financial Highlights (New) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Total Revenue -->
+        <div
+            class="bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 rounded-2xl shadow-lg shadow-indigo-200 text-white relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05 1.18 1.91 2.53 1.91 1.33 0 2.26-.81 2.26-1.94 0-1.02-.54-1.73-2.61-2.23-2.83-.67-4.15-1.65-4.15-3.56 0-1.95 1.4-3.24 3.27-3.64V5h2.66v1.95c1.46.32 2.76 1.3 2.91 3.03h-1.95c-.13-.88-.93-1.6-2.12-1.6-1.28 0-2.11.74-2.11 1.76 0 .96.65 1.58 2.61 2.07 2.87.7 4.19 1.83 4.19 3.65 0 1.98-1.42 3.32-3.32 3.73z" />
+                </svg>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
-                        <tr>
-                            <th class="px-6 py-3">Agent Name</th>
-                            <th class="px-6 py-3">License</th>
-                            <th class="px-6 py-3 text-center">Customers</th>
-                            <th class="px-6 py-3 text-center">Policies Managed</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        @for (agent of agentDetails; track agent.id) {
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4">
-                                <div class="font-medium text-gray-900">{{ agent.name }}</div>
-                                <div class="text-xs text-gray-500">{{ agent.email }}</div>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ agent.licenseNumber }}</td>
-                            <td class="px-6 py-4 text-center">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    {{ agent.assignedCustomersList.length }}
-                                </span>
-                                @if (agent.assignedCustomersList.length > 0) {
-                                <div class="text-xs text-gray-400 mt-1">
-                                    @for (c of agent.assignedCustomersList; track c.id; let last = $last) {
-                                    <span>
-                                        {{c.id}}<span *ngIf="!last">, </span>
-                                    </span>
-                                    }
-                                </div>
-                                }
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    {{ agent.totalPoliciesManaged }}
-                                </span>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+            <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider mb-1">Total Revenue Collected</p>
+            <h2 class="text-4xl font-bold">₹ {{ totalRevenue | number }}</h2>
+            <p class="text-indigo-200 text-xs mt-2 flex items-center gap-1">
+                <span class="bg-indigo-500/30 px-2 py-0.5 rounded text-white">+12%</span> from last month
+            </p>
+        </div>
+
+        <!-- Pending Revenue -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 relative overflow-hidden hover:shadow-md transition-all">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <svg class="w-24 h-24 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg>
+            </div>
+            <p class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-1">Pending Collections</p>
+            <h2 class="text-4xl font-bold text-slate-800">₹ {{ pendingRevenue | number }}</h2>
+            <p class="text-orange-500 text-xs mt-2 font-medium">Due within 30 days</p>
+        </div>
+    </div>
+
+
+    <!-- 1. Key Metrics Grid (Existing) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 mb-10">
+
+        <!-- Agents -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Agents</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-indigo-600 transition-colors">{{
+                        totalAgents }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                </div>
             </div>
         </div>
 
-        <!-- Customers & Policies -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="p-6 border-b border-gray-100 bg-gray-50">
-                <h2 class="text-xl font-bold text-gray-800">Customer Assignments</h2>
-                <p class="text-sm text-gray-500 mt-1">Customers and their handling agents</p>
+        <!-- Customers -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Customers</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-emerald-600 transition-colors">{{
+                        totalCustomers }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                </div>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
-                        <tr>
-                            <th class="px-6 py-3">Customer</th>
-                            <th class="px-6 py-3">Handling Agent</th>
-                            <th class="px-6 py-3">Policies</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        @for (cust of customerDetails; track cust.id) {
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4">
-                                <div class="font-medium text-gray-900">{{ cust.name }}</div>
-                                <div class="text-xs text-gray-500">{{ cust.address }}</div>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-600">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full"
-                                        [ngClass]="cust.agentName !== 'Unassigned' ? 'bg-green-500' : 'bg-red-500'">
-                                    </div>
-                                    {{ cust.agentName }}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex flex-wrap gap-1">
-                                    @for (p of cust.policiesList; track p.id) {
-                                    <span
-                                        class="px-2 py-1 rounded text-xs bg-gray-100 text-gray-600 border border-gray-200">
-                                        {{ p.name }}
-                                    </span>
-                                    }
-                                    @if (cust.policiesList.length === 0) {
-                                    <span class="text-xs text-gray-400 italic">No policies</span>
-                                    }
-                                </div>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+        </div>
+
+        <!-- Active Policies -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Active Policies</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-blue-600 transition-colors">{{
+                        activePoliciesCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Policies -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">All Policies</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-purple-600 transition-colors">{{
+                        totalPoliciesCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Claims -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Claims</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-orange-600 transition-colors">{{
+                        totalClaimsCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-orange-50 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Claims -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Pending</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-amber-500 transition-colors">{{
+                        pendingClaimsCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-amber-50 text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approved Claims -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Approved</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-teal-600 transition-colors">{{
+                        approvedClaimsCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rejected Claims -->
+        <div
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Rejected</p>
+                    <h3 class="text-3xl font-bold text-slate-800 mt-2 group-hover:text-red-500 transition-colors">{{
+                        rejectedClaimsCount }}</h3>
+                </div>
+                <div
+                    class="p-3 rounded-xl bg-red-50 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- All Policies -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-8">
-        <div class="p-6 border-b border-gray-100 bg-gray-50">
-            <h2 class="text-xl font-bold text-gray-800">Policy Configurations</h2>
-            <p class="text-sm text-gray-500 mt-1">Available policy dimensions and data</p>
+    <!-- 2. Analytics Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+
+        <!-- Bar Chart: Agent Performance -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Agent Performance</h3>
+                <p class="text-sm text-slate-400">Top agents by policies managed</p>
+            </div>
+            <div class="h-64">
+                <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType">
+                </canvas>
+            </div>
         </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-semibold text-left">
-                    <tr>
-                        <th class="px-6 py-3">Policy Name</th>
-                        <th class="px-6 py-3">Type</th>
-                        <th class="px-6 py-3">Premium (₹)</th>
-                        <th class="px-6 py-3">Coverage (₹)</th>
-                        <th class="px-6 py-3">Duration (Days)</th>
-                        <th class="px-6 py-3">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100">
-                    @for (p of policies; track p.id) {
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-medium text-gray-900">{{ p.name }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">
-                            <span class="capitalize px-2 py-1 rounded text-xs font-medium" [ngClass]="{
-                  'bg-blue-100 text-blue-800': p.type === 'health',
-                  'bg-yellow-100 text-yellow-800': p.type === 'vehicle',
-                  'bg-purple-100 text-purple-800': p.type === 'life',
-                  'bg-orange-100 text-orange-800': p.type === 'travel'
-                }">
-                                {{ p.type }}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.premium | currency:'INR' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ p.sumInsured | currency:'INR' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{ p.duration }}</td>
-                        <td class="px-6 py-4 text-sm">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                                [ngClass]="p.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'">
-                                {{ p.status }}
-                            </span>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
+
+        <!-- Line Chart: Customer Growth -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Customer Growth</h3>
+                <p class="text-sm text-slate-400">New customer acquisition over time</p>
+            </div>
+            <div class="h-64">
+                <canvas baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="lineChartType">
+                </canvas>
+            </div>
         </div>
+
+        <!-- Doughnut: Policy Distribution -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Policy Distribution</h3>
+                <p class="text-sm text-slate-400">By Policy Type</p>
+            </div>
+            <div class="h-64 flex justify-center">
+                <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="pieChartType">
+                </canvas>
+            </div>
+        </div>
+
+        <!-- Pie Chart: Claim Status -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100/50">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-slate-800">Claims Breakdown</h3>
+                <p class="text-sm text-slate-400">Status distribution of all claims</p>
+            </div>
+            <div class="h-65 flex justify-center">
+                <canvas baseChart [data]="claimPieChartData" [options]="pieChartOptions" [type]="claimPieChartType">
+                </canvas>
+            </div>
+        </div>
+
     </div>
 
 </div>

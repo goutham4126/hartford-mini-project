@@ -1,4 +1,26 @@
 {
+  "specializations": [
+    {
+      "name": "Health Insurance",
+      "code": "HEALTH",
+      "description": "Comprehensive medical coverage including hospitalization, critical illness, and routine checkups.",
+      "id": "SPEC-001"
+    },
+    {
+      "id": "SPEC-002",
+      "name": "Vehicle Insurance",
+      "description": "Protection for commercial and private vehicles against accidents, theft, and third-party liabilities.",
+      "code": "VEHICLE",
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "SPEC-003",
+      "name": "Life Insurance",
+      "description": "Term life and endowment plans to secure your family's financial future.",
+      "code": "LIFE",
+      "createdAt": "2024-01-01T00:00:00Z"
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -6,10 +28,11 @@
       "email": "admin@insuresure.com",
       "password": "901045",
       "role": "admin",
-      "firstName": "John",
-      "lastName": "Doe",
-      "phone": "1234567890",
-      "createdAt": "2024-01-15"
+      "firstName": "Sanjay",
+      "lastName": "Admin",
+      "phone": "9999999999",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "isActive": true
     },
     {
       "id": "2",
@@ -20,51 +43,20 @@
       "firstName": "Alice",
       "lastName": "Brown",
       "phone": "9876543210",
-      "createdAt": "2024-01-16"
+      "createdAt": "2024-01-16T10:00:00Z",
+      "isActive": true
     },
     {
       "id": "3",
       "username": "agent2",
       "email": "agent2@insuresure.com",
-      "password": "hashed_agent_pwd",
+      "password": "901045",
       "role": "agent",
       "firstName": "Robert",
       "lastName": "Wilson",
       "phone": "9001122334",
-      "createdAt": "2024-01-18"
-    },
-    {
-      "id": "4",
-      "username": "customer1",
-      "email": "customer1@insuresure.com",
-      "password": "901045",
-      "role": "customer",
-      "firstName": "Michael",
-      "lastName": "Smith",
-      "phone": "9123456789",
-      "createdAt": "2024-01-17"
-    },
-    {
-      "id": "5",
-      "username": "customer2",
-      "email": "customer2@insuresure.com",
-      "password": "hashed_customer_pwd",
-      "role": "customer",
-      "firstName": "Emma",
-      "lastName": "Watson",
-      "phone": "9988776655",
-      "createdAt": "2024-01-18"
-    },
-    {
-      "id": "6",
-      "username": "customer3",
-      "email": "customer3@insuresure.com",
-      "password": "hashed_customer_pwd",
-      "role": "customer",
-      "firstName": "David",
-      "lastName": "Miller",
-      "phone": "9090909090",
-      "createdAt": "2024-01-20"
+      "createdAt": "2024-01-18T11:30:00Z",
+      "isActive": true
     },
     {
       "id": "8e76",
@@ -75,73 +67,160 @@
       "firstName": "Sanjay",
       "lastName": "Attelli",
       "phone": "8919200290",
-      "createdAt": "2026-01-27T04:24:05.389Z"
-    },
-    {
-      "id": "7",
-      "username": "sarahj",
-      "email": "sarah.j@example.com",
-      "password": "password123",
-      "role": "customer",
-      "firstName": "Sarah",
-      "lastName": "Johnson",
-      "phone": "5551234567",
-      "createdAt": "2024-02-01"
-    },
-    {
-      "id": "8",
-      "username": "jamesp",
-      "email": "james.p@example.com",
-      "password": "password123",
-      "role": "customer",
-      "firstName": "James",
-      "lastName": "Parker",
-      "phone": "5559876543",
-      "createdAt": "2024-02-02"
+      "createdAt": "2026-01-27T04:24:05.389Z",
+      "isActive": true
     },
     {
       "id": "cbbd",
-      "username": "pooj",
+      "username": "pooj-agent",
       "email": "poojithabejugam2004@gmail.com",
       "password": "Pooji@2004",
       "role": "agent",
       "firstName": "Poojitha",
       "lastName": "Bejgum",
       "phone": "9347758510",
-      "createdAt": "2026-01-27T10:35:58.160Z"
+      "createdAt": "2026-01-27T10:35:58.160Z",
+      "isActive": true
+    },
+    {
+      "id": "c56e",
+      "username": "agent-pooji",
+      "email": "poojithabejugam13@gmail.com",
+      "password": "Pooji@12",
+      "role": "agent",
+      "firstName": "Poojitha",
+      "lastName": "Agent",
+      "phone": "9347758510",
+      "createdAt": "2026-01-27T16:19:53.063Z",
+      "isActive": true
+    },
+    {
+      "id": "5a62",
+      "username": "agent-new",
+      "email": "new.agent@gmail.com",
+      "password": "Pooji@14",
+      "role": "agent",
+      "firstName": "New",
+      "lastName": "Agent",
+      "phone": "09347758510",
+      "createdAt": "2026-01-27T16:20:58.350Z",
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "username": "customer1",
+      "email": "customer1@insuresure.com",
+      "password": "901045",
+      "role": "customer",
+      "firstName": "Michael",
+      "lastName": "Smith",
+      "phone": "9123456789",
+      "createdAt": "2024-01-17T09:15:00Z",
+      "isActive": true
+    },
+    {
+      "id": "5",
+      "username": "customer2",
+      "email": "customer2@insuresure.com",
+      "password": "901045",
+      "role": "customer",
+      "firstName": "Emma",
+      "lastName": "Watson",
+      "phone": "9988776655",
+      "createdAt": "2024-01-18T14:20:00Z",
+      "isActive": true
     },
     {
       "id": "1fca",
       "username": "pooji",
-      "email": "poojithabejugam13@gmail.com",
+      "email": "pooji-cust@gmail.com",
       "password": "Pooji@12",
       "role": "customer",
       "firstName": "Poojitha",
-      "lastName": "Bejgum",
+      "lastName": "Cust",
       "phone": "poojithabejugam13@gmail.com",
-      "createdAt": "2026-01-27T16:18:20.065Z"
+      "createdAt": "2026-01-27T16:18:20.065Z",
+      "isActive": true
+    }
+  ],
+  "agents": [
+    {
+      "id": "AGT-001",
+      "userId": "2",
+      "specializationId": "SPEC-001",
+      "licenseNumber": "LIC-HLTH-101",
+      "commissionRate": 15,
+      "assignedCustomers": [
+        "CUST-001"
+      ],
+      "totalPoliciesSold": 45,
+      "territory": "North Region",
+      "specialization": "Health Insurance",
+      "createdAt": "2024-01-16T10:05:00Z"
     },
     {
-      "id": "c56e",
-      "username": "pooji",
-      "email": "poojithabejugam13@gmail.com",
-      "password": "Pooji@12",
-      "role": "agent",
-      "firstName": "Poojitha",
-      "lastName": "Bejgum",
-      "phone": "9347758510",
-      "createdAt": "2026-01-27T16:19:53.063Z"
+      "id": "AGT-002",
+      "userId": "3",
+      "specializationId": "SPEC-001",
+      "licenseNumber": "LIC-HLTH-102",
+      "commissionRate": 12,
+      "assignedCustomers": [
+        "CUST-002"
+      ],
+      "totalPoliciesSold": 28,
+      "territory": "South Region",
+      "specialization": "Health Insurance",
+      "createdAt": "2024-01-18T11:35:00Z"
     },
     {
-      "id": "5a62",
-      "username": "pooji",
-      "email": "poojithabejugam13@gmail.com",
-      "password": "Pooji@14",
-      "role": "agent",
-      "firstName": "Poojitha",
-      "lastName": "Bejgum",
-      "phone": "09347758510",
-      "createdAt": "2026-01-27T16:20:58.350Z"
+      "id": "AGT-003",
+      "userId": "8e76",
+      "specializationId": "SPEC-002",
+      "licenseNumber": "LIC-VEH-201",
+      "commissionRate": 10,
+      "assignedCustomers": [
+        "CUST-003"
+      ],
+      "totalPoliciesSold": 15,
+      "territory": "West Region",
+      "specialization": "Vehicle Insurance",
+      "createdAt": "2026-01-27T04:25:00Z"
+    },
+    {
+      "id": "AGT-004",
+      "userId": "cbbd",
+      "specializationId": "SPEC-002",
+      "licenseNumber": "LIC-VEH-202",
+      "commissionRate": 11,
+      "assignedCustomers": [],
+      "totalPoliciesSold": 5,
+      "territory": "East Region",
+      "specialization": "Vehicle Insurance",
+      "createdAt": "2026-01-27T10:40:00Z"
+    },
+    {
+      "id": "AGT-005",
+      "userId": "c56e",
+      "specializationId": "SPEC-003",
+      "licenseNumber": "LIC-LIFE-301",
+      "commissionRate": 18,
+      "assignedCustomers": [],
+      "totalPoliciesSold": 8,
+      "territory": "Central Region",
+      "specialization": "Life Insurance",
+      "createdAt": "2026-01-27T16:21:00Z"
+    },
+    {
+      "id": "AGT-006",
+      "userId": "5a62",
+      "specializationId": "SPEC-003",
+      "licenseNumber": "LIC-LIFE-302",
+      "commissionRate": 16,
+      "assignedCustomers": [],
+      "totalPoliciesSold": 2,
+      "territory": "Metro Region",
+      "specialization": "Life Insurance",
+      "createdAt": "2026-01-27T16:22:00Z"
     },
     {
       "id": "4233",
@@ -171,232 +250,240 @@
       "id": "POL-H-001",
       "name": "Elite Health Shield Pro",
       "type": "health",
+      "specializationId": "SPEC-001",
       "premium": 15000,
       "sumInsured": 1000000,
       "duration": 365,
-      "description": "Comprehensive health coverage for individuals seeking premium medical protection with extensive hospital network access.",
+      "description": "Comprehensive health coverage for individuals seeking premium medical protection.",
       "features": [
         "Zero Co-pay",
         "Global Coverage",
         "Alternative Treatments"
       ],
-      "createdAt": "2024-01-15",
       "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 65,
-      "agentId": [
+      "agentIds": [
         "AGT-001",
         "AGT-002"
       ],
+      "minEntryAge": 18,
+      "maxEntryAge": 65,
       "coPay": 0,
       "waitingPeriod": 30,
       "exclusions": [
         "Cosmetic Surgery",
-        "Experimental Treatments",
-        "Self-inflicted injuries"
+        "Experimental Treatments"
       ],
-      "claimRatio": 98.5,
       "networkHospitals": [
         "Apollo Hospitals",
-        "Fortis Healthcare",
-        "Max Healthcare",
-        "Manipal Hospitals"
+        "Fortis Healthcare"
       ],
-      "brochureUrl": "https://example.com/brochures/elite-health-pro.pdf",
-      "keyBenefits": [
-        "Cashless hospitalization in 2 hours",
-        "Annual Health Check-up",
-        "Maternity Benefit up to ₹50,000"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/health-pro",
-      "renewalProcess": "Automatic renewal with 5% discount for claim-free years."
+      "createdAt": "2024-01-20T09:00:00Z"
     },
     {
       "id": "POL-H-002",
-      "name": "Family Floater secure",
+      "name": "Family Floater Secure",
       "type": "health",
+      "specializationId": "SPEC-001",
       "premium": 25000,
       "sumInsured": 2000000,
       "duration": 365,
-      "description": "One plan to protect your entire family. Covers up to 2 adults and 3 children with shared sum insured.",
+      "description": "One plan to protect your entire family. Covers up to 2 adults and 3 children.",
       "features": [
         "Maternity Cover",
         "Newborn Cover",
         "Vaccination Cover"
       ],
-      "createdAt": "2024-01-20",
       "status": "active",
+      "agentIds": [
+        "AGT-001"
+      ],
       "minEntryAge": 18,
       "maxEntryAge": 70,
-      "agentId": [
-        "AGT-003"
-      ],
       "coPay": 10,
       "waitingPeriod": 30,
       "exclusions": [
-        "Pre-existing diseases for first 2 years",
-        "Specific detailed list A"
+        "Pre-existing diseases for 2 years"
       ],
-      "claimRatio": 97.2,
       "networkHospitals": [
         "Care Hospitals",
         "KIMS",
         "Yashoda Hospitals"
       ],
-      "brochureUrl": "https://example.com/brochures/family-floater.pdf",
-      "keyBenefits": [
-        "Restoration of Sum Insured",
-        "No Claim Bonus up to 100%",
-        "Daily Hospital Cash"
+      "createdAt": "2024-01-22T10:00:00Z"
+    },
+    {
+      "id": "POL-H-003",
+      "name": "Senior Citizen Care",
+      "type": "health",
+      "specializationId": "SPEC-001",
+      "premium": 35000,
+      "sumInsured": 500000,
+      "duration": 365,
+      "description": "Dedicated health plan for senior citizens with minimal waiting periods.",
+      "features": [
+        "Annual Health Checkup",
+        "Home Care",
+        "Dialysis Cover"
       ],
-      "termsAndConditionsUrl": "https://example.com/terms/family-floater",
-      "renewalProcess": "Quick online renewal."
+      "status": "active",
+      "agentIds": [
+        "AGT-002"
+      ],
+      "minEntryAge": 60,
+      "maxEntryAge": 85,
+      "coPay": 20,
+      "waitingPeriod": 15,
+      "exclusions": [
+        "Cosmetic treatments"
+      ],
+      "networkHospitals": [
+        "Apollo Hospitals",
+        "Manipal Hospitals"
+      ],
+      "createdAt": "2024-01-25T14:00:00Z"
     },
     {
       "id": "POL-V-001",
-      "name": "DriveSafe Premium Car Insurance",
+      "name": "DriveSafe Premium Car",
       "type": "vehicle",
+      "specializationId": "SPEC-002",
       "premium": 12000,
       "sumInsured": 800000,
       "duration": 365,
-      "description": "Complete protection for your car against accidents, theft, fire, and natural calamities with zero depreciation cover.",
+      "description": "Complete protection for your car against accidents, theft, fire, and calamities.",
       "features": [
         "Zero Depreciation",
         "Roadside Assistance",
         "Engine Protection"
       ],
-      "createdAt": "2024-01-22",
       "status": "active",
+      "agentIds": [
+        "AGT-003",
+        "AGT-004"
+      ],
       "minEntryAge": 18,
       "maxEntryAge": 70,
-      "agentId": [
-        "AGT-001",
-        "AGT-003"
-      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
         "Driving under influence",
-        "Driving without license",
-        "Consequential loss"
+        "General wear and tear"
       ],
-      "claimRatio": 99.1,
       "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/drivesafe.pdf",
-      "keyBenefits": [
-        "Cashless repairs at 5000+ garages",
-        "Return to Invoice Cover",
-        "Personal Accident Cover for Passengers"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/drivesafe",
-      "renewalProcess": "Instant policy issuance online."
+      "createdAt": "2024-02-01T11:00:00Z"
     },
     {
       "id": "POL-V-002",
-      "name": "RideSure Two-Wheeler Cover",
+      "name": "RideSure Two-Wheeler",
       "type": "vehicle",
+      "specializationId": "SPEC-002",
       "premium": 2500,
       "sumInsured": 80000,
       "duration": 1095,
-      "description": "A long-term 3-year plan for your bike. Forget the hassle of yearly renewals and enjoy uninterrupted coverage.",
+      "description": "A long-term 3-year plan for your bike. Forget the hassle of yearly renewals.",
       "features": [
         "Long Term Plan",
         "Personal Accident Cover",
         "Third Party Only Option"
       ],
-      "createdAt": "2024-01-25",
       "status": "active",
-      "minEntryAge": 18,
-      "maxEntryAge": 65,
-      "agentId": [
-        "AGT-002",
+      "agentIds": [
         "AGT-003"
       ],
+      "minEntryAge": 18,
+      "maxEntryAge": 65,
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
-        "War and nuclear perils",
         "Mechanical breakdown"
       ],
-      "claimRatio": 96.8,
       "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/ridesure.pdf",
-      "keyBenefits": [
-        "3 years coverage in one payment",
-        "Locked-in premium rates",
-        "Easy claim settlement"
+      "createdAt": "2024-02-05T12:00:00Z"
+    },
+    {
+      "id": "POL-V-003",
+      "name": "Commercial Truck Protect",
+      "type": "vehicle",
+      "specializationId": "SPEC-002",
+      "premium": 45000,
+      "sumInsured": 3000000,
+      "duration": 365,
+      "description": "Comprehensive insurance for commercial heavy vehicles and fleets.",
+      "features": [
+        "Driver Cover",
+        "Third Party Liability",
+        "Cargo Protection"
       ],
-      "termsAndConditionsUrl": "https://example.com/terms/ridesure",
-      "renewalProcess": "Renewal reminders sent via SMS/Email."
+      "status": "active",
+      "agentIds": [
+        "AGT-004"
+      ],
+      "minEntryAge": 21,
+      "maxEntryAge": 60,
+      "coPay": 5,
+      "waitingPeriod": 0,
+      "exclusions": [
+        "Overloading"
+      ],
+      "networkHospitals": [],
+      "createdAt": "2024-02-10T15:00:00Z"
     },
     {
       "id": "POL-L-001",
-      "name": "Lifetime Legacy Term Plan",
+      "name": "Lifetime Legacy Term",
       "type": "life",
+      "specializationId": "SPEC-003",
       "premium": 10000,
       "sumInsured": 10000000,
       "duration": 14600,
-      "description": "Secure your family's future with a high cover term plan at affordable premiums. Pure risk cover.",
+      "description": "Secure your family's future with a high cover term plan at affordable premiums.",
       "features": [
         "Critical Illness Rider",
         "Waiver of Premium",
         "Accidental Death Benefit"
       ],
-      "createdAt": "2024-02-01",
       "status": "active",
+      "agentIds": [
+        "AGT-005",
+        "AGT-006"
+      ],
       "minEntryAge": 18,
       "maxEntryAge": 60,
-      "agentId": [
-        "AGT-001",
-        "AGT-002",
-        "AGT-003"
-      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
-        "Suicide within first year",
-        "Participation in hazardous sports"
+        "Suicide within first year"
       ],
-      "claimRatio": 99.4,
       "networkHospitals": [],
-      "brochureUrl": "https://example.com/brochures/legacy-term.pdf",
-      "keyBenefits": [
-        "Tax benefits under Sec 80C",
-        "Terminal Illness Benefit",
-        "Monthly Income Payout Option"
-      ],
-      "termsAndConditionsUrl": "https://example.com/terms/legacy",
-      "renewalProcess": "Annual premium payment."
+      "createdAt": "2024-02-15T10:00:00Z"
     },
     {
       "id": "POL-L-002",
-      "name": "Wealth Builder Endowment Plan",
+      "name": "Wealth Builder Endowment",
       "type": "life",
+      "specializationId": "SPEC-003",
       "premium": 50000,
       "sumInsured": 5000000,
       "duration": 7300,
-      "description": "A savings cum insurance plan that helps you build a corpus for your future goals while providing life cover.",
+      "description": "Savings cum insurance plan that helps you build a corpus for future goals.",
       "features": [
         "Guaranteed Returns",
         "Bonus Declaration",
         "Loan Facility"
       ],
-      "createdAt": "2024-02-05",
       "status": "active",
+      "agentIds": [
+        "AGT-006"
+      ],
       "minEntryAge": 0,
       "maxEntryAge": 50,
-      "agentId": [
-        "AGT-001",
-        "AGT-002",
-        "AGT-003"
-      ],
       "coPay": 0,
       "waitingPeriod": 0,
       "exclusions": [
         "Suicide within 12 months"
       ],
-      "claimRatio": 98,
       "networkHospitals": [],
+      "createdAt": "2024-02-20T16:00:00Z",
       "brochureUrl": "https://example.com/brochures/wealth-builder.pdf",
       "keyBenefits": [
         "Maturity Benefit with Bonus",
@@ -726,6 +813,114 @@
       "assignedAgentId": "AGT-001",
       "approvedAt": "2026-01-28T04:59:54.015Z",
       "remarks": "Approved after document verification"
+    },{
+      "id": "REQ-001",
+      "userId": "4",
+      "policyId": "POL-H-001",
+      "assignedAgentId": "AGT-001",
+      "status": "approved",
+      "nominee": {
+        "name": "Jane Smith",
+        "relation": "Spouse",
+        "age": 30
+      },
+      "documents": [
+        "doc-link-1",
+        "doc-link-2"
+      ],
+      "requestedAt": "2024-02-01T10:00:00Z",
+      "approvedAt": "2024-02-02T09:00:00Z",
+      "remarks": "Documents verified successfully and risk accepted."
+    },
+    {
+      "id": "REQ-002",
+      "userId": "4",
+      "policyId": "POL-V-001",
+      "assignedAgentId": "AGT-003",
+      "status": "approved",
+      "nominee": {
+        "name": "Michael",
+        "relation": "Self",
+        "age": 34
+      },
+      "documents": [
+        "car-rc-copy.pdf"
+      ],
+      "requestedAt": "2024-02-05T11:00:00Z",
+      "approvedAt": "2024-02-05T15:00:00Z",
+      "remarks": "Instant approval verified by system."
+    },
+    {
+      "id": "REQ-003",
+      "userId": "5",
+      "policyId": "POL-L-001",
+      "assignedAgentId": "AGT-005",
+      "status": "approved",
+      "nominee": {
+        "name": "Robert Watson",
+        "relation": "Spouse",
+        "age": 35
+      },
+      "documents": [
+        "medical-report.pdf"
+      ],
+      "requestedAt": "2024-02-25T14:30:00Z",
+      "approvedAt": "2024-02-26T10:00:00Z",
+      "remarks": "Medical tests cleared. Approved."
+    },
+    {
+      "id": "REQ-004",
+      "userId": "1fca",
+      "policyId": "POL-V-002",
+      "assignedAgentId": "AGT-003",
+      "status": "approved",
+      "nominee": {
+        "name": "Self",
+        "relation": "Self",
+        "age": 35
+      },
+      "documents": [
+        "bike-rc.pdf"
+      ],
+      "requestedAt": "2026-01-27T17:00:00Z",
+      "approvedAt": "2026-01-27T17:30:00Z",
+      "remarks": "Approved by system auto-verification."
+    },
+    {
+      "id": "REQ-005",
+      "userId": "4",
+      "policyId": "POL-H-002",
+      "assignedAgentId": "AGT-001",
+      "status": "approved",
+      "nominee": {
+        "name": "Junior Smith",
+        "relation": "Son",
+        "age": 5
+      },
+      "documents": [
+        "birth-cert.pdf"
+      ],
+      "requestedAt": "2024-03-01T09:00:00Z",
+      "remarks": "Approved after document verification",
+      "approvedAt": "2026-01-28T08:54:06.969Z"
+    },
+    {
+      "id": "REQ-006",
+      "userId": "4",
+      "policyId": "POL-V-003",
+      "assignedAgentId": "AGT-004",
+      "status": "rejected",
+      "nominee": {
+        "name": "Company",
+        "relation": "Employer",
+        "age": 0
+      },
+      "documents": [
+        "truck-docs.pdf"
+      ],
+      "requestedAt": "2024-02-20T11:00:00Z",
+      "rejectedAt": "2024-02-21T16:00:00Z",
+      "remarks": "Vehicle age > 15 years not supported for this plan."
     }
   ],
   "customers": [
@@ -733,6 +928,8 @@
       "id": "CUST-001",
       "userId": "4",
       "policyIds": [
+        "POL-H-001",
+        "POL-V-001",
         "POL-L-001",
         "POL-V-002",
         "POL-V-001",
@@ -743,132 +940,121 @@
       "kycStatus": "verified",
       "address": "Bangalore",
       "detailedAddress": {
-        "street": "123, MG Road",
+        "street": "123 MG Road",
         "city": "Bangalore",
         "state": "Karnataka",
         "pincode": "560001",
         "country": "India"
       },
-      "dateOfBirth": "1990-05-15",
+      "dateOfBirth": "1990-05-15T00:00:00Z",
       "aadhaarNumber": "123456789012",
       "panNumber": "ABCDE1234F",
-      "medicalHistory": [
-        "None"
-      ],
-      "occupation": "Software Engineer",
       "annualIncome": 1500000,
-      "maritalStatus": "married",
-      "dependents": [
-        {
-          "name": "Jane Smith",
-          "relation": "Spouse",
-          "age": 30
-        },
-        {
-          "name": "Junior Smith",
-          "relation": "Child",
-          "age": 5
-        }
-      ]
+      "occupation": "Software Engineer",
+      "createdAt": "2024-01-17T09:30:00Z"
     },
     {
       "id": "CUST-002",
       "userId": "5",
-      "policyIds": [],
+      "policyIds": [
+        "POL-L-001"
+      ],
       "kycStatus": "pending",
       "address": "Chennai",
       "detailedAddress": {
-        "street": "45, Anna Salai",
+        "street": "45 Anna Salai",
         "city": "Chennai",
         "state": "Tamil Nadu",
         "pincode": "600002",
         "country": "India"
       },
-      "dateOfBirth": "1992-09-20",
+      "dateOfBirth": "1992-09-20T00:00:00Z",
       "aadhaarNumber": "987654321098",
       "panNumber": "PQRSX5678L",
-      "medicalHistory": [
-        "Hypertension"
-      ],
-      "occupation": "Teacher",
       "annualIncome": 800000,
-      "maritalStatus": "married",
-      "dependents": [
-        {
-          "name": "Robert Watson",
-          "relation": "Spouse",
-          "age": 32
-        }
-      ]
+      "occupation": "Teacher",
+      "createdAt": "2024-01-18T14:35:00Z"
     },
     {
       "id": "CUST-003",
-      "userId": "6",
-      "policyIds": [],
+      "userId": "1fca",
+      "policyIds": [
+        "POL-V-002"
+      ],
       "kycStatus": "verified",
       "address": "Hyderabad",
       "detailedAddress": {
-        "street": "Flat 302, Cyber Towers",
+        "street": "Cyber Towers",
         "city": "Hyderabad",
         "state": "Telangana",
         "pincode": "500081",
         "country": "India"
       },
-      "dateOfBirth": "1988-02-11",
+      "dateOfBirth": "1988-02-11T00:00:00Z",
       "aadhaarNumber": "555566667777",
       "panNumber": "LMNOP9876Q",
-      "medicalHistory": [
-        "Diabetes"
-      ],
-      "occupation": "Business",
       "annualIncome": 2500000,
-      "maritalStatus": "single",
-      "dependents": []
+      "occupation": "Business",
+      "createdAt": "2026-01-27T16:18:20.065Z"
     }
   ],
-  "agents": [
+  "payments": [
     {
-      "id": "AGT-001",
-      "userId": "2",
-      "licenseNumber": "LIC123456",
-      "commissionRate": 15,
-      "assignedCustomers": [
-        "CUST-001"
-      ],
-      "totalPoliciesSold": 45,
-      "territory": "South India"
+      "id": "PAY-001",
+      "requestId": "REQ-001",
+      "customerId": "CUST-001",
+      "policyId": "POL-H-001",
+      "totalPremium": 15000,
+      "amountPaid": 15000,
+      "pendingBalance": 0,
+      "status": "completed",
+      "paymentDate": "2024-02-02T09:05:00Z",
+      "method": "Credit Card",
+      "billingCycleStartDate": "2024-02-02T00:00:00Z",
+      "nextDueDate": "2025-02-02T00:00:00Z"
     },
     {
-      "id": "AGT-002",
-      "userId": "3",
-      "licenseNumber": "LIC654321",
-      "commissionRate": 12,
-      "assignedCustomers": [
-        "CUST-001"
-      ],
-      "totalPoliciesSold": 28,
-      "territory": "Hyderabad"
+      "id": "PAY-002",
+      "requestId": "REQ-002",
+      "customerId": "CUST-001",
+      "policyId": "POL-V-001",
+      "totalPremium": 12000,
+      "amountPaid": 12000,
+      "pendingBalance": 0,
+      "status": "completed",
+      "paymentDate": "2024-02-05T15:05:00Z",
+      "method": "UPI",
+      "billingCycleStartDate": "2024-02-05T00:00:00Z",
+      "nextDueDate": "2025-02-05T00:00:00Z"
     },
     {
-      "id": "AGT-003",
-      "userId": "8e76",
-      "licenseNumber": "LIC999888",
-      "commissionRate": 10,
-      "assignedCustomers": [
-        "CUST-001"
-      ],
-      "totalPoliciesSold": 0,
-      "territory": "Unassigned"
+      "id": "PAY-003",
+      "requestId": "REQ-003",
+      "customerId": "CUST-002",
+      "policyId": "POL-L-001",
+      "totalPremium": 10000,
+      "amountPaid": 5000,
+      "pendingBalance": 5000,
+      "status": "partial",
+      "paymentDate": "2024-02-26T10:05:00Z",
+      "method": "Net Banking",
+      "billingCycleStartDate": "2024-02-26T00:00:00Z",
+      "nextDueDate": "2024-08-26T00:00:00Z"
     },
     {
-      "id": "a1b7",
-      "userId": "c56e",
-      "licenseNumber": "LIC-1769530793075",
-      "commissionRate": 5,
-      "assignedCustomers": [],
-      "totalPoliciesSold": 0
-    },
-    {
+      "id": "PAY-004",
+      "requestId": "REQ-004",
+      "customerId": "CUST-003",
+      "policyId": "POL-V-002",
+      "totalPremium": 2500,
+      "amountPaid": 2500,
+      "pendingBalance": 0,
+      "status": "completed",
+      "paymentDate": "2026-01-27T17:35:00Z",
+      "method": "Credit Card",
+      "billingCycleStartDate": "2026-01-27T00:00:00Z",
+      "nextDueDate": "2029-01-27T00:00:00Z"
+    },{
       "id": "04b6",
       "userId": "5a62",
       "licenseNumber": "LIC-1769530858361",
@@ -889,104 +1075,76 @@
   ],
   "claims": [
     {
-      "id": "CLAIM-001",
+      "id": "CLM-001",
       "policyId": "POL-H-001",
       "customerId": "CUST-001",
+      "agentId": "AGT-001",
       "type": "health",
-      "amount": 50000,
-      "date": "2024-01-20",
+      "amountRequested": 55000,
+      "amountApproved": 50000,
       "status": "approved",
-      "description": "Hospitalization due to accident",
+      "settlementStatus": "settled",
+      "description": "Hospitalization for viral fever at Apollo Hospitals.",
       "documents": [
-        "bill1.jpg",
-        "report.pdf"
-      ]
+        "hospital-bill.pdf",
+        "discharge-summary.pdf"
+      ],
+      "submittedAt": "2024-03-01T10:00:00Z",
+      "approvedAt": "2024-03-03T14:00:00Z",
+      "remarks": "Claim verified. Deducted consumables cost."
     },
     {
-      "id": "CLAIM-002",
+      "id": "CLM-002",
       "policyId": "POL-V-001",
-      "customerId": "CUST-002",
+      "customerId": "CUST-001",
+      "agentId": "AGT-003",
       "type": "vehicle",
-      "amount": 30000,
-      "date": "2024-02-05",
+      "amountRequested": 15000,
+      "amountApproved": 15000,
       "status": "approved",
-      "description": "Vehicle repair after accident",
+      "settlementStatus": "processing",
+      "description": "Bumper damage due to minor collision in parking lot.",
       "documents": [
-        "garage_bill.pdf"
-      ]
+        "car-photo.jpg",
+        "repair-estimate.pdf"
+      ],
+      "submittedAt": "2024-03-10T11:30:00Z",
+      "approvedAt": "2024-03-12T09:00:00Z",
+      "remarks": "Approved for full settlement."
     },
     {
-      "id": "CLAIM-003",
-      "policyId": "POL-L-001",
-      "customerId": "CUST-002",
-      "type": "life",
-      "amount": 100000,
-      "date": "2024-02-10",
-      "status": "rejected",
-      "description": "Incorrect documentation submitted",
-      "documents": []
-    },
-    {
-      "id": "CLAIM-004",
-      "policyId": "POL-T-001",
+      "id": "CLM-003",
+      "policyId": "POL-V-002",
       "customerId": "CUST-003",
-      "type": "travel",
-      "amount": 20000,
-      "date": "2024-02-15",
-      "status": "approved",
-      "description": "Medical emergency during travel",
-      "documents": [
-        "hospital_bill.pdf"
-      ]
-    },
-    {
-      "id": "CLAIM-005",
-      "policyId": "POL-L-001",
-      "customerId": "CUST-001",
-      "type": "life",
-      "amount": 10000000,
-      "date": "2026-01-27T18:08:27.354Z",
-      "status": "pending",
-      "description": "RIP",
-      "documents": [
-        "WhatsApp Image 2026-01-14 at 3.38.31 PM.jpeg"
-      ]
-    },
-    {
-      "id": "CLAIM-006",
-      "policyId": "POL-H-4073",
-      "customerId": "CUST-001",
-      "type": "health",
-      "amount": 12238,
-      "date": "2026-01-28T03:59:55.787Z",
+      "agentId": "AGT-003",
+      "type": "vehicle",
+      "amountRequested": 2000,
+      "amountApproved": 0,
       "status": "rejected",
-      "description": "        jfkhgslfjsflghskd",
+      "settlementStatus": "rejected",
+      "description": "Scratch repair.",
       "documents": [
-        "WhatsApp Image 2026-01-14 at 3.38.31 PM.jpeg",
-        "All combined (1).pdf"
-      ]
+        "scratch-photo.jpg"
+      ],
+      "submittedAt": "2026-02-01T09:00:00Z",
+      "rejectedAt": "2026-02-01T12:00:00Z",
+      "remarks": "Amount below deductible limit of 5000."
     },
     {
-      "id": "CLAIM-007",
-      "policyId": "POL-L-001",
-      "customerId": "CUST-001",
-      "type": "life",
-      "amount": 10000000,
-      "date": "2026-01-28T04:39:25.733Z",
-      "status": "pending",
-      "description": "        claimfromcust1",
-      "documents": []
-    },
-    {
-      "id": "CLAIM-008",
+      "id": "CLM-443",
       "policyId": "POL-H-001",
       "customerId": "CUST-001",
+      "agentId": "AGT-001",
       "type": "health",
-      "amount": 1000000,
-      "date": "2026-01-28T04:49:03.128Z",
-      "status": "approved",
-      "description": "        claim from michael",
-      "documents": []
+      "amountRequested": 1000000,
+      "amountApproved": 0,
+      "settlementStatus": "processing",
+      "status": "pending",
+      "submittedAt": "2026-01-28T09:03:58.735Z",
+      "description": "\nAbout\nNo description, website, or topics provided.\n Activity\nStars\n 0 stars\nWatchers\n 0 watching\nForks\n 0 forks\nReport repository",
+      "documents": [
+        "via ai.png"
+      ]
     }
   ]
 }

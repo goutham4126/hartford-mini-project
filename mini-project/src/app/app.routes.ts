@@ -9,6 +9,8 @@ import { AdminUsers } from './components/admin/admin-users/admin-users';
 import { AdminClaims } from './components/admin/admin-claims/admin-claims';
 import { AdminProfile } from './components/admin/admin-profile/admin-profile';
 import { AdminCreatePolicy } from './components/admin/admin-create-policy/admin-create-policy';
+import { AdminAgentManagement } from './components/admin/admin-agent-management/admin-agent-management';
+import { AdminSpecializations } from './components/admin/admin-specializations/admin-specializations';
 
 
 import { AgentLogin } from './components/agent/agent-login/agent-login';
@@ -52,9 +54,11 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
       { path: 'dashboard', component: AdminDashboard },
+      { path: 'specializations', component: AdminSpecializations },
       { path: 'policies', component: AdminPolicies },
       { path: 'create-policy', component: AdminCreatePolicy },
       { path: 'users', component: AdminUsers },
+      { path: 'agent-management', component: AdminAgentManagement },
       { path: 'claims', component: AdminClaims },
       { path: 'profile', component: AdminProfile },
 
@@ -84,13 +88,13 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard('customer')],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      
+
       { path: 'dashboard', component: CustomerDashboardOriginal },
       { path: 'view-policies', component: CustomerDashboard },
       { path: 'policies', component: CustomerPolicies },
       { path: 'claims', component: CustomerClaims },
       { path: 'profile', component: CustomerProfile },
-      {path: 'policy-request',component: PolicyRequestComponent},
+      { path: 'policy-request', component: PolicyRequestComponent },
 
       // wildcard: redirect unknown routes to dashboard
       { path: '**', redirectTo: 'dashboard' }

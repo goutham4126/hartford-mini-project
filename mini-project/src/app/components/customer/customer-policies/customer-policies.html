@@ -1,164 +1,277 @@
 <!-- BLOCK ONLY ON POLICIES -->
 @if (!policies) {
-  <div class="flex items-center justify-center min-h-[50vh] text-slate-500">
-    Fetching policies…
-  </div>
+<div class="flex flex-col items-center justify-center min-h-[60vh] text-slate-500 animate-pulse">
+  <div class="w-12 h-12 bg-indigo-100 rounded-full mb-4"></div>
+  Fetching your portfolio...
+</div>
 }
 
 @if (policies) {
-  <div class="min-h-screen bg-slate-50 p-8">
-    <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl p-8">
+<div class="min-h-screen bg-slate-50 p-6 md:p-10">
+  <div class="max-w-7xl mx-auto space-y-8">
 
-      <h2 class="text-2xl font-extrabold text-slate-900 mb-6">
-        My Policies
-      </h2>
-
-      @if (policies.length === 0) {
-        <p class="text-slate-500 text-center">
-          No policies found.
-        </p>
-      }
-
-      @if (policies.length > 0) {
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b text-slate-500">
-                <th class="py-3 text-left">#</th>
-                <th class="py-3 text-left">Policy</th>
-                <th class="py-3 text-left">Type</th>
-                <th class="py-3 text-left">Coverage</th>
-                <th class="py-3 text-left">Duration</th>
-                <th class="py-3 text-left">Premium</th>
-                <th class="py-3 text-left">Status</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @for (policy of policies; let i = $index; track policy.id) {
-                <tr class="border-b last:border-none hover:bg-slate-50 transition">
-
-                  <td class="py-4">{{ i + 1 }}</td>
-
-                  <td class="py-4 font-semibold text-slate-900">
-                    {{ policy.name }}
-                  </td>
-
-                  <td class="py-4 capitalize text-slate-600">
-                    {{ policy.type }}
-                  </td>
-
-                  <td class="py-4">
-                    ₹{{ policy.sumInsured | number }}
-                  </td>
-
-                  <td class="py-4">
-                    {{ getYears(policy.duration) }} yrs
-                  </td>
-
-                  <td class="py-4 font-medium">
-                    ₹{{ policy.premium }}
-                  </td>
-
-                  <td class="py-4">
-                    <span
-                      class="px-3 py-1 rounded-full text-xs font-semibold"
-                      [class.bg-emerald-100]="policy.status === 'active'"
-                      [class.text-emerald-700]="policy.status === 'active'"
-                      [class.bg-red-100]="policy.status === 'inactive'"
-                      [class.text-red-700]="policy.status === 'inactive'">
-                      {{ policy.status }}
-                    </span>
-                  </td>
-
-                  <td class="py-4 text-right">
-                    <button
-                      class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition"
-                      (click)="claimPolicy(policy)">
-                      Claim
-                    </button>
-                  </td>
-
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      }
-
+    <!-- HEADER -->
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">My Policies</h2>
+        <p class="text-slate-500 mt-2">Manage your insurance portfolio and coverage details</p>
+      </div>
+      <div
+        class="hidden md:block bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-100 text-sm font-medium text-slate-600">
+        Total Annual Premium: <span class="text-indigo-600 font-bold">₹ 75,000</span>
+      </div>
     </div>
+
+    @if (policies.length === 0) {
+    <div class="text-center py-20 bg-white rounded-3xl shadow-sm border-2 border-dashed border-slate-200">
+      <svg class="w-16 h-16 mx-auto text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+        </path>
+      </svg>
+      <p class="text-lg font-medium text-slate-900">No policies found</p>
+      <p class="text-slate-500 mt-1">Explore our plans to secure your future.</p>
+    </div>
+    }
+
+    <!-- POLICY CARDS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      @for (policy of policies; track policy.id) {
+      <div
+        class="group relative bg-white rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+        <!-- Card Header -->
+        <div class="p-6 pb-4 border-b border-slate-50 bg-gradient-to-r from-white to-slate-50">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner"
+              [ngClass]="{'bg-rose-100 text-rose-600': policy.type === 'health', 'bg-blue-100 text-blue-600': policy.type === 'vehicle', 'bg-indigo-100 text-indigo-600': policy.type === 'life'}">
+              <span *ngIf="policy.type === 'health'">❤️</span>
+              <span *ngIf="policy.type === 'vehicle'">🚗</span>
+              <span *ngIf="policy.type === 'life'">🛡️</span>
+              <span *ngIf="!['health','vehicle','life'].includes(policy.type)">📄</span>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              [class.bg-emerald-100]="policy.status === 'active'" [class.text-emerald-700]="policy.status === 'active'"
+              [class.bg-slate-100]="policy.status !== 'active'" [class.text-slate-600]="policy.status !== 'active'">
+              {{ policy.status }}
+            </span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 leading-tight mb-1">{{ policy.name }}</h3>
+          <p class="text-xs text-slate-400 font-medium uppercase tracking-wide">{{ policy.type }} Insurance</p>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-6 space-y-4">
+          <div class="flex justify-between items-center py-2 border-b border-slate-50">
+            <span class="text-sm text-slate-500">Sum Insured</span>
+            <span class="text-sm font-bold text-slate-900">₹{{ policy.sumInsured | number }}</span>
+          </div>
+          <div class="flex justify-between items-center py-2 border-b border-slate-50">
+            <span class="text-sm text-slate-500">Premium (Yearly)</span>
+            <span class="text-sm font-bold text-slate-900">₹{{ policy.premium | number }}</span>
+          </div>
+          <div class="flex justify-between items-center py-2">
+            <span class="text-sm text-slate-500">Valid Till</span>
+            <span class="text-sm font-semibold text-slate-700">{{ getYears(policy.duration) }} Years</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="p-6 pt-0 flex gap-3">
+          <button (click)="openPaymentModal(policy)"
+            class="flex-1 py-2.5 rounded-xl border border-indigo-100 bg-indigo-50 text-indigo-700 text-sm font-bold hover:bg-indigo-100 transition shadow-sm">
+            Pay Premium
+          </button>
+          <button (click)="claimPolicy(policy)"
+            class="flex-1 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-bold shadow-lg shadow-slate-200 hover:bg-slate-800 hover:shadow-xl transition">
+            Raise Claim
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
   </div>
+</div>
 }
 
 
+<!-- CLAIM FORM MODAL -->
 @if (showClaimForm) {
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 transition-all">
 
-    <div class="w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8 relative">
+  <div
+    class="w-full max-w-lg bg-white rounded-3xl shadow-2xl relative overflow-hidden transition-all transform scale-100">
 
-      <h2 class="text-2xl font-bold text-slate-900 mb-6">
-        Apply for Claim
-      </h2>
+    <!-- SUCCESS STATE -->
+    @if (showSuccess) {
+    <div
+      class="absolute inset-0 z-10 bg-white flex flex-col items-center justify-center p-10 text-center animate-fadeIn">
+      <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
+        <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-slate-900 mb-2">Claim Submitted!</h3>
+      <p class="text-slate-500">Your claim request has been sent for approval. Redirecting...</p>
+    </div>
+    }
 
-      <!-- DESCRIPTION -->
-      <div class="mb-5">
-        <label class="block text-sm font-semibold text-slate-700 mb-1">
-          Claim Description
-        </label>
-        <textarea
-          #desc
-          rows="4"
-          class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-          placeholder="Briefly describe what happened"
-          (input)="onDescriptionChange(desc.value)">
-        </textarea>
+    <div class="p-8">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900">Apply for Claim</h2>
+        <button (click)="closeClaimForm()" class="text-slate-400 hover:text-slate-600 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
 
-      <!-- DOCUMENT UPLOAD -->
-      <div class="mb-5">
-        <label class="block text-sm font-semibold text-slate-700 mb-1">
-          Upload Documents
-        </label>
+      <div class="space-y-5">
+        <!-- AMOUNT -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Claim Amount (₹)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-3.5 text-slate-400 font-semibold">₹</span>
+            <input type="number" [(ngModel)]="currentClaim.amountRequested"
+              class="w-full pl-8 pr-4 py-3 bg-slate-50 border-none rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-indigo-500 transition-all"
+              placeholder="Enter amount">
+          </div>
+        </div>
 
-        <input
-          type="file"
-          multiple
-          class="block w-full text-sm file:mr-4 file:py-2 file:px-4
-                 file:rounded-lg file:border-0
-                 file:bg-indigo-50 file:text-indigo-600
-                 hover:file:bg-indigo-100 cursor-pointer"
-          (change)="onFilesSelected($event)" />
+        <!-- DESCRIPTION -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Description</label>
+          <textarea #desc rows="3"
+            class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 transition-all resize-none"
+            placeholder="Describe the incident..." (input)="onDescriptionChange(desc.value)"></textarea>
+        </div>
 
-        @if (currentClaim.documents.length > 0) {
-          <ul class="mt-3 space-y-1 text-sm text-slate-600">
+        <!-- DOCUMENTS -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Documents</label>
+          <div
+            class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer relative">
+            <input type="file" multiple class="absolute inset-0 opacity-0 cursor-pointer"
+              (change)="onFilesSelected($event)" />
+            <svg class="w-8 h-8 text-indigo-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+            <p class="text-sm text-indigo-600 font-medium">Click to Upload Proof</p>
+            <p class="text-xs text-slate-400 mt-1">PDF, JPG, PNG (Max 5MB)</p>
+          </div>
+
+          @if (currentClaim.documents.length > 0) {
+          <ul class="mt-4 space-y-2">
             @for (doc of currentClaim.documents; track doc) {
-              <li class="flex items-center gap-2">
-                📄 <span>{{ doc }}</span>
-              </li>
+            <li class="flex items-center gap-3 bg-indigo-50 px-3 py-2 rounded-lg text-sm text-indigo-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+              </svg>
+              <span class="truncate">{{ doc }}</span>
+            </li>
             }
           </ul>
-        }
+          }
+        </div>
       </div>
 
-      <!-- ACTIONS -->
-      <div class="flex justify-end gap-3 pt-4">
-        <button
-          class="px-5 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition"
-          (click)="closeClaimForm()">
-          Cancel
-        </button>
-
-        <button
-          class="px-5 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition"
-          (click)="submitClaim()">
-          Submit Claim
+      <div class="mt-8">
+        <button (click)="submitClaim()"
+          class="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-lg shadow-xl shadow-slate-200 hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all">
+          Submit Claim Request
         </button>
       </div>
-
     </div>
 
   </div>
+</div>
 }
 
+<!-- PAYMENTS MODAL -->
+@if (showPaymentModal) {
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fadeIn">
+  <div class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
+    <!-- HEADER -->
+    <div class="bg-indigo-600 p-6 flex justify-between items-start shrink-0">
+      <div>
+        <h2 class="text-xl font-bold text-white">Payment & History</h2>
+        <p class="text-indigo-200 text-sm mt-1">{{ selectedPolicyForPayment?.name }}</p>
+      </div>
+      <button (click)="closePaymentModal()" class="text-indigo-200 hover:text-white transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="p-6 overflow-y-auto custom-scrollbar grow">
+
+      <!-- PAY CARD -->
+      <div
+        class="bg-gradient-to-br from-indigo-50 to-white p-6 rounded-2xl border border-indigo-100 flex flex-col md:flex-row justify-between items-center gap-6 mb-8 shadow-sm">
+        <div>
+          <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1">Total Annual Premium</p>
+          <p class="text-3xl font-bold text-slate-900">₹{{ selectedPolicyForPayment?.premium | number }}</p>
+          <p class="text-xs text-slate-500 mt-2 flex items-center gap-1">
+            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Secure payment processing
+          </p>
+        </div>
+        <button (click)="processPayment()"
+          class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:scale-95 whitespace-nowrap">
+          Pay Premium Now
+        </button>
+      </div>
+
+      <!-- HISTORY -->
+      <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <span class="w-1 h-6 bg-emerald-500 rounded-full"></span>
+        Transaction History
+      </h3>
+
+      @if (paymentHistory.length === 0) {
+      <div class="text-center py-10 bg-slate-50 rounded-2xl border border-slate-100">
+        <p class="text-slate-500 text-sm">No payment history found for this policy.</p>
+      </div>
+      }
+
+      @if (paymentHistory.length > 0) {
+      <div class="space-y-3">
+        @for (pay of paymentHistory; track pay.id) {
+        <div
+          class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl hover:border-slate-200 transition-colors">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-slate-900">Payment Received</p>
+              <p class="text-xs text-slate-500">{{ pay.paymentDate | date:'mediumDate' }} • {{ pay.method }}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-slate-900">+ ₹{{ pay.amountPaid | number }}</p>
+            <p
+              class="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full inline-block mt-1 uppercase tracking-wide">
+              {{ pay.transactionId }}</p>
+          </div>
+        </div>
+        }
+      </div>
+      }
+
+    </div>
+  </div>
+</div>
+}
