@@ -624,17 +624,6 @@
       "requestedAt": "2026-01-27T18:30:00Z",
       "remarks": "Documents incomplete",
       "rejectedAt": "2026-01-27T18:40:03.834Z"
-      "id": "41382503-805e-4d3d-ad12-79eefd2fab92",
-      "userId": "4",
-      "policyId": "POL-L-001",
-      "nominee": {
-        "name": "adsfasdfafdasd",
-        "relation": "father",
-        "age": 69
-      },
-      "status": "pending",
-      "requestedAt": "2026-01-27T16:35:56.219Z",
-      "assignedAgentId": "AGT-001"
     },
     {
       "id": "a949cea8-e08a-465c-8b53-e2442b9a5f25",
