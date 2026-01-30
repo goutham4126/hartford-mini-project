@@ -743,9 +743,11 @@
         "relation": "Self",
         "age": 35
       },
-      "status": "pending",
+      "status": "approved",
       "requestedAt": "2026-01-27T16:38:23.219Z",
-      "assignedAgentId": "AGT-002"
+      "assignedAgentId": "AGT-002",
+      "approvedAt": "2026-01-28T11:58:09.046Z",
+      "remarks": "Approved after document verification"
     },
     {
       "id": "b5e22414-4ccd-4973-8c5a-f8186adc9571",
@@ -756,9 +758,11 @@
         "relation": "Son",
         "age": 25
       },
-      "status": "pending",
+      "status": "rejected",
       "requestedAt": "2026-01-27T17:24:39.545Z",
-      "assignedAgentId": "AGT-003"
+      "assignedAgentId": "AGT-003",
+      "rejectedAt": "2026-01-28T11:58:11.056Z",
+      "remarks": "Documents incomplete"
     },
     {
       "id": "27fab90a-95a5-45ad-88a0-60a4dde12db1",
@@ -769,9 +773,11 @@
         "relation": "asdfasdf",
         "age": 45
       },
-      "status": "pending",
+      "status": "approved",
       "requestedAt": "2026-01-28T03:57:54.460Z",
-      "assignedAgentId": "AGT-002"
+      "assignedAgentId": "AGT-002",
+      "approvedAt": "2026-01-28T11:58:11.489Z",
+      "remarks": "Approved after document verification"
     },
     {
       "id": "1d78ef74-e51a-45e3-81e4-1b5c16f3453d",
@@ -813,7 +819,8 @@
       "assignedAgentId": "AGT-001",
       "approvedAt": "2026-01-28T04:59:54.015Z",
       "remarks": "Approved after document verification"
-    },{
+    },
+    {
       "id": "REQ-001",
       "userId": "4",
       "policyId": "POL-H-001",
@@ -1054,7 +1061,8 @@
       "method": "Credit Card",
       "billingCycleStartDate": "2026-01-27T00:00:00Z",
       "nextDueDate": "2029-01-27T00:00:00Z"
-    },{
+    },
+    {
       "id": "04b6",
       "userId": "5a62",
       "licenseNumber": "LIC-1769530858361",
