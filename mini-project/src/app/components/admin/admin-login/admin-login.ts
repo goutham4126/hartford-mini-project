@@ -1,9 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../../services/auth';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-admin-login',
   standalone: true,
@@ -12,20 +11,22 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './admin-login.css',
 })
 export class AdminLogin {
-
   private auth = inject(Auth);
   private router = inject(Router);
-
+  private route = inject(ActivatedRoute);
   email = signal('');
   password = signal('');
-  selectedRole = signal<'admin' | 'agent'>('admin');
-
+  selectedRole = signal<'admin'|'agent'>('admin');
+  ngOnInit() {
+  if (this.route.snapshot.queryParamMap.get('role') === 'agent') {
+    this.selectedRole.set('agent');
+  }
+}
   login() {
     this.auth.login(this.email(), this.password()).subscribe({
       next: () => {
         const user = this.auth.user();
         const role = this.selectedRole();
-
         if (role === 'admin') {
           if (user?.role !== 'admin') {
             alert('Not an Admin account');

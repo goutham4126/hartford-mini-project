@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgentService } from '../../../services/agents';
 import { Agent, User } from '../../../models/model';
-
 @Component({
   standalone: true,
   selector: 'app-agent-profile',
@@ -15,7 +14,6 @@ export class AgentProfile {
   constructor(private agentService: AgentService) {
     this.agentService.getAgent(data => {
       this.agent.set(data);
-      // console.log('FINAL AGENT DATA:', data);
     });
   }
 }
