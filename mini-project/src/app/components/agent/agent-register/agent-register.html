@@ -1,10 +1,68 @@
-<h2>Agent Register</h2>
-
-  <input [(ngModel)]="username" placeholder="Username" />
-  <input [(ngModel)]="email" placeholder="Email" />
-  <input [(ngModel)]="password" type="password" placeholder="Password" />
-  <input [(ngModel)]="firstName" placeholder="First Name" />
-  <input [(ngModel)]="lastName" placeholder="Last Name" />
-  <input [(ngModel)]="phone" placeholder="Phone" />
-
-  <button (click)="register()">Register</button>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-2xl font-bold text-center text-slate-900">
+      Agent Register
+    </h2>
+    <p class="text-center text-slate-500 mt-1">
+      Create your agent account
+    </p>
+    <div class="mt-6 space-y-4 mb-12">
+      <input
+        [(ngModel)]="username"
+        placeholder="Username"
+        class="w-full px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+               focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <input
+        [(ngModel)]="email"
+        placeholder="Email"
+        type="email"
+        class="w-full px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+               focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <input
+        [(ngModel)]="password"
+        type="password"
+        placeholder="Password"
+        class="w-full px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+               focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <div class="grid grid-cols-2 gap-3">
+        <input
+          [(ngModel)]="firstName"
+          placeholder="First Name"
+          class="px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+                 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+        <input
+          [(ngModel)]="lastName"
+          placeholder="Last Name"
+          class="px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+                 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <input
+        [(ngModel)]="phone"
+        placeholder="Phone"
+        class="w-full px-4 py-3 rounded-xl bg-blue-50 border border-blue-100
+               focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+      <button
+        (click)="register()"
+        class="w-full mt-4 py-3 rounded-xl bg-green-600 text-white font-semibold
+               hover:bg-green-700 transition-all duration-200 shadow-md"
+      >
+        Register as Agent
+      </button>
+    </div>
+    <p class="text-center text-sm text-slate-500 mt-8">
+  Already have an account?
+  <a
+  [routerLink]="['/auth/admin/login']"
+  [queryParams]="{ role: 'agent' }"
+  class="font-medium text-emerald-600 cursor-pointer"
+>
+  Login
+</a>
+  </div>
+</div>

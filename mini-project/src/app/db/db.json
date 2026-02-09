@@ -221,28 +221,6 @@
       "territory": "Metro Region",
       "specialization": "Life Insurance",
       "createdAt": "2026-01-27T16:22:00Z"
-    },
-    {
-      "id": "4233",
-      "username": "poojitha",
-      "email": "pooji@gmail.com",
-      "password": "Pooji@11",
-      "role": "agent",
-      "firstName": "Poojitha",
-      "lastName": "Bejgum",
-      "phone": "9347758510",
-      "createdAt": "2026-01-28T04:17:18.953Z"
-    },
-    {
-      "id": "e528",
-      "username": "radhakrishna",
-      "email": "rahda@gmail.com",
-      "password": "radha@12",
-      "role": "customer",
-      "firstName": "radha",
-      "lastName": "krishna",
-      "phone": "9088302820",
-      "createdAt": "2026-01-28T04:22:10.634Z"
     }
   ],
   "policies": [
@@ -788,9 +766,11 @@
         "relation": "dad",
         "age": 69
       },
-      "status": "pending",
+      "status": "approved",
       "requestedAt": "2026-01-28T03:59:37.221Z",
-      "assignedAgentId": "AGT-001"
+      "assignedAgentId": "AGT-001",
+      "approvedAt": "2026-02-08T17:48:24.655Z",
+      "remarks": "Approved after document verification"
     },
     {
       "id": "df5c3980-d960-4b42-8f35-cb8a810e906b",
@@ -928,6 +908,51 @@
       "requestedAt": "2024-02-20T11:00:00Z",
       "rejectedAt": "2024-02-21T16:00:00Z",
       "remarks": "Vehicle age > 15 years not supported for this plan."
+    },
+    {
+      "id": "a0b03213-7c62-4fda-9a60-be1280d9293a",
+      "userId": "4",
+      "policyId": "POL-H-001",
+      "nominee": {
+        "name": "michael",
+        "relation": "self",
+        "age": 21
+      },
+      "status": "rejected",
+      "requestedAt": "2026-02-08T19:07:04.679Z",
+      "assignedAgentId": "AGT-001",
+      "rejectedAt": "2026-02-08T19:07:26.645Z",
+      "remarks": "Documents incomplete"
+    },
+    {
+      "id": "bd5d2db8-6dfc-4b52-b188-fe5b9169f621",
+      "userId": "4",
+      "policyId": "POL-H-002",
+      "nominee": {
+        "name": "michael",
+        "relation": "self",
+        "age": 21
+      },
+      "status": "approved",
+      "requestedAt": "2026-02-08T19:07:44.263Z",
+      "assignedAgentId": "AGT-001",
+      "approvedAt": "2026-02-08T19:07:51.028Z",
+      "remarks": "Approved after document verification"
+    },
+    {
+      "id": "735c602c-258b-4ba8-b8a2-480ae1a8c78a",
+      "userId": "4",
+      "policyId": "POL-H-002",
+      "nominee": {
+        "name": "michale",
+        "relation": "self",
+        "age": 21
+      },
+      "status": "rejected",
+      "requestedAt": "2026-02-08T19:09:43.065Z",
+      "assignedAgentId": "AGT-001",
+      "rejectedAt": "2026-02-08T19:09:58.054Z",
+      "remarks": "Documents incomplete"
     }
   ],
   "customers": [
@@ -942,7 +967,8 @@
         "POL-V-001",
         "POL-H-4073",
         "POL-L-002",
-        "POL-H-001"
+        "POL-H-001",
+        "POL-H-002"
       ],
       "kycStatus": "verified",
       "address": "Bangalore",
@@ -1079,6 +1105,32 @@
       "commissionRate": 5,
       "assignedCustomers": [],
       "totalPoliciesSold": 0
+    },
+    {
+      "id": "PAY-2008",
+      "requestId": "REQ-6681",
+      "policyId": "POL-H-001",
+      "customerId": "4",
+      "amountPaid": 15000,
+      "totalPremium": 15000,
+      "pendingBalance": 0,
+      "paymentDate": "2026-02-08T19:08:18.830Z",
+      "method": "Credit Card",
+      "status": "completed",
+      "transactionId": "TXN-77C0TMBDX"
+    },
+    {
+      "id": "PAY-3367",
+      "requestId": "REQ-2244",
+      "policyId": "POL-H-001",
+      "customerId": "4",
+      "amountPaid": 15000,
+      "totalPremium": 15000,
+      "pendingBalance": 0,
+      "paymentDate": "2026-02-08T19:08:46.224Z",
+      "method": "Credit Card",
+      "status": "completed",
+      "transactionId": "TXN-T95WRMQUG"
     }
   ],
   "claims": [
@@ -1147,11 +1199,43 @@
       "amountRequested": 1000000,
       "amountApproved": 0,
       "settlementStatus": "processing",
-      "status": "pending",
+      "status": "approved",
       "submittedAt": "2026-01-28T09:03:58.735Z",
       "description": "\nAbout\nNo description, website, or topics provided.\n Activity\nStars\n 0 stars\nWatchers\n 0 watching\nForks\n 0 forks\nReport repository",
       "documents": [
         "via ai.png"
+      ]
+    },
+    {
+      "id": "CLM-243",
+      "policyId": "POL-H-002",
+      "customerId": "CUST-001",
+      "agentId": "AGT-001",
+      "type": "health",
+      "amountRequested": 2000000,
+      "amountApproved": 0,
+      "settlementStatus": "processing",
+      "status": "rejected",
+      "submittedAt": "2026-02-08T19:10:06.606Z",
+      "description": "New Claim Request",
+      "documents": [
+        "Screenshot 2026-02-09 000807.png"
+      ]
+    },
+    {
+      "id": "CLM-36",
+      "policyId": "POL-H-002",
+      "customerId": "CUST-001",
+      "agentId": "AGT-001",
+      "type": "health",
+      "amountRequested": 2000000,
+      "amountApproved": 0,
+      "settlementStatus": "processing",
+      "status": "approved",
+      "submittedAt": "2026-02-08T19:30:55.901Z",
+      "description": "New Claim Request",
+      "documents": [
+        "Screenshot 2025-06-12 163647.png"
       ]
     }
   ]

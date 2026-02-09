@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgentService } from '../../../services/agents';
 import { PolicyRequests } from '../../../models/model';
-
 @Component({
   standalone: true,
   selector: 'app-agent-policyrequests',
@@ -15,9 +14,22 @@ export class AgentPolicyrequests {
     this.load();
   }
   load() {
-    this.agentService.getPolicyRequests(reqs => {
-      this.policyRequests.set(reqs);
+    this.agentService.getAgent(agent => {
+      if (!agent) {
+        this.policyRequests.set([]);
+        return;
+      }
+      const agentId = agent.id;
+      this.agentService.getPolicyRequests(reqs => {
+        const myRequests = reqs.filter(
+          r => r.assignedAgentId === agentId
+        );
+        this.policyRequests.set(myRequests);
+      });
     });
+  }
+  get pendingCount(): number {
+    return this.policyRequests().filter(r => r.status === 'pending').length;
   }
   approve(req: PolicyRequests) {
     const updated: Partial<PolicyRequests> = {

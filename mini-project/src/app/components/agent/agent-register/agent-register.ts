@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Auth } from '../../../services/auth';
 @Component({
   selector: 'app-agent-register',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './agent-register.html',
   styleUrl: './agent-register.css',
 })
@@ -41,7 +42,10 @@ export class AgentRegister {
       body: JSON.stringify(agentData)
     }).then(() => {
       alert('Agent registered successfully');
-      this.router.navigate(['/auth/agent/login']);
+      this.router.navigate(
+        ['/auth/admin/login'],
+        { queryParams: { role: 'agent' } }
+      );
     });
   });
 }

@@ -1,21 +1,16 @@
 <div
   class="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-  <!-- Dynamic Background Decoration -->
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
     <div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/20 blur-[120px] rounded-full"></div>
     <div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/20 blur-[120px] rounded-full"></div>
   </div>
-
   <div class="max-w-md w-full space-y-8 relative z-10">
     <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100 backdrop-blur-sm">
       <div class="text-center mb-8">
         <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Staff Portal</h2>
         <p class="mt-2 text-sm text-slate-500">Secure access for Admins & Agents</p>
       </div>
-
       <form class="space-y-6" (submit)="login(); $event.preventDefault()">
-
-        <!-- Role Selection -->
         <div class="flex justify-center p-1 bg-slate-100/50 rounded-xl border border-slate-200">
           <label class="flex-1 cursor-pointer">
             <input type="radio" name="role" value="admin" [checked]="selectedRole() === 'admin'"
@@ -34,7 +29,6 @@
             </div>
           </label>
         </div>
-
         <div class="space-y-4">
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -48,7 +42,6 @@
               class="appearance-none rounded-xl relative block w-full px-3 py-3.5 pl-10 border border-slate-200 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-slate-50 focus:bg-white transition-all duration-200"
               (input)="email.set($any($event.target).value)" placeholder="Work Email" />
           </div>
-
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg class="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none"
@@ -62,22 +55,18 @@
               (input)="password.set($any($event.target).value)" placeholder="Password" />
           </div>
         </div>
-
         <button type="submit"
-          [class]="selectedRole() === 'admin' ? 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500' : 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500'"
+          [class]="selectedRole()==='admin'? 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500' : 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500'"
           class="w-full flex justify-center py-3.5 px-4 border border-transparent text-sm font-bold rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 shadow-lg">
-          Login as {{ selectedRole() | titlecase }}
+          Login as {{selectedRole()|titlecase}}
         </button>
-
       </form>
-
       <div class="mt-6 text-center">
         <a routerLink="/auth/customer/login"
           class="text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors">
           ← Back to Customer Login
         </a>
       </div>
-
       <div class="mt-6 text-center">
         <p class="text-sm text-slate-500">
           Don't have an account?
@@ -87,7 +76,6 @@
           </a>
         </p>
       </div>
-
     </div>
   </div>
 </div>
